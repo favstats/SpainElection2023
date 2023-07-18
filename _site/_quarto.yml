@@ -1,0 +1,23 @@
+project:
+  type: website
+  output-dir: ../docs
+
+website:
+  title: "🇳🇱 2023 Dutch Election Dashboard"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Spending
+      - targeting.qmd
+      - href: about.qmd
+        text: About
+    right:
+      - icon: github
+        href: https://github.com/favstats
+      - icon: twitter
+        href: https://twitter.com/favstats
+    
+format:
+  html:
+    theme: litera
+    

@@ -1,0 +1,1951 @@
+---
+title: "Targeting"
+format:
+  html:
+    theme: lumen
+---
+
+```{r setup, include=FALSE}
+election_title <- "2023 Dutch parliamentary election"
+the_country <- "Netherlands"
+
+
+## Global options
+knitr::opts_chunk$set(
+    cache = F, 
+    echo = F, 
+    warning = F, 
+    message = F, 
+    cache.lazy = FALSE
+)
+
+
+# pacman::p_load(tidyverse, highcharter)
+library(tidyverse)
+library(highcharter)
+library(gt)
+
+
+
+options(scipen = 999)
+
+
+```
+
+
+```{r}
+
+# wtm_data %>% count(party,sort = T)
+
+
+# source("../party_utils.R")
+color_dat <- tibble(
+  colors = c("#00b13d", "#80c31c", "#0a2cca", "#008067", "#bf0000", "#ff0000", "#6f2421", "#02a6e9", "#92107d", "#04d3d4", "#242b57", "#66cdaa", "#242b57", "#006b28", "#012758", "#ea5b0b", "#582c83", "#698c0c"),
+  party = c("D66", "GroenLinks", "VVD", "CDA", "SP", "PvdA", "FvD", "ChristenUnie", "50PLUS", "Alliantie", "BVNL", "DENK", "Ja21", "PvdD", "PVV", "SGP", "Volt Nederland", "BBB"))
+
+
+most_left_party <- "VVD"
+
+
+scale_fill_parties <- function(...){
+    ggplot2:::manual_scale(
+        'fill', 
+        values = setNames(color_dat$colors, color_dat$party), 
+        ...
+    )
+}
+scale_color_parties <- function(...){
+    ggplot2:::manual_scale(
+        'color', 
+        values = setNames(color_dat$colors, color_dat$party), 
+        ...
+    )
+}
+source("../utils.R")
+# source("../party_utils.R")
+```
+
+
+
+```{r}
+election_dat30 <- readRDS("../data/election_dat30.rds") %>% 
+    rename(internal_id = page_id) %>% 
+  filter(party != "And")
+
+
+election_dat7 <- readRDS("../data/election_dat7.rds") %>% 
+    rename(internal_id = page_id) %>% 
+  filter(party != "And") 
+
+# saveRDS(election_dat30, "../data/election_dat30.rds")
+# saveRDS(election_dat7, "../data/election_dat7.rds")
+
+fin <- (as.Date(election_dat30$ds[1])-lubridate::days(1))
+begin7 <- fin-lubridate::days(6)
+begin30 <- fin-lubridate::days(29)
+
+
+last7days_string <- paste0(create_date(begin7), " - ", paste(create_date(fin), lubridate::year(fin)))
+last30days_string <- paste0(create_date(begin30), " - ", paste(create_date(fin), lubridate::year(fin)))
+
+
+
+the_currency <- election_dat30 %>% 
+  count(main_currency, sort = T) %>% 
+  slice(1) %>% 
+  pull(main_currency)
+
+if(the_currency == "EUR"){
+  currency_symbol <- "€"
+} else {
+  currency_symbol <- "CURRENCY"
+}
+
+
+```
+
+This section shows spening per *targeting criteria* used by political parties to reach citizens in the run-up to the `r election_title` for the latest available data.
+
+
+
+## Spending per Targeting Criteria 
+
+How much did campaigns spend on different targeting methods? The graphs below show spending *overall* across all parties and *by party*.
+
+> Note: targeting criteria can overlap so the percentages do not sum up to 100%.
+
+::: {.panel-tabset}
+
+
+### `r last30days_string` (Last 30 days) 
+
+::: {.panel-tabset}
+
+
+
+#### Overall
+
+
+```{r, fig.width=8, fig.height=5, dpi=300}
+coltototal30 <- election_dat30 %>% 
+    mutate(total_spend = total_spend_formatted) %>% 
+    filter(main_currency == the_currency) %>% 
+        calc_targeting() 
+
+gg <- coltototal30 %>% 
+  filter(perc >= 0.01) %>%
+  add_count(target) %>% 
+  # filter(n == 3) %>% 
+  mutate(target = case_when(
+    target == "custom_audience" ~ "Custom Audiences",
+    target == "countries" ~ "GEOGRAPHY: Entire Country",
+    target == "regions" ~ "GEOGRAPHY: Regions",
+    target == "lookalike_audience" ~ "Lookalike Audiences",
+    target == "interest" ~ "Detailed",
+    target == "age" ~ "Age",
+    target == "zips" ~ "GEOGRAPHY: Postal Code",
+    target == "CITY" ~ "GEOGRAPHY: City",
+    target == "language" ~ "Language",
+    target == "gender" ~ "Gender",
+    target == "COMUNE" ~ "GEOGRAPHY: Municipality",
+    target == "electoral_districts" ~ "GEOGRAPHY: Electoral Districts",
+    target == "COUNTY" ~ "GEOGRAPHY: Counties",
+    str_detect(target, "NEIGHBOR") ~ "GEOGRAPHY: Neighborhood",
+    T ~ target
+  )) %>% 
+    filter(target != "Unknown") %>% 
+    arrange(desc(perc))  
+
+library(tidytext)
+
+library(highcharter)
+
+the_order <- gg %>%
+  tidyr::complete(target, fill = list(perc = 0)) %>%
+  dplyr::mutate(target = forcats::fct_reorder(target, perc, .desc = FALSE)) %>%
+  dplyr::pull(target) %>%
+  levels()
+
+gg %>%
+  mutate(spend_perlab = scales::comma(round(spend_per))) %>% 
+  dplyr::mutate(target = forcats::fct_relevel(target, the_order)) %>%
+  highcharter::hchart(type = "bar", hcaes(x = target, y = perc)) %>%
+  highcharter::hc_plotOptions(bar = list(color = "darkgrey")) %>%
+  highcharter::hc_xAxis(labels = list(style = list(fontSize = "10px"))) %>%
+  highcharter::hc_yAxis(title = list(text = "Budget spent on targeting method (% of Total spend)")) %>%
+  highcharter::hc_add_theme(hc_theme_google()) %>%
+ highcharter::hc_tooltip(
+    pointFormat = paste0("<b>{point.target}</b><br>% of Total Budget Spent: {point.y:.1f}%<br>Spend a total of ", currency_symbol, "{point.spend_perlab} on this method."),
+    headerFormat = ""
+  ) %>%
+  highcharter::hc_credits(
+    enabled = TRUE,
+    text = "Source: Meta Ad Library. Data Viz: Fabio Votta (@favstats)."
+  )%>%
+    hc_exporting(
+      enabled = TRUE
+    )
+
+
+
+
+
+
+```
+
+
+#### By Party
+
+```{r}
+col_each30 <- election_dat30 %>% 
+    mutate(total_spend = total_spend_formatted) %>% 
+    filter(main_currency == the_currency) %>% 
+    group_split(party) %>% 
+    map_dfr(~{
+        calc_targeting(.x) %>% 
+            mutate(#coalition = .x$coalition[1],
+                   party = .x$party[1])
+    })
+
+
+
+library(highcharter)
+library(dplyr)
+
+plot_geography <- function(x) {
+  # x <- col_each30
+  gg <- x %>%
+    filter(perc >= 0.5) %>%
+    add_count(party, target) %>%
+    mutate(target = case_when(
+      target == "custom_audience" ~ "Custom Audiences",
+      target == "countries" ~ "GEOGRAPHY: Entire Country",
+      target == "regions" ~ "GEOGRAPHY: Regions",
+      target == "lookalike_audience" ~ "Lookalike Audiences",
+      target == "interest" ~ "Detailed",
+      target == "age" ~ "Age",
+      target == "zips" ~ "GEOGRAPHY: Postal Code",
+      target == "CITY" ~ "GEOGRAPHY: City",
+      target == "language" ~ "Language",
+      target == "gender" ~ "Gender",
+      target == "COMUNE" ~ "GEOGRAPHY: Municipality",
+      target == "electoral_districts" ~ "GEOGRAPHY: Electoral Districts",
+      target == "COUNTY" ~ "GEOGRAPHY: Counties",
+      str_detect(target, "NEIGHBOR") ~ "GEOGRAPHY: Neighborhood",
+      TRUE ~ target
+    )) %>%
+    filter(target != "Unknown") %>%
+    arrange(desc(n))
+
+  the_order <- gg %>%
+    complete(party, target, fill = list(n = 0)) %>%
+    mutate(target = fct_reorder(target, n, .desc = FALSE)) %>%
+    pull(target) %>%
+    levels()
+  
+ 
+
+  charts <- gg %>%
+  mutate(spend_perlab = scales::comma(round(spend_per))) %>% 
+    split(.$party) %>%
+    map(~ {
+             the_color <- color_dat$colors[color_dat$party == .x$party[1]]
+      hchart(.x, type = "bar", hcaes(x = target, y = perc), color = the_color) %>%
+            hc_plotOptions(bar = list(horizontal = TRUE, stacking = "normal")) %>%
+            hc_yAxis(title = list(text = "% Party Budget spent on targeting method"), max = 100, min = 0) %>%
+            hc_xAxis(title = "", labels = list(style = list(fontSize = "10px"))) %>%
+            hc_add_theme(hc_theme_google()) %>%
+           highcharter::hc_tooltip(
+              pointFormat = paste0("<b>{point.target}</b><br>% of Total Budget Spent: {point.y:.1f}%<br>Spend a total of ", currency_symbol,           "{point.spend_perlab} on this method."),
+              headerFormat = ""
+            ) %>%
+            hc_title(text = unique(.x$party), align = "left", style = list(fontWeight = "bold")) %>% 
+        hc_size(height = 300) %>%
+    hc_exporting(
+      enabled = TRUE
+    )
+    }
+    )
+
+  charts
+}
+
+```
+
+
+```{r echo=FALSE, results='asis'}
+library(htmltools)
+library(purrr)
+
+# Generate plots
+plots <- plot_geography(col_each30)
+
+# Map each plot to a column
+columns <- map(plots, ~ div(style = "width: 50%; float: left;", .x))
+
+# If there's an odd number of plots, add an empty div to the end to balance the columns
+if (length(columns) %% 2 == 1) {
+  columns <- c(columns, list(div(style = "width: 50%; float: left;")))
+}
+
+# Pair up the columns and wrap them in rows
+rows <- map(seq(from = 1, to = length(columns), by = 2), ~ {
+  div(class = "row",
+    list(
+      columns[[.x]],
+      columns[[.x + 1]]
+    )
+  )
+})
+
+# Print the rows
+tags$div(class = "container", do.call(tags$div, rows)) 
+
+
+```
+
+
+::: 
+
+### `r last7days_string` (Last 7 days)
+
+
+::: {.panel-tabset}
+
+
+#### Overall
+
+
+```{r, fig.width=8, fig.height=5, dpi=300}
+coltototal7 <- election_dat7 %>% 
+    mutate(total_spend = total_spend_formatted) %>% 
+    filter(main_currency == the_currency) %>% 
+        calc_targeting() 
+
+gg <- coltototal7 %>% 
+  filter(perc >= 0.01) %>%
+  add_count(target) %>% 
+  # filter(n == 3) %>% 
+  mutate(target = case_when(
+    target == "custom_audience" ~ "Custom Audiences",
+    target == "countries" ~ "GEOGRAPHY: Entire Country",
+    target == "regions" ~ "GEOGRAPHY: Regions",
+    target == "lookalike_audience" ~ "Lookalike Audiences",
+    target == "interest" ~ "Detailed",
+    target == "age" ~ "Age",
+    target == "zips" ~ "GEOGRAPHY: Postal Code",
+    target == "CITY" ~ "GEOGRAPHY: City",
+    target == "language" ~ "Language",
+    target == "gender" ~ "Gender",
+    target == "COMUNE" ~ "GEOGRAPHY: Municipality",
+    target == "electoral_districts" ~ "GEOGRAPHY: Electoral Districts",
+    target == "COUNTY" ~ "GEOGRAPHY: Counties",
+    str_detect(target, "NEIGHBOR") ~ "GEOGRAPHY: Neighborhood",
+    T ~ target
+  )) %>% 
+    filter(target != "Unknown") %>% 
+    arrange(desc(perc)) 
+
+the_order <- gg %>%
+  tidyr::complete(target, fill = list(perc = 0)) %>%
+  dplyr::mutate(target = forcats::fct_reorder(target, perc, .desc = FALSE)) %>%
+  dplyr::pull(target) %>%
+  levels()
+
+gg %>%
+  mutate(spend_perlab = scales::comma(round(spend_per))) %>% 
+  dplyr::mutate(target = forcats::fct_relevel(target, the_order)) %>%
+  highcharter::hchart(type = "bar", hcaes(x = target, y = perc)) %>%
+  highcharter::hc_plotOptions(bar = list(color = "darkgrey")) %>%
+  highcharter::hc_xAxis(labels = list(style = list(fontSize = "10px"))) %>%
+  highcharter::hc_yAxis(title = list(text = "Budget spent on targeting method (% of Total spend)")) %>%
+  highcharter::hc_add_theme(hc_theme_google()) %>%
+ highcharter::hc_tooltip(
+    pointFormat = paste0("<b>{point.target}</b><br>% of Total Budget Spent: {point.y:.1f}%<br>Spend a total of ", currency_symbol, "{point.spend_perlab} on this method."),
+    headerFormat = ""
+  ) %>%
+  highcharter::hc_credits(
+    enabled = TRUE,
+    text = "Source: Meta Ad Library. Data Viz: Fabio Votta (@favstats)."
+  ) %>%
+    hc_exporting(
+      enabled = TRUE
+    )
+
+```
+
+
+#### By Party
+
+```{r, fig.width=12, fig.height=9, dpi=300}
+
+col_each7 <- election_dat7 %>% 
+    mutate(total_spend = total_spend_formatted) %>% 
+    filter(main_currency == the_currency) %>% 
+    group_split(party) %>% 
+    map_dfr(~{
+        calc_targeting(.x) %>% 
+            mutate(#coalition = .x$coalition[1],
+                   party = .x$party[1])
+    })
+
+
+
+```
+
+```{r echo=FALSE, results='asis'}
+
+# Generate plots
+plots <- plot_geography(col_each7)
+
+# Map each plot to a column
+columns <- map(plots, ~ div(style = "width: 50%; float: left;", .x))
+
+# If there's an odd number of plots, add an empty div to the end to balance the columns
+if (length(columns) %% 2 == 1) {
+  columns <- c(columns, list(div(style = "width: 50%; float: left;")))
+}
+
+# Pair up the columns and wrap them in rows
+rows <- map(seq(from = 1, to = length(columns), by = 2), ~ {
+  div(class = "row",
+    list(
+      columns[[.x]],
+      columns[[.x + 1]]
+    )
+  )
+})
+
+# Print the rows
+tags$div(class = "container", do.call(tags$div, rows))
+
+
+```
+
+::: 
+
+
+::: 
+
+
+## Top Targeted (Detailed) Audiences 
+
+Here, we show the *top targeted audiences* for each party for the "detailed" targeting that Meta offers (ranked by amount of Euro spend). Most (but not all) of these audiences are “interest” audiences, i.e. the parties targeted people interested in “Books” or “Politics”.
+
+::: {.panel-tabset}
+
+
+
+```{r}
+
+interest_targeting30 <-  election_dat30 %>% 
+    mutate(total_spend = total_spend_formatted) %>% 
+    filter(type == "detailed") %>%
+    # mutate(total_spend = readr::parse_number(total_spend_formatted)) %>%
+    mutate(total_spend = ifelse(total_spend == 50, 50, total_spend)) %>%
+    mutate(total_spend = total_spend * total_spend_pct) %>%
+    filter(main_currency == the_currency)  %>%
+    # left_join(page_names %>% select(internal_id = page_id, page_name) %>% distinct(internal_id, .keep_all =T)) %>%
+    # left_join(us_advertisers %>% rename(internal_id = page_id)) %>%
+    # drop_na(left_vs_right) %>%
+    mutate(value = paste0(detailed_type,": ", value)) %>% 
+    group_by(party, value, is_exclusion, detailed_type) %>%
+    summarise(total_spend = sum(total_spend)) %>%
+    ungroup() %>%
+    arrange(desc(total_spend)) 
+
+# election_dat30 %>% 
+#     filter(!is_exclusion) %>% 
+#     group_by(party)
+#     ggplot(aes())
+    
+contested_dat30 <- interest_targeting30 %>% 
+  filter(!is_exclusion) %>% 
+  # filter(total_spend >= 40000) %>% 
+  filter(total_spend >= 1) %>%
+  # add_count(value) %>% 
+  # filter(n >= 5) %>% 
+  group_by(party) %>% 
+  mutate(total_spenderino = sum(total_spend)) %>% 
+  mutate(perc = total_spend/total_spenderino) %>%
+  mutate(value = str_remove_all(value, "INTERESTS: |DEMOGRAPHICS: |BEHAVIORS: ")) #%>%
+  # mutate(value = str_replace_all(value, " \\s*\\([^\\)]+\\)", ""))
+
+
+
+interest_targeting7 <-  election_dat7 %>% 
+    mutate(total_spend = total_spend_formatted) %>% 
+    filter(type == "detailed") %>%
+    # mutate(total_spend = readr::parse_number(total_spend_formatted)) %>%
+    mutate(total_spend = ifelse(total_spend == 50, 50, total_spend)) %>%
+    mutate(total_spend = total_spend * total_spend_pct) %>%
+    filter(main_currency == the_currency)  %>%
+    # left_join(page_names %>% select(internal_id = page_id, page_name) %>% distinct(internal_id, .keep_all =T)) %>%
+    # left_join(us_advertisers %>% rename(internal_id = page_id)) %>%
+    # drop_na(left_vs_right) %>%
+    mutate(value = paste0(detailed_type,": ", value)) %>% 
+    group_by(party, value, is_exclusion, detailed_type) %>%
+    summarise(total_spend = sum(total_spend)) %>%
+    ungroup() %>%
+    arrange(desc(total_spend)) 
+
+# election_dat30 %>% 
+#     filter(!is_exclusion) %>% 
+#     group_by(party)
+#     ggplot(aes())
+    
+contested_dat7 <- interest_targeting7 %>% 
+  filter(!is_exclusion) %>% 
+  # filter(total_spend >= 40000) %>% 
+  filter(total_spend >= 1) %>%
+  # add_count(value) %>% 
+  # filter(n >= 5) %>% 
+  group_by(party) %>% 
+  mutate(total_spenderino = sum(total_spend)) %>% 
+  mutate(perc = total_spend/total_spenderino) %>%
+  mutate(value = str_remove_all(value, "INTERESTS: |DEMOGRAPHICS: |BEHAVIORS: ")) #%>%
+  # mutate(value = str_replace_all(value, " \\s*\\([^\\)]+\\)", ""))
+
+```
+
+
+
+### `r last30days_string` (Last 30 days)
+
+
+
+
+```{r, fig.width=16, fig.height=12, dpi=300}
+
+generate_plots <- function(data) {
+  gg <- data %>%
+    group_by(party) %>%
+    arrange(desc(perc)) %>%
+    distinct(value, .keep_all = T) %>%
+    slice(1:10)
+  
+  plots <- gg %>%
+    mutate(spend_perlab = scales::comma(round(total_spend))) %>%
+    mutate(perc = perc * 100) %>%
+    split(.$party) %>%
+    map(~ {
+      the_color <- color_dat$colors[color_dat$party == .x$party[1]]
+      hchart(.x,
+             type = "bar",
+             hcaes(x = value, y = perc),
+             color = the_color) %>%
+        hc_plotOptions(bar = list(horizontal = TRUE, stacking = "normal")) %>%
+        hc_yAxis(
+          title = list(text = "% Party Budget spent on targeting method"),
+          max = max(.x$perc)#,
+          # min = 0
+        ) %>%
+        hc_xAxis(title = "", labels = list(style = list(fontSize = "10px"))) %>%
+        hc_add_theme(hc_theme_google()) %>%
+        highcharter::hc_tooltip(
+          pointFormat = paste0(
+            "<b>{point.value}</b><br>% of Total Budget Spent: {point.y:.1f}%<br>Spend a total of ",
+            currency_symbol,
+            "{point.spend_perlab} on this method."
+          ),
+          headerFormat = ""
+        ) %>%
+        hc_title(
+          text = unique(.x$party),
+          align = "left",
+          style = list(fontWeight = "bold")
+        ) %>%
+        hc_size(height = 300) %>%
+        hc_exporting(enabled = TRUE)
+    })
+  
+  return(plots)
+  
+  # columns <- ggplot2::ggarrange(plots[[1]], plots[[2]], ncol = 2)
+  # highcharter::hchart(columns, spacing = list(right = 100))
+}
+
+
+```
+
+
+
+```{r echo=FALSE, results='asis'}
+
+# Generate plots
+plots <- generate_plots(contested_dat30)
+
+# Map each plot to a column
+columns <- map(plots, ~ div(style = "width: 50%; float: left;", .x))
+
+# If there's an odd number of plots, add an empty div to the end to balance the columns
+if (length(columns) %% 2 == 1) {
+  columns <- c(columns, list(div(style = "width: 50%; float: left;")))
+}
+
+# Pair up the columns and wrap them in rows
+rows <- map(seq(from = 1, to = length(columns), by = 2), ~ {
+  div(class = "row",
+    list(
+      columns[[.x]],
+      columns[[.x + 1]]
+    )
+  )
+})
+
+# Print the rows
+tags$div(class = "container", do.call(tags$div, rows))
+
+
+```
+
+
+### `r last7days_string` (Last 7 days)
+
+
+
+```{r echo=FALSE, results='asis'}
+
+# Generate plots
+plots <- generate_plots(contested_dat7)
+
+# Map each plot to a column
+columns <- map(plots, ~ div(style = "width: 50%; float: left;", .x))
+
+# If there's an odd number of plots, add an empty div to the end to balance the columns
+if (length(columns) %% 2 == 1) {
+  columns <- c(columns, list(div(style = "width: 50%; float: left;")))
+}
+
+# Pair up the columns and wrap them in rows
+rows <- map(seq(from = 1, to = length(columns), by = 2), ~ {
+  div(class = "row",
+    list(
+      columns[[.x]],
+      columns[[.x + 1]]
+    )
+  )
+})
+
+# Print the rows
+tags$div(class = "container", do.call(tags$div, rows))
+
+
+```
+
+:::
+
+
+
+
+
+
+
+## Top Contested Audiences 
+
+Here, we show the *top most contested audiences*, i.e. where all parties have spent considerable amounts of money competing to reach voters with the same interests. 
+
+
+::: {.panel-tabset}
+
+
+```{r, fig.width  = 13, fig.height=15}
+
+
+get_contested_graph <- function(ppp, minamount = 50, n_parties = 3) {
+    
+    # ppp <- election_dat30
+interest_targeting <-  ppp %>% 
+    mutate(total_spend = total_spend_formatted) %>% 
+    filter(type == "detailed") %>%
+    # mutate(total_spend = readr::parse_number(total_spend_formatted)) %>%
+    mutate(total_spend = ifelse(total_spend == 50, 50, total_spend)) %>%
+    mutate(total_spend = total_spend * total_spend_pct) %>%
+    filter(main_currency == the_currency)  %>%
+    # left_join(page_names %>% select(internal_id = page_id, page_name) %>% distinct(internal_id, .keep_all =T)) %>%
+    # left_join(us_advertisers %>% rename(internal_id = page_id)) %>%
+    # drop_na(left_vs_right) %>%
+    mutate(value = paste0(detailed_type,": ", value)) %>% 
+    group_by(party, value, is_exclusion, detailed_type) %>%
+    summarise(total_spend = sum(total_spend)) %>%
+    ungroup() %>%
+    arrange(desc(total_spend)) 
+
+contested_dat <- interest_targeting %>% 
+  filter(!is_exclusion) %>% 
+  # filter(total_spend >= 40000) %>% 
+  filter(total_spend >= minamount) %>%
+  add_count(value) %>% 
+  filter(n >= n_parties) %>% 
+    # distinct(party, value) %>% 
+  group_by(value) %>% 
+  mutate(total_spenderino = sum(total_spend)) %>% 
+  mutate(perc = total_spend/total_spenderino) %>%
+  # mutate(value = str_remove_all(value, "INTERESTS: |DEMOGRAPHICS: |BEHAVIORS: ")) %>% 
+  mutate(value = str_replace_all(value, " \\s*\\([^\\)]+\\)", "")) %>% 
+    ungroup()
+
+
+  the_order <- contested_dat %>%
+    filter(party == most_left_party) %>%
+    arrange(desc(perc)) %>%
+    pull(value) %>%
+    unique() %>% 
+    c(setdiff(contested_dat$value, .))
+  
+  lab_dat <- contested_dat %>%
+    filter(party == most_left_party) %>%
+    mutate(labb = paste0(currency_symbol, scales::comma(round(total_spenderino)))) %>%
+    select(party, value, labb, total_spenderino) %>% 
+    mutate(value = factor(value, the_order)) %>% 
+    arrange(value)
+  
+  
+  annotations <- lapply(1:nrow(lab_dat), function(i) {
+  list(
+    point = list(x = i - 1, y = 1, xAxis = 0, yAxis = 0),
+    text = paste0("Total Spend on Audience: ",  currency_symbol, scales::comma(round(lab_dat$total_spenderino[i]))),
+          # align = "right",
+          # verticalAlign = "middle",
+          x = 10,
+          y = 0,
+          style = list(fontSize = "7px", fontWeight = "bold")
+  )
+})
+  
+  hc_dat <- contested_dat %>%
+    left_join(lab_dat %>% select(-total_spenderino)) %>%    left_join(color_dat) %>% 
+    mutate(perc = 100*perc) %>% 
+    drop_na(value) %>% 
+    mutate(value = factor(value, the_order))  %>% 
+    mutate(party = fct_relevel(party, most_left_party, after = Inf)) 
+  
+  hc_dat %>% 
+    hchart(type = "bar", hcaes(x = value, y = perc, group = party, color = colors), showInLegend = TRUE  # Set colorByPoint to TRUE to match legend colors with fill colors
+) %>%
+    hc_plotOptions(bar = list(stacking = "normal")) %>%
+    hc_xAxis(title = list(text = "Targeting criteria"), labels = list(style = list(fontSize = "10px")),
+                 categories = as.list(the_order)) %>%
+    hc_yAxis(title = list(text = "% of budget spent on targeting method"), labels = list(format = "{value}%"))%>%
+            # hc_add_theme(hc_theme_google()) %>%
+  highcharter::hc_tooltip(
+    pointFormat = paste0("<b>{point.party}</b><br>..makes up {point.y:.1f}% of total budget spent on {point.value}. <br>..spend a total of ", currency_symbol, "{point.total_spend:.0f} on this audience.<br><br>Total Expenditure on audience is ", currency_symbol, "{point.total_spenderino:.0f}."),
+    headerFormat = ""
+  ) %>%
+    hc_legend(enabled = TRUE, verticalAlign = "bottom", layout = "horizontal") %>%
+    hc_credits(
+      enabled = TRUE,
+      text = "Source: Meta Ad Library and data compiled by Who Targets Me. Data Viz: Fabio Votta (@favstats)."
+    )    %>%
+  hc_annotations(list(labels = annotations)) %>%
+    hc_colors(hc_dat %>% distinct(party, .keep_all = T) %>%  filter(party %in% contested_dat$party) %>%  arrange(party) %>% pull(colors)) %>%
+    hc_exporting(
+      enabled = TRUE
+    )
+}
+
+
+
+  
+
+
+```
+
+
+### `r last30days_string` (Last 30 days)
+
+```{r}
+thegraph30 <- get_contested_graph(election_dat30, minamount = 200)
+
+if(length(thegraph30$x$hc_opts$series)!=0){
+  thegraph30
+} else {
+  shiny::HTML("No data (yet).")
+}
+```
+
+
+### `r last7days_string` (Last 7 days)
+
+```{r, fig.width  = 10, fig.height=15}
+
+thegraph7 <- get_contested_graph(election_dat7, minamount = 200)
+
+
+if(length(thegraph7$x$hc_opts$series)!=0){
+  thegraph7
+} else {
+  shiny::HTML("No data (yet).")
+}
+
+```
+
+:::
+
+## Geographical Targeting 
+
+The graphs below show various kinds of *location targeting* that parties engaged in on Meta platforms. The bigger the area the more money was spend by the party on targeting this location.
+
+
+::: {.panel-tabset}
+
+
+### `r last30days_string` (Last 30 days)
+
+
+::: {.panel-tabset}
+
+#### Regions
+
+```{r,fig.width=10, fig.height=8, echo = F}
+library(treemap)
+region_dat <- election_dat30 %>%
+  filter(type == "location") %>%
+  filter(location_type == "regions") %>%
+  filter(!is_exclusion)  %>%
+  mutate(likely_together = paste0(total_spend_pct,num_ads) %>% as.factor() %>% as.numeric()) %>%
+  group_by(internal_id) %>%
+  add_count(likely_together, name = "n_clusters") %>%
+  ungroup() %>%
+  mutate(total_spend_formatted = total_spend_formatted*total_spend_pct) %>%
+  mutate(total_spend_formatted = total_spend_formatted/n_clusters) %>%
+  group_by(party, value) %>%
+  summarise(total_spend_formatted = sum(total_spend_formatted),
+            num_ads = sum(num_ads)) %>%
+  ungroup() %>%
+  rename(region = value) %>%
+  mutate(region = str_remove_all(region, ", Netherlands")) 
+
+the_colors <- region_dat %>% 
+  group_by(party) %>% 
+  summarize(total_spend_formatted = sum(total_spend_formatted)) %>% 
+  ungroup() %>% 
+  mutate(party = fct_relevel(party)) %>% 
+  left_join(color_dat) %>% 
+  arrange(party) %>% 
+  drop_na(colors) %>% 
+  pull(colors)
+
+if(nrow(region_dat)!=0) {
+  # Static version
+  tm <- treemap(
+    region_dat,
+    index = c("party", "region"),
+    vSize = "total_spend_formatted",
+    vColor = "party",
+    type = "index",
+    title = "", draw = T,
+    align.labels = list(c("right", "bottom"),
+                        c("center", "center")),
+    fontsize.labels = c(21, 10),
+    # size of labels. Give the size per level of aggregation: size for group, size for subgroup, sub-subgroups...
+
+    fontcolor.labels = c("white", "white"),
+    # Color of labels
+    palette = the_colors
+  )
+  
+  
+} else {
+  shiny::HTML("No data (yet).")
+}
+# 
+# library(d3treeR)
+# 
+# # make it interactive ("rootname" becomes the title of the plot):
+# inter <- d3tree2( tm,  rootname = "Targeting " )
+# inter
+# # read_csv("../data/PoliticalAds.csv") %>% 
+# #   filter(CountryCode == "turkey")
+# #   count(CountryCode, sort = T)
+# 
+# # ggsave("img/tregion.pdf",width=10, height=8, dpi = 900)
+# 
+# library(highcharter)
+# 
+# library(highcharter)
+# library(dplyr)
+
+# Convert data to hierarchical structure
+# hierarchical_data <- data_to_hierarchical(region_dat, c("party", "region"), "total_spend_formatted", color = the_colors)
+# 
+# # Create treemap
+# hchart(hierarchical_data, type = "treemap", allowDrillToNode = TRUE,
+#       color = the_colors) %>%
+#   hc_title(text = "") %>%
+#   # hc_colorAxis(minColor = "#FFFFFF", maxColor = highchart_palette()[[2]]) %>%
+#   hc_tooltip(
+#     pointFormat = '<b>{point.name}:</b> {point.value}<br/>',
+#     followPointer = TRUE
+#   ) %>%
+#   hc_plotOptions(
+#     treemap = list(
+#       layoutAlgorithm = 'squarified',
+#       dataLabels = list(
+#         enabled = TRUE,
+#         align = 'left',
+#         verticalAlign = 'top',
+#         style = list(fontSize = '15px')
+#       )
+#     )
+#   ) 
+
+```
+
+<!-- ![](img/tregion.pdf) -->
+
+#### Cities
+
+```{r,fig.width=10, fig.height=8}
+library(treemap)
+region_dat <- election_dat30 %>%
+  filter(type == "location") %>%
+  filter(location_type == "CITY") %>%
+  filter(!is_exclusion)  %>%
+  mutate(likely_together = paste0(total_spend_pct,num_ads) %>% as.factor() %>% as.numeric()) %>%
+  group_by(internal_id) %>%
+  add_count(likely_together, name = "n_clusters") %>%
+  ungroup() %>%
+  mutate(total_spend_formatted = total_spend_formatted*total_spend_pct) %>%
+  mutate(total_spend_formatted = total_spend_formatted/n_clusters) %>%
+  group_by(party, value) %>%
+  summarise(total_spend_formatted = sum(total_spend_formatted),
+            num_ads = sum(num_ads)) %>%
+  ungroup() %>%
+  rename(region = value) %>%
+  mutate(region = str_remove_all(region, ", Netherlands")) 
+
+the_colors <- region_dat %>% 
+  group_by(party) %>% 
+  summarize(total_spend_formatted = sum(total_spend_formatted)) %>% 
+  ungroup() %>% 
+  mutate(party = fct_relevel(party)) %>% 
+  left_join(color_dat) %>% 
+  arrange(party) %>% 
+  drop_na(colors) %>% 
+  pull(colors)
+
+if(nrow(region_dat)!=0) {
+  ## Static version
+  tm <- treemap(
+    region_dat,
+    index = c("party", "region"),
+    vSize = "total_spend_formatted",
+    vColor = "party",
+    type = "index",
+    title = "",
+    align.labels = list(c("right", "bottom"),
+                        c("center", "center")),
+    fontsize.labels = c(21, 10),
+    # size of labels. Give the size per level of aggregation: size for group, size for subgroup, sub-subgroups...
+    
+    fontcolor.labels = c("white", "white"),
+    # Color of labels
+    palette = the_colors
+  )
+} else {
+  shiny::HTML("No data (yet).")
+}
+
+
+
+```
+
+
+:::
+
+:::
+
+## Geographical Exclusion 
+
+On Meta, political parties can also **exclude** certain geographical units. The graphs below show which locations were excluded from seeing political advertisements and how much money the parties spend on these ads. The bigger the area the more money was spend on ads excluding this location.
+
+
+::: {.panel-tabset}
+
+
+### `r last30days_string` (Last 30 days)
+
+
+::: {.panel-tabset}
+
+#### Regions
+
+```{r,fig.width=10, fig.height=8, echo = F}
+library(treemap)
+region_dat <- election_dat30 %>%
+  filter(type == "location") %>%
+  filter(location_type == "regions") %>%
+  filter(is_exclusion)  %>%
+  mutate(likely_together = paste0(total_spend_pct,num_ads) %>% as.factor() %>% as.numeric()) %>%
+  group_by(internal_id) %>%
+  add_count(likely_together, name = "n_clusters") %>%
+  ungroup() %>%
+  mutate(total_spend_formatted = total_spend_formatted*total_spend_pct) %>%
+  mutate(total_spend_formatted = total_spend_formatted/n_clusters) %>%
+  group_by(party, value) %>%
+  summarise(total_spend_formatted = sum(total_spend_formatted),
+            num_ads = sum(num_ads)) %>%
+  ungroup() %>%
+  rename(region = value) %>%
+  mutate(region = str_remove_all(region, ", Netherlands")) 
+
+the_colors <- region_dat %>% 
+  group_by(party) %>% 
+  summarize(total_spend_formatted = sum(total_spend_formatted)) %>% 
+  ungroup() %>% 
+  mutate(party = fct_relevel(party)) %>% 
+  left_join(color_dat) %>% 
+  arrange(party) %>% 
+  drop_na(colors) %>% 
+  pull(colors)
+
+if(nrow(region_dat)!=0) {
+  # Static version
+  tm <- treemap(
+    region_dat,
+    index = c("party", "region"),
+    vSize = "total_spend_formatted",
+    vColor = "party",
+    type = "index",
+    title = "", draw = T,
+    align.labels = list(c("right", "bottom"),
+                        c("center", "center")),
+    fontsize.labels = c(21, 10),
+    # size of labels. Give the size per level of aggregation: size for group, size for subgroup, sub-subgroups...
+
+    fontcolor.labels = c("white", "white"),
+    # Color of labels
+    palette = the_colors
+  )
+  
+  
+} else {
+  shiny::HTML("No data (yet).")
+}
+# 
+
+```
+
+<!-- ![](img/tregion.pdf) -->
+
+#### Cities
+
+```{r,fig.width=10, fig.height=8}
+library(treemap)
+region_dat <- election_dat30 %>%
+  filter(type == "location") %>%
+  filter(location_type == "CITY") %>%
+  filter(is_exclusion)  %>%
+  mutate(likely_together = paste0(total_spend_pct,num_ads) %>% as.factor() %>% as.numeric()) %>%
+  group_by(internal_id) %>%
+  add_count(likely_together, name = "n_clusters") %>%
+  ungroup() %>%
+  mutate(total_spend_formatted = total_spend_formatted*total_spend_pct) %>%
+  mutate(total_spend_formatted = total_spend_formatted/n_clusters) %>%
+  group_by(party, value) %>%
+  summarise(total_spend_formatted = sum(total_spend_formatted),
+            num_ads = sum(num_ads)) %>%
+  ungroup() %>%
+  rename(region = value) %>%
+  mutate(region = str_remove_all(region, ", Netherlands")) 
+
+the_colors <- region_dat %>% 
+  group_by(party) %>% 
+  summarize(total_spend_formatted = sum(total_spend_formatted)) %>% 
+  ungroup() %>% 
+  mutate(party = fct_relevel(party)) %>% 
+  left_join(color_dat) %>% 
+  arrange(party) %>% 
+  drop_na(colors) %>% 
+  pull(colors)
+
+if(nrow(region_dat)!=0) {
+  ## Static version
+  tm <- treemap(
+    region_dat,
+    index = c("party", "region"),
+    vSize = "total_spend_formatted",
+    vColor = "party",
+    type = "index",
+    title = "",
+    align.labels = list(c("right", "bottom"),
+                        c("center", "center")),
+    fontsize.labels = c(21, 10),
+    # size of labels. Give the size per level of aggregation: size for group, size for subgroup, sub-subgroups...
+    
+    fontcolor.labels = c("white", "white"),
+    # Color of labels
+    palette = the_colors
+  )
+} else {
+  shiny::HTML("No data (yet).")
+}
+
+
+
+```
+
+
+:::
+
+:::
+
+## Age Targeting
+
+
+The graphs below show targeting by age groups and how much percentage of party budgets were spent on them.
+
+> Note: targeting criteria can overlap so the percentages do not sum up to 100%.
+
+
+::: {.panel-tabset}
+
+
+### `r last30days_string` (Last 30 days)
+
+```{r, fig.width= 10, fig.height=7, dpi = 300}
+get_targ_perc <- function(x, var) {
+    
+x <<- x
+total_sppppeen <- x %>% 
+  mutate(total_spend = total_spend_formatted) %>%
+  distinct(internal_id, .keep_all = T)  %>%
+  # mutate(total_spend = readr::parse_number(total_spend_formatted)) %>%
+  mutate(total_spend = ifelse(total_spend == 50, 50, total_spend)) %>% 
+  select(internal_id, total_spend) %>% 
+  arrange(desc(total_spend)) %>% 
+  summarize(total_budget = sum(total_spend)) %>% 
+  ungroup()
+
+
+x %>% 
+  mutate(total_spend = total_spend_formatted) %>%
+  mutate(total_spend = ifelse(total_spend == 50, 50, total_spend)) %>% 
+  filter(type == var) %>%   
+  # filter(total_spend_pct != 0) %>% 
+  # group_by(internal_id) %>%
+  # mutate(n_ages = n()) %>% #count(n_ages, sort = T)
+  # ungroup()%>% 
+  mutate(spend_per = total_spend * total_spend_pct) %>% 
+  group_by(value) %>% 
+  summarize(spend_per = sum(spend_per)) %>% 
+  bind_cols(total_sppppeen) %>% 
+  mutate(perc = spend_per/total_budget) %>% 
+            mutate(coalition = x$coalition[1],
+                   party = x$party[1],
+                   election = x$election[1])
+    
+}
+
+
+age_targeting <- election_dat30 %>% 
+    group_split(party) %>% 
+    map_dfr(get_targ_perc, "age") %>% 
+     # mutate(coalition = fct_relevel(coalition, c("Coalizione di centro-sinistra",
+     #                              "Terzo Polo",
+     #                              "Coalizione di centro-destra"))) %>% 
+    filter(!(value %in% 13:17)) %>% 
+    mutate(age_groups = case_when(
+        value %in% 18:24 ~ "18-24",
+        value %in% 25:34 ~ "25-34",
+        value %in% 35:44 ~ "35-44",
+        value %in% 45:54 ~ "45-54",
+        value %in% 55:64 ~ "55-64",
+        T ~ value
+    )) %>% 
+    group_by(age_groups, party) %>%
+    summarize(spend_per = mean(spend_per),
+              total_budget = unique(total_budget))  %>% 
+  mutate(perc = spend_per/total_budget)  %>% 
+    mutate(age_groups = factor(age_groups,
+                               c("18-24",
+                                 "25-34",
+                                 "35-44",
+                                 "45-54",
+                                 "55-64", "65+") %>% rev)) %>% 
+  ungroup()
+  
+    
+```
+
+```{r}
+
+
+
+charts <- age_targeting %>%
+  mutate(spend_perlab = scales::comma(round(spend_per))) %>%
+  mutate(perc = perc * 100) %>%
+  split(.$party) %>%
+  map( ~ {
+    the_color <- color_dat$colors[color_dat$party == .x$party[1]]
+    hchart(.x,
+           type = "bar",
+           hcaes(x = age_groups, y = perc),
+           color = the_color) %>%
+      hc_plotOptions(bar = list(horizontal = TRUE, stacking = "normal")) %>%
+      hc_yAxis(title = list(text = "% Party Budget spent on targeting method"), max = 100, min = 0) %>%
+      hc_xAxis(title = "", labels = list(style = list(fontSize = "10px"))) %>%
+      hc_add_theme(hc_theme_google()) %>%
+      highcharter::hc_tooltip(
+        pointFormat = paste0(
+          "<b>{point.age_groups}</b><br>% of Total Budget Spent: {point.y:.1f}%<br>Spend a total of ",
+          currency_symbol,
+          "{point.spend_perlab} on this age group"
+        ),
+        headerFormat = ""
+      ) %>%
+      hc_title(
+        text = unique(.x$party),
+        align = "left",
+        style = list(fontWeight = "bold")
+      ) %>%
+      hc_size(height = 300) %>%
+      hc_exporting(enabled = TRUE)
+  })
+
+# charts
+
+# Usage
+# age_targeting(election_dat30)
+
+```
+
+
+
+```{r echo=FALSE, results='asis'}
+
+# Map each plot to a column
+columns <- map(charts, ~ div(style = "width: 50%; float: left;", .x))
+
+# If there's an odd number of plots, add an empty div to the end to balance the columns
+if (length(columns) %% 2 == 1) {
+  columns <- c(columns, list(div(style = "width: 50%; float: left;")))
+}
+
+# Pair up the columns and wrap them in rows
+rows <- map(seq(from = 1, to = length(columns), by = 2), ~ {
+  div(class = "row",
+    list(
+      columns[[.x]],
+      columns[[.x + 1]]
+    )
+  )
+})
+
+# Print the rows
+tags$div(class = "container", do.call(tags$div, rows))
+
+
+```
+
+### `r last7days_string` (Last 7 days)
+
+```{r, fig.width= 10, fig.height=7, dpi = 300}
+
+
+age_targeting7 <- election_dat7 %>%
+  group_split(party) %>%
+  map_dfr(get_targ_perc, "age") %>%
+  filter(!(value %in% 13:17)) %>%
+  mutate(
+    age_groups = case_when(
+      value %in% 18:24 ~ "18-24",
+      value %in% 25:34 ~ "25-34",
+      value %in% 35:44 ~ "35-44",
+      value %in% 45:54 ~ "45-54",
+      value %in% 55:64 ~ "55-64",
+      T ~ value
+    )
+  ) %>%
+  group_by(age_groups, party) %>%
+  summarize(spend_per = mean(spend_per),
+            total_budget = unique(total_budget))  %>%
+  mutate(perc = spend_per / total_budget)  %>%
+  mutate(age_groups = factor(
+    age_groups,
+    c("18-24",
+      "25-34",
+      "35-44",
+      "45-54",
+      "55-64", "65+") %>% rev
+  )) %>%
+  ungroup()
+
+charts <- age_targeting7 %>%
+  mutate(spend_perlab = scales::comma(round(spend_per))) %>%
+  mutate(perc = perc * 100) %>%
+  split(.$party) %>%
+  map( ~ {
+    the_color <- color_dat$colors[color_dat$party == .x$party[1]]
+    hchart(.x,
+           type = "bar",
+           hcaes(x = age_groups, y = perc),
+           color = the_color) %>%
+      hc_plotOptions(bar = list(horizontal = TRUE, stacking = "normal")) %>%
+      hc_yAxis(title = list(text = "% Party Budget spent on targeting method"), max = 100, min = 0) %>%
+      hc_xAxis(title = "", labels = list(style = list(fontSize = "10px"))) %>%
+      hc_add_theme(hc_theme_google()) %>%
+      highcharter::hc_tooltip(
+        pointFormat = paste0(
+          "<b>{point.age_groups}</b><br>% of Total Budget Spent: {point.y:.1f}%<br>Spend a total of ",
+          currency_symbol,
+          "{point.spend_perlab} on this age group"
+        ),
+        headerFormat = ""
+      ) %>%
+      hc_title(
+        text = unique(.x$party),
+        align = "left",
+        style = list(fontWeight = "bold")
+      ) %>%
+      hc_size(height = 300) %>%
+      hc_exporting(enabled = TRUE)
+  })
+
+    
+
+```
+
+
+
+```{r echo=FALSE, results='asis'}
+
+# Map each plot to a column
+columns <- map(charts, ~ div(style = "width: 50%; float: left;", .x))
+
+# If there's an odd number of plots, add an empty div to the end to balance the columns
+if (length(columns) %% 2 == 1) {
+  columns <- c(columns, list(div(style = "width: 50%; float: left;")))
+}
+
+# Pair up the columns and wrap them in rows
+rows <- map(seq(from = 1, to = length(columns), by = 2), ~ {
+  div(class = "row",
+    list(
+      columns[[.x]],
+      columns[[.x + 1]]
+    )
+  )
+})
+
+# Print the rows
+tags$div(class = "container", do.call(tags$div, rows))
+
+
+```
+
+:::
+
+## Gender Targeting
+
+The graphs below show targeting by gender and how much percentage of party budgets were spent on them.
+
+> Note: targeting criteria can overlap so the percentages do not sum up to 100%.
+
+::: {.panel-tabset}
+
+
+### `r last30days_string` (Last 30 days)
+
+```{r, fig.width= 8, fig.height=5, dpi = 300}
+
+
+gender_targeting <- election_dat30 %>% 
+group_split(party) %>% 
+map_dfr(get_targ_perc, "gender") %>% 
+     # mutate(coalition = fct_relevel(coalition, c("Coalizione di centro-sinistra",
+     #                              "Terzo Polo",
+     #                              "Coalizione di centro-destra"))) %>% 
+    filter(!(value %in% "All")) %>% 
+    group_by(party) %>% 
+    mutate(percsum = sum(perc)) %>% 
+    ungroup() %>% 
+    filter(percsum != 0) 
+
+# Determine the maximum value for xlim
+max_x <- max(gender_targeting$perc*100)
+
+# Create the charts
+charts <- gender_targeting %>%
+  mutate(spend_perlab = scales::comma(round(spend_per))) %>% 
+  mutate(perc = perc * 100) %>% 
+  split(.$party) %>%
+  map(~ {
+    the_color <- color_dat$colors[color_dat$party == .x$party[1]]
+    hchart(.x, type = "bar", hcaes(x = value, y = perc), color = the_color) %>%
+      hc_plotOptions(bar = list(horizontal = TRUE, stacking = "normal")) %>%
+      hc_yAxis(title = list(text = "% Party Budget spent on targeting method"),
+        max = max_x) %>%   # Set the maximum x-axis value) %>%
+      hc_xAxis(
+        title = "",
+        labels = list(style = list(fontSize = "10px"))
+      ) %>%
+      hc_add_theme(hc_theme_google()) %>%
+      highcharter::hc_tooltip(
+        pointFormat = paste0("<b>{point.value}</b><br>% of Total Budget Spent: {point.y:.1f}%<br>Spend a total of ", currency_symbol, "{point.spend_perlab} on this gender"),
+        headerFormat = ""
+      ) %>%
+      hc_title(text = unique(.x$party), align = "left", style = list(fontWeight = "bold")) %>% 
+      hc_size(height = 300) %>%
+    hc_exporting(
+      enabled = TRUE
+    )
+  })
+
+
+    
+```
+
+
+```{r echo=FALSE, results='asis'}
+
+# Map each plot to a column
+columns <- map(charts, ~ div(style = "width: 50%; float: left;", .x))
+
+# If there's an odd number of plots, add an empty div to the end to balance the columns
+if (length(columns) %% 2 == 1) {
+  columns <- c(columns, list(div(style = "width: 50%; float: left;")))
+}
+
+# Pair up the columns and wrap them in rows
+rows <- map(seq(from = 1, to = length(columns), by = 2), ~ {
+  div(class = "row",
+    list(
+      columns[[.x]],
+      columns[[.x + 1]]
+    )
+  )
+})
+
+# Print the rows
+tags$div(class = "container", do.call(tags$div, rows))
+
+
+```
+
+### `r last7days_string` (Last 7 days)
+
+```{r, fig.width= 8, fig.height=5, dpi = 300}
+
+gender_targeting <- election_dat7 %>% 
+  group_split(party) %>% 
+  map_dfr(get_targ_perc, "gender") %>% 
+  filter(!(value %in% "All")) %>% 
+  group_by(party) %>% 
+  mutate(percsum = sum(perc)) %>% 
+  ungroup() %>% 
+  filter(percsum != 0) %>%
+  mutate(value = factor(value, levels = unique(value)))  # Set factor levels to ensure consistent ordering on x-axis
+
+# Determine the maximum value for xlim
+max_x <- max(gender_targeting$perc*100)
+
+# Create the charts
+charts <- gender_targeting %>%
+  mutate(spend_perlab = scales::comma(round(spend_per))) %>% 
+  mutate(perc = perc * 100) %>% 
+  split(.$party) %>%
+  map(~ {
+    the_color <- color_dat$colors[color_dat$party == .x$party[1]]
+    hchart(.x, type = "bar", hcaes(x = value, y = perc), color = the_color) %>%
+      hc_plotOptions(bar = list(horizontal = TRUE, stacking = "normal")) %>%
+      hc_yAxis(title = list(text = "% Party Budget spent on targeting method"),
+        max = max_x) %>%   # Set the maximum x-axis value) %>%
+      hc_xAxis(
+        title = "",
+        labels = list(style = list(fontSize = "10px"))
+      ) %>%
+      hc_add_theme(hc_theme_google()) %>%
+      highcharter::hc_tooltip(
+        pointFormat = paste0("<b>{point.value}</b><br>% of Total Budget Spent: {point.y:.1f}%<br>Spend a total of ", currency_symbol, "{point.spend_perlab} on this gender"),
+        headerFormat = ""
+      ) %>%
+      hc_title(text = unique(.x$party), align = "left", style = list(fontWeight = "bold")) %>% 
+      hc_size(height = 300) %>%
+    hc_exporting(
+      enabled = TRUE
+    )
+  })
+
+
+    
+```
+
+
+
+```{r echo=FALSE, results='asis'}
+
+# Map each plot to a column
+columns <- map(charts, ~ div(style = "width: 50%; float: left;", .x))
+
+# If there's an odd number of plots, add an empty div to the end to balance the columns
+if (length(columns) %% 2 == 1) {
+  columns <- c(columns, list(div(style = "width: 50%; float: left;")))
+}
+
+# Pair up the columns and wrap them in rows
+rows <- map(seq(from = 1, to = length(columns), by = 2), ~ {
+  div(class = "row",
+    list(
+      columns[[.x]],
+      columns[[.x + 1]]
+    )
+  )
+})
+
+# Print the rows
+tags$div(class = "container", do.call(tags$div, rows))
+
+
+```
+
+:::
+
+## Education Targeting
+
+The graphs below show targeting by education levels and how much percentage of party budgets were spent on them.
+
+
+::: {.panel-tabset}
+
+
+
+
+### `r last30days_string` (Last 30 days)
+
+```{r, fig.width= 8, fig.height=5, dpi = 300, eval =T, results='asis'}
+
+
+calc_edu_perc <- function(x) {
+    
+total_sppppeen <- x %>% 
+# filter(coalition == "Coalizione di centro-destra") %>% 
+  mutate(total_spend = total_spend_formatted) %>%
+  distinct(internal_id, .keep_all = T)  %>%
+  # mutate(total_spend = readr::parse_number(total_spend_formatted)) %>%
+  mutate(total_spend = ifelse(total_spend == 50, 50, total_spend)) %>% 
+  select(internal_id, total_spend) %>% 
+  arrange(desc(total_spend)) %>% 
+  summarize(total_budget = sum(total_spend)) %>% 
+  ungroup()
+
+x %>% 
+    filter(type == "detailed") %>%
+    filter(detailed_type == "DEMOGRAPHICS") %>% 
+  filter(!is_exclusion) %>% 
+    # count(value, sort = T) %>% 
+    filter(str_detect(value, "grad school|degree|	|Master|[c|C]ollege|degree|[H|h]igh school|Professional degree")) %>% 
+    filter(str_detect(value, "MBO", negate = T)) %>% 
+    filter(str_detect(value, "Wine", negate = T)) %>% 
+  mutate(total_spend = total_spend_formatted) %>%
+  mutate(total_spend = ifelse(total_spend == 50, 50, total_spend)) %>% 
+  # filter(coalition == "Coalizione di centro-destra") %>%  
+  # filter(total_spend_pct != 0) %>% 
+  # group_by(internal_id) %>%
+  # mutate(n_ages = n()) %>% #count(n_ages, sort = T)
+  # ungroup()%>% 
+  mutate(spend_per = total_spend * total_spend_pct) %>% 
+  group_by(value) %>% 
+  summarize(spend_per = sum(spend_per)) %>% 
+  bind_cols(total_sppppeen) %>% 
+  mutate(perc = spend_per/total_budget) %>% 
+            mutate(coalition = x$coalition[1],
+                   party = x$party[1],
+                   election = x$election[1])
+}
+
+educ_targeting <- election_dat30 %>% 
+    group_split(party) %>% 
+    map_dfr(calc_edu_perc) %>% 
+     # mutate(coalition = fct_relevel(coalition, c("Coalizione di centro-sinistra",
+                                  # "Terzo Polo",
+                                  # "Coalizione di centro-destra"))) %>% 
+    mutate(value = fct_reorder(value, perc))
+
+
+
+
+# Determine the maximum value for xlim
+max_x <- max(educ_targeting$perc*100)
+
+# Create the charts
+charts <- educ_targeting %>%
+  mutate(spend_perlab = scales::comma(round(spend_per))) %>% 
+  mutate(perc = perc * 100) %>% 
+  split(.$party) %>%
+  map(~ {
+    the_color <- color_dat$colors[color_dat$party == .x$party[1]]
+    hchart(.x, type = "bar", hcaes(x = value, y = perc), color = the_color) %>%
+      hc_plotOptions(bar = list(horizontal = TRUE, stacking = "normal")) %>%
+      hc_yAxis(title = list(text = "% Party Budget spent on targeting method"),
+        max = max_x) %>%   # Set the maximum x-axis value) %>%
+      hc_xAxis(
+        title = "",
+        labels = list(style = list(fontSize = "10px"))
+      ) %>%
+      hc_add_theme(hc_theme_google()) %>%
+      highcharter::hc_tooltip(
+        pointFormat = paste0("<b>{point.value}</b><br>% of Total Budget Spent: {point.y:.1f}%<br>Spend a total of ", currency_symbol, "{point.spend_perlab} on this education level"),
+        headerFormat = ""
+      ) %>%
+      hc_title(text = unique(.x$party), align = "left", style = list(fontWeight = "bold")) %>% 
+      hc_size(height = 300) %>%
+    hc_exporting(
+      enabled = TRUE
+    )
+  })
+
+
+
+
+    
+
+
+# Map each plot to a column
+columns <- map(charts, ~ div(style = "width: 50%; float: left;", .x))
+
+# If there's an odd number of plots, add an empty div to the end to balance the columns
+if (length(columns) %% 2 == 1) {
+  columns <- c(columns, list(div(style = "width: 50%; float: left;")))
+}
+
+# Pair up the columns and wrap them in rows
+rows <- map(seq(from = 1, to = length(columns), by = 2), ~ {
+  div(class = "row",
+    list(
+      columns[[.x]],
+      columns[[.x + 1]]
+    )
+  )
+})
+
+# Print the rows
+tags$div(class = "container", do.call(tags$div, rows))
+
+
+```
+
+### `r last7days_string` (Last 7 days)
+
+```{r, fig.width= 8, fig.height=5, dpi = 300, eval =T, results='asis'}
+
+educ_targeting <- election_dat7 %>% 
+    group_split(party) %>% 
+    map_dfr(calc_edu_perc) %>% 
+     # mutate(coalition = fct_relevel(coalition, c("Coalizione di centro-sinistra",
+                                  # "Terzo Polo",
+                                  # "Coalizione di centro-destra"))) %>% 
+    mutate(value = fct_reorder(value, perc))
+
+
+
+
+# Determine the maximum value for xlim
+max_x <- max(educ_targeting$perc*100)
+
+# Create the charts
+charts <- educ_targeting %>%
+  mutate(spend_perlab = scales::comma(round(spend_per))) %>% 
+  mutate(perc = perc * 100) %>% 
+  split(.$party) %>%
+  map(~ {
+    the_color <- color_dat$colors[color_dat$party == .x$party[1]]
+    hchart(.x, type = "bar", hcaes(x = value, y = perc), color = the_color) %>%
+      hc_plotOptions(bar = list(horizontal = TRUE, stacking = "normal")) %>%
+      hc_yAxis(title = list(text = "% Party Budget spent on targeting method"),
+        max = max_x) %>%   # Set the maximum x-axis value) %>%
+      hc_xAxis(
+        title = "",
+        labels = list(style = list(fontSize = "10px"))
+      ) %>%
+      hc_add_theme(hc_theme_google()) %>%
+      highcharter::hc_tooltip(
+        pointFormat = paste0("<b>{point.value}</b><br>% of Total Budget Spent: {point.y:.1f}%<br>Spend a total of ", currency_symbol, "{point.spend_perlab} on this education level"),
+        headerFormat = ""
+      ) %>%
+      hc_title(text = unique(.x$party), align = "left", style = list(fontWeight = "bold")) %>% 
+      hc_size(height = 300) %>%
+    hc_exporting(
+      enabled = TRUE
+    )
+  })
+
+
+
+
+    
+
+
+# Map each plot to a column
+columns <- map(charts, ~ div(style = "width: 50%; float: left;", .x))
+
+# If there's an odd number of plots, add an empty div to the end to balance the columns
+if (length(columns) %% 2 == 1) {
+  columns <- c(columns, list(div(style = "width: 50%; float: left;")))
+}
+
+# Pair up the columns and wrap them in rows
+rows <- map(seq(from = 1, to = length(columns), by = 2), ~ {
+  div(class = "row",
+    list(
+      columns[[.x]],
+      columns[[.x + 1]]
+    )
+  )
+})
+
+# Print the rows
+tags$div(class = "container", do.call(tags$div, rows))
+
+
+```
+
+
+
+:::
+
+## Job Targeting
+
+The graphs below show targeting by job (sectors) and how much percentage of party budgets were spent on them.
+
+
+> Note: targeting criteria can overlap so the percentages do not sum up to 100%.
+
+
+::: {.panel-tabset}
+
+
+### `r last30days_string` (Last 30 days)
+
+```{r, fig.width= 11, fig.height=8, dpi = 300}
+
+
+calc_jobs_perc <- function(x) {
+
+total_sppppeen <- x %>%
+# filter(coalition == "Coalizione di centro-destra") %>%
+  mutate(total_spend = total_spend_formatted) %>%
+  distinct(internal_id, .keep_all = T)  %>%
+  # mutate(total_spend = readr::parse_number(total_spend_formatted)) %>%
+  mutate(total_spend = ifelse(total_spend == 50, 50, total_spend)) %>%
+  select(internal_id, total_spend) %>%
+  arrange(desc(total_spend)) %>%
+  summarize(total_budget = sum(total_spend)) %>%
+  ungroup()
+
+x %>%
+    filter(type == "detailed") %>%
+    filter(detailed_type == "DEMOGRAPHICS") %>%
+  filter(!is_exclusion) %>%
+    # count(value, sort = T) %>%
+    filter(str_detect(value, "grad school|degree|	|Master|[c|C]ollege|degree|[H|h]igh school|Professional degree", negate = T)) %>%
+    # filter(str_detect(value, "MBO", negate = T)) %>% 
+  mutate(total_spend = total_spend_formatted) %>%
+  mutate(total_spend = ifelse(total_spend == 50, 50, total_spend)) %>%
+  # filter(coalition == "Coalizione di centro-destra") %>%
+  # filter(total_spend_pct != 0) %>%
+  # group_by(internal_id) %>%
+  # mutate(n_ages = n()) %>% #count(n_ages, sort = T)
+  # ungroup()%>%
+  mutate(spend_per = total_spend * total_spend_pct) %>%
+  group_by(value) %>%
+  summarize(spend_per = sum(spend_per)) %>%
+  bind_cols(total_sppppeen) %>%
+  mutate(perc = spend_per/total_budget) %>%
+            mutate(coalition = x$coalition[1],
+                   party = x$party[1],
+                   election = x$election[1])
+}
+
+job_targeting <- election_dat30 %>%
+    group_split(party) %>%
+    map_dfr(calc_jobs_perc) %>%
+    filter(perc >= 0.015) %>%
+    filter(str_detect(value, relationshipstuff, negate = T)) %>%
+     # mutate(coalition = fct_relevel(coalition, c("Coalizione di centro-sinistra",
+     #                              "Terzo Polo",
+     #                              "Coalizione di centro-destra"))) %>%
+    group_by(party) %>%
+    arrange(desc(perc)) %>%
+    slice(1:20) %>%
+    mutate(value = fct_reorder(value, perc))
+
+
+
+
+# Determine the maximum value for xlim
+max_x <- max(job_targeting$perc*100)
+
+# Create the charts
+charts <- job_targeting %>%
+  mutate(spend_perlab = scales::comma(round(spend_per))) %>%
+  mutate(perc = perc * 100) %>%
+  split(.$party) %>%
+  map(~ {
+    the_color <- color_dat$colors[color_dat$party == .x$party[1]]
+    hchart(.x, type = "bar", hcaes(x = value, y = perc), color = the_color) %>%
+      hc_plotOptions(bar = list(horizontal = TRUE, stacking = "normal")) %>%
+      hc_yAxis(title = list(text = "% Party Budget spent on targeting method"),
+        max = max_x) %>%   # Set the maximum x-axis value) %>%
+      hc_xAxis(
+        title = "",
+        labels = list(style = list(fontSize = "10px"))
+      ) %>%
+      hc_add_theme(hc_theme_google()) %>%
+      highcharter::hc_tooltip(
+        pointFormat = paste0("<b>{point.value}</b><br>% of Total Budget Spent: {point.y:.1f}%<br>Spend a total of ", currency_symbol, "{point.spend_perlab} on this job (sector)"),
+        headerFormat = ""
+      ) %>%
+      hc_title(text = unique(.x$party), align = "left", style = list(fontWeight = "bold")) %>%
+      hc_size(height = 300) %>%
+    hc_exporting(
+      enabled = TRUE
+    )
+  })
+
+
+
+
+
+```
+
+
+```{r echo=FALSE, results='asis'}
+
+
+doplot <- map_dbl(charts,~{
+  # length(flatten(.x)$x$hc_opts$series)
+  length(.x$x$hc_opts$series)
+}) %>% all(. == 0)
+
+if(!doplot){
+
+  
+
+# Map each plot to a column
+columns <- map(charts, ~ div(style = "width: 50%; float: left;", .x))
+
+# If there's an odd number of plots, add an empty div to the end to balance the columns
+if (length(columns) %% 2 == 1) {
+  columns <- c(columns, list(div(style = "width: 50%; float: left;")))
+}
+
+# Pair up the columns and wrap them in rows
+rows <- map(seq(from = 1, to = length(columns), by = 2), ~ {
+  div(class = "row",
+    list(
+      columns[[.x]],
+      columns[[.x + 1]]
+    )
+  )
+})
+
+# Print the rows
+tags$div(class = "container", do.call(tags$div, rows))
+    
+}
+
+
+
+```
+
+:::
+
+### `r last7days_string` (Last 7 days)
+
+```{r, fig.width= 11, fig.height=8, dpi = 300}
+
+
+
+job_targeting <- election_dat7 %>%
+    group_split(party) %>%
+    map_dfr(calc_jobs_perc) %>%
+    filter(perc >= 0.015) %>%
+    filter(str_detect(value, relationshipstuff, negate = T)) %>%
+     # mutate(coalition = fct_relevel(coalition, c("Coalizione di centro-sinistra",
+     #                              "Terzo Polo",
+     #                              "Coalizione di centro-destra"))) %>%
+    group_by(party) %>%
+    arrange(desc(perc)) %>%
+    slice(1:20) %>%
+    mutate(value = fct_reorder(value, perc))
+
+
+
+
+# Determine the maximum value for xlim
+max_x <- max(job_targeting$perc*100)
+
+# Create the charts
+charts <- job_targeting %>%
+  mutate(spend_perlab = scales::comma(round(spend_per))) %>%
+  mutate(perc = perc * 100) %>%
+  split(.$party) %>%
+  map(~ {
+    the_color <- color_dat$colors[color_dat$party == .x$party[1]]
+    hchart(.x, type = "bar", hcaes(x = value, y = perc), color = the_color) %>%
+      hc_plotOptions(bar = list(horizontal = TRUE, stacking = "normal")) %>%
+      hc_yAxis(title = list(text = "% Party Budget spent on targeting method"),
+        max = max_x) %>%   # Set the maximum x-axis value) %>%
+      hc_xAxis(
+        title = "",
+        labels = list(style = list(fontSize = "10px"))
+      ) %>%
+      hc_add_theme(hc_theme_google()) %>%
+      highcharter::hc_tooltip(
+        pointFormat = paste0("<b>{point.value}</b><br>% of Total Budget Spent: {point.y:.1f}%<br>Spend a total of ", currency_symbol, "{point.spend_perlab} on this job (sector)"),
+        headerFormat = ""
+      ) %>%
+      hc_title(text = unique(.x$party), align = "left", style = list(fontWeight = "bold")) %>%
+      hc_size(height = 300) %>%
+    hc_exporting(
+      enabled = TRUE
+    )
+  })
+
+
+
+
+
+```
+
+
+```{r echo=FALSE, results='asis'}
+
+# charts$yo <- thegraph30
+
+doplot <- map_dbl(charts,~{
+  # length(flatten(.x)$x$hc_opts$series)
+  length(.x$x$hc_opts$series)
+}) %>% all(. == 0)
+
+if(!doplot){
+
+  
+
+# Map each plot to a column
+columns <- map(charts, ~ div(style = "width: 50%; float: left;", .x))
+
+# If there's an odd number of plots, add an empty div to the end to balance the columns
+if (length(columns) %% 2 == 1) {
+  columns <- c(columns, list(div(style = "width: 50%; float: left;")))
+}
+
+# Pair up the columns and wrap them in rows
+rows <- map(seq(from = 1, to = length(columns), by = 2), ~ {
+  div(class = "row",
+    list(
+      columns[[.x]],
+      columns[[.x + 1]]
+    )
+  )
+})
+
+# Print the rows
+tags$div(class = "container", do.call(tags$div, rows))
+    
+}
+
+
+```

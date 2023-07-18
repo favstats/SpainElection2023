@@ -1,0 +1,184 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "2023 Dutch parliamentary election",
+    "section": "",
+    "text": "This dashboard aggregates data from the Meta Ad Library to show how citizens are targeted during the 2nd 2023 Greek Parliamantary election.\n    If you want to know more about Who Targets Me and our work on ad transparency, visit us on whotargets.me!\nThis section shows total and daily spending of political parties in the run-up to the 2023 Dutch parliamentary election for the latest available data."
+  },
+  {
+    "objectID": "index.html#running-code",
+    "href": "index.html#running-code",
+    "title": "Untitled",
+    "section": "Running Code",
+    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "🇳🇱 2023 Dutch Election Dashboard",
+    "section": "",
+    "text": "Methodology\nIn collaboration with Who Targets Me, we monitored 584 political advertisers in Netherlands during the 2023 Dutch Parliamentary Election to better understand how campaigns use different targeting methods made available by Meta. To do this, we used data from the Meta Ad Library, using the new ‘Audience’ data which gives some detail on how pages target their ads.\nTo better understand the election, we kept only advertisers who:\n\nAdvertised in the last 7 days (Jul 9th - Jul 15th 2023)\nAdvertised in the last 30 days (Jun 16th - Jul 15th 2023)\n\n\n\n\n\n\n\nNote\n\n\n\nMeta only provides 7, 30 and 90 days windows for the targeting data in their Ad Library. Meta’s data also lags by a few days. Report will be updated as soon as new data is available.\n\n\n\n\n\n\n\n\nDisclaimer\n\n\n\nThe data shown in this dashboard is based on the platform’s respective ad libraries which are known to be sometimes incomplete (Edelson et al. 2020; Silva et al. 2020). For this reason the data shown here might not reflect the full picture nor all political ads that were targeted at voters.\n\n\n\n\nAbout the Creator of the Dashboard\n\n\n\n\n\n\n\n\n\n\n\nFabio Votta is a Ph.D. candidate in Political Communication at the University of Amsterdam who studies (online) political microtargeting and its usage around the world.\n\n\n\n\n\n\n\n\n\n\n\nWant to see how political parties target you? Sign up at Who Targets Me and download the gratis browser plugin to see how parties on Facebook use your data:\nhttps://whotargets.me/\n\n\n\n\n\n\n\nWant to retrieve targeting data from the Facebook Ad Library yourself? This dashboard is powered by the R package: metatargetr. Check it out here:\nhttps://github.com/favstats/metatargetr\n\n\n\n\nElection Targeting Dashboards\nA list of election dashboards:\n\n🇳🇱 2021 Dutch parliamentary election (15th-17th March 2021)\n🇩🇪 2021 German federal election (26 September 2021)\n🇸🇪 2022 Swedish general election (11th September 2022)\n🇺🇸 2022 United States midterm elections (8th November 2022)\n🇺🇸 2022 United States midterm elections - Georgia Runoff (6th December 2022)\n🇮🇹 2023 Lazio & Lombardy regional election (12-13th February 2023)\n🇪🇪 2023 Estonian parliamentary election (5th March 2023)\n🇳🇱 2023 Dutch provincial elections (15th March 2023)\n🇲🇪 2023 Montenegrin presidential elections (19th March 2023) - 1st round\n🇦🇺 2023 New South Wales state election (25th March 2023)\n🇫🇮 2023 Finnish parliamentary election (2 April 2023)\n🇹🇷 2023 Turkish general election (14 May 2023) - Round 1\n🇩🇪 2023 Bremen State election (14 May 2023)\n🇬🇷 2023 Greek Legislative election (21 May 2023)\n🇹🇷 2023 Turkish Presidential election (14 May 2023) - Round 2\n🇲🇪 2023 Montenegrin parliamentary elections (11 June 2023)\n🇬🇷 2nd 2023 Greek Legislative election (25 May 2023)"
+  },
+  {
+    "objectID": "index.html#section",
+    "href": "index.html#section",
+    "title": "2023 Montenegrin legislative election",
+    "section": "",
+    "text": "Methodology\nIn collaboration with Who Targets Me, we monitored rread_lines(“n_advertisers.txt”)political advertisers in Montenegro during the 2023 Montenegrin legislative election to better understand how campaigns use different targeting methods made available by Meta. To do this, we used data from the Meta Ad Library, using the new ‘Audience’ data which gives some detail on how pages target their ads.\nTo better understand the election, we kept only advertisers who:\n\nAdvertised in the last 7 days (May 31st - Jun 6th 2023)\nAdvertised in the last 30 days (May 8th - Jun 6th 2023)\n\n\nNote: Meta only provides 7, 30 and 90 days windows for the targeting data in their Ad Library. Meta’s data also lags by a few days. Report will be updated as soon as new data is available.\n\n\n\nElection Targeting Dashboards\nA list of election dashboards:\n\n🇳🇱 2021 Dutch parliamentary election (15th-17th March 2021)\n🇩🇪 2021 German federal election (26 September 2021)\n🇸🇪 2022 Swedish general election (11th September 2022)\n🇺🇸 2022 United States midterm elections (8th November 2022)\n🇺🇸 2022 United States midterm elections - Georgia Runoff (6th December 2022)\n🇮🇹 2023 Lazio & Lombardy regional election (12-13th February 2023)\n🇪🇪 2023 Estonian parliamentary election (5th March 2023)\n🇳🇱 2023 Dutch provincial elections (15th March 2023)\n🇲🇪 2023 Montenegrin presidential elections (19th March 2023) - 1st round\n🇦🇺 2023 New South Wales state election (25th March 2023)\n🇫🇮 2023 Finnish parliamentary election (2 April 2023)\n🇹🇷 2023 Turkish general election (14 May 2023) - Round 1\n🇩🇪 2023 Bremen State election (14 May 2023)\n🇬🇷 2023 Greek Legislative election (21 May 2023)\n🇹🇷 2023 Turkish Presidential election (14 May 2023) - Round 2\n🇲🇪 Montenegrin parliamentary elections, 2023 (11 June 2023)\n\n\n\nAbout Us\n\n\n\n\n\n\nFabio Votta\n\n\nPh.D. candidate in Political Communication at the University of Amsterdam who studies (online) political microtargeting and its usage around the world.\nLink\n\n\n\n\n\nWho Targets Me\n\n\nGrassroots activist group advocating for transparency in the digital age by monitoring political adverts on social media and their impact on democracy.\nLink"
+  },
+  {
+    "objectID": "index.html#topline-statistics",
+    "href": "index.html#topline-statistics",
+    "title": "2023 Montenegrin legislative election",
+    "section": "Topline Statistics",
+    "text": "Topline Statistics\n\nDaily SpendMay 8th - Jun 6th 2023 (Last 30 days)May 31st - Jun 6th 2023 (Last 7 days)\n\n\n\n\n\n\n\n\n\n\n\nIn total, political parties spend €32,456 and ran 649 ad copies on Meta in this timeframe.\n\n\n\n\n\n\n  \n  \n    \n      \n      Number of Advertisers\n      Top Spenders\n      Number of Ads\n      Total Spend\n    \n  \n  \n    DCG\n\n4\n\n1. Aleksa Becic - Demokrate - Demokratska Crna Gora (€12,583)2. Vladimir Martinović (€154)3. Stevan Katić - Demokrate Herceg Novi (€100)\n\n124\n\n€12,937\n\n    URA\n\n5\n\n1. Građanski pokret URA (€4,759)2. Dritan Abazović (€1,519)3. Luka Rakčević (€239)\n\n169\n\n€6,773\n\n    ES!\n\n2\n\n1. Milojko Spajić (€2,370)2. Pokret Evropa sad (€1,986)\n\n41\n\n€4,356\n\n    Drugo\n\n7\n\n1. Nik Gjeloshaj (€1,519)2. Nihad Canović (€105)3. Ammar Borančić (€100)\n\n45\n\n€2,124\n\n    SDP\n\n3\n\n1. Socijaldemokratska partija Crne Gore - SDP (€1,074)2. Nikola Đurašković (€392)3. Forum mladih SDP Crne Gore (€100)\n\n70\n\n€1,566\n\n    DF\n\n4\n\n1. Pokret za Promjene (€1,058)2. Vladislav Dajković (€285)3. Андрија Мандић - Andrija Mandić (€100)\n\n55\n\n€1,543\n\n    DPS\n\n1\n\n1. Demokratska partija socijalista Crne Gore (€908)\n\n8\n\n€908\n\n    SD\n\n4\n\n1. Socijaldemokrate Crne Gore (€563)2. SDP i Građani - Svim srcem za Cetinje (€121)3. Ismar Ćorović (€100)\n\n30\n\n€884\n\n    Prava Crna Gora\n\n2\n\n1. Marko Milačić - Prava Crna Gora (€536)2. Pokret za Pljevlja - Prava Crna Gora (€100)\n\n51\n\n€636\n\n    HGI\n\n1\n\n1. Hrvatska građanska inicijativa (€350)\n\n25\n\n€350\n\n    SNP\n\n1\n\n1. SNP BUDVA (€179)\n\n15\n\n€179\n\n    Demos\n\n1\n\n1. DEMOS - Miodrag Lekić (€100)\n\n10\n\n€100\n\n    LP\n\n1\n\n1. Liberalna partija Crne Gore - LPCG (€100)\n\n6\n\n€100\n\n  \n  \n  \n\n\n\n\n\n\nIn total, political parties spend €18,354 and ran 378 ad copies on Meta in this timeframe.\n\n\n\n\n\n\n  \n  \n    \n      \n      Number of Advertisers\n      Top Spenders\n      Number of Ads\n      Total Spend\n    \n  \n  \n    DCG\n\n4\n\n1. Aleksa Becic - Demokrate - Demokratska Crna Gora (€7,085)2. Stevan Katić - Demokrate Herceg Novi (€100)3. Demokrate Nikšić (€100)\n\n68\n\n€7,385\n\n    URA\n\n4\n\n1. Građanski pokret URA (€1,983)2. Dritan Abazović (€1,069)3. Omer Bajraktari (€156)\n\n92\n\n€3,308\n\n    ES!\n\n2\n\n1. Pokret Evropa sad (€1,886)2. Milojko Spajić (€1,231)\n\n35\n\n€3,117\n\n    Drugo\n\n4\n\n1. Nik Gjeloshaj (€938)2. Ammar Borančić (€100)3. Nihad Canović (€100)\n\n24\n\n€1,238\n\n    DPS\n\n1\n\n1. Demokratska partija socijalista Crne Gore (€908)\n\n8\n\n€908\n\n    DF\n\n2\n\n1. Pokret za Promjene (€528)2. Vladislav Dajković (€125)\n\n25\n\n€653\n\n    SD\n\n3\n\n1. Socijaldemokrate Crne Gore (€258)2. SDP i Građani - Svim srcem za Cetinje (€113)3. Ismar Ćorović (€100)\n\n19\n\n€471\n\n    Prava Crna Gora\n\n2\n\n1. Marko Milačić - Prava Crna Gora (€316)2. Pokret za Pljevlja - Prava Crna Gora (€100)\n\n36\n\n€416\n\n    SDP\n\n2\n\n1. Socijaldemokratska partija Crne Gore - SDP (€212)2. Nikola Đurašković (€145)\n\n32\n\n€357\n\n    SNP\n\n1\n\n1. SNP BUDVA (€179)\n\n15\n\n€179\n\n    HGI\n\n1\n\n1. Hrvatska građanska inicijativa (€122)\n\n15\n\n€122\n\n    Demos\n\n1\n\n1. DEMOS - Miodrag Lekić (€100)\n\n7\n\n€100\n\n    LP\n\n1\n\n1. Liberalna partija Crne Gore - LPCG (€100)\n\n2\n\n€100"
+  },
+  {
+    "objectID": "impressions.html#total-impressions",
+    "href": "impressions.html#total-impressions",
+    "title": "Impressions",
+    "section": "Total Impressions",
+    "text": "Total Impressions\n\nMinimumMaximum"
+  },
+  {
+    "objectID": "impressions.html#over-time-impressions",
+    "href": "impressions.html#over-time-impressions",
+    "title": "2023 Montenegrin Election Dashboard",
+    "section": "Over Time Impressions",
+    "text": "Over Time Impressions\n\nMinimumMaximum"
+  },
+  {
+    "objectID": "impressions.html",
+    "href": "impressions.html",
+    "title": "Impressions",
+    "section": "",
+    "text": "An impression is counted as the number of times an instance of an ad is on screen for the first time.\n~Meta Business Help Center\nThe Facebook Ad library only provides very broad “lower” and “upper bounds” of impressions. The graphs below sum up the lower and upper bounds individually across all parties."
+  },
+  {
+    "objectID": "impressions.html#impressions-over-time",
+    "href": "impressions.html#impressions-over-time",
+    "title": "Impressions",
+    "section": "Impressions Over Time",
+    "text": "Impressions Over Time\n\nMinimumMaximum"
+  },
+  {
+    "objectID": "impressions.html#impressions-by-gender",
+    "href": "impressions.html#impressions-by-gender",
+    "title": "Impressions",
+    "section": "Impressions by Gender",
+    "text": "Impressions by Gender\n\nThe boxplots show the distribution of average audience shares per gender by advertiser.\n\nFor every ad, the Facebook ad library provides a “percentage” which relates to the share of men and women have that have seen the ad. So, the audience of an ad could show, for example, that 60% of the users that have seen the ad were women.\n\nAll at OncePer Party"
+  },
+  {
+    "objectID": "impressions.html#impressions-by-age",
+    "href": "impressions.html#impressions-by-age",
+    "title": "Impressions",
+    "section": "Impressions by Age",
+    "text": "Impressions by Age\n\nThe boxplots show the distribution of average audience shares per age group by advertiser.\n\nFor every ad, the Facebook ad library provides a “percentage” which relates to the share of the specific demographic that has seen the ad. So, the audience of an ad could show, for example, that 60% of the users that have seen the ad were between 18-24\nYou can try to remove/add individual age groups to better understand the graph\n\nAll at OncePer Party"
+  },
+  {
+    "objectID": "impressions.html#potential-reach",
+    "href": "impressions.html#potential-reach",
+    "title": "Impressions",
+    "section": "Potential Reach",
+    "text": "Potential Reach\n\n\n\n\n\n\nFacebook says about this metric:\n\nThis is an estimate of the size of the audience that’s eligible to see this ad. It’s based on targeting criteria, ad placements and how many people were shown ads on Facebook apps and services in the past 30 days. ~Meta Business Help Center\n\nBased on that, we can assume that a higher potential reach means that a party was trying to target a broader range of citizen whereas a lower potential reach means the party was engaging in more microtargeting. The boxplots show the distribution of average minimum potential reach by advertiser."
+  },
+  {
+    "objectID": "targeting.html",
+    "href": "targeting.html",
+    "title": "Targeting",
+    "section": "",
+    "text": "This section shows spening per targeting criteria used by political parties to reach citizens in the run-up to the 2023 Dutch parliamentary election for the latest available data."
+  },
+  {
+    "objectID": "targeting.html#running-code",
+    "href": "targeting.html#running-code",
+    "title": "Targeting",
+    "section": "Running Code",
+    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+  },
+  {
+    "objectID": "targeting.html#spending-per-targeting-criteria",
+    "href": "targeting.html#spending-per-targeting-criteria",
+    "title": "Targeting",
+    "section": "Spending per Targeting Criteria",
+    "text": "Spending per Targeting Criteria\nHow much did campaigns spend on different targeting methods? The graphs below show spending overall across all parties and by party.\n\nNote: targeting criteria can overlap so the percentages do not sum up to 100%.\n\n\nJun 16th - Jul 15th 2023 (Last 30 days)Jul 9th - Jul 15th 2023 (Last 7 days)\n\n\n\nOverallBy Party\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOverallBy Party"
+  },
+  {
+    "objectID": "targeting.html#top-targeted-detailed-audiences",
+    "href": "targeting.html#top-targeted-detailed-audiences",
+    "title": "Targeting",
+    "section": "Top Targeted (Detailed) Audiences",
+    "text": "Top Targeted (Detailed) Audiences\nHere, we show the top targeted audiences for each party for the “detailed” targeting that Meta offers (ranked by amount of Euro spend). Most (but not all) of these audiences are “interest” audiences, i.e. the parties targeted people interested in “Books” or “Politics”.\n\nJun 16th - Jul 15th 2023 (Last 30 days)Jul 9th - Jul 15th 2023 (Last 7 days)"
+  },
+  {
+    "objectID": "targeting.html#top-contested-audiences",
+    "href": "targeting.html#top-contested-audiences",
+    "title": "Targeting",
+    "section": "Top Contested Audiences",
+    "text": "Top Contested Audiences\nHere, we show the top most contested audiences, i.e. where all parties have spent considerable amounts of money competing to reach voters with the same interests.\n\nJun 16th - Jul 15th 2023 (Last 30 days)Jul 9th - Jul 15th 2023 (Last 7 days)\n\n\n\n\nNo data (yet).\n\n\n\n\n\n\nNo data (yet)."
+  },
+  {
+    "objectID": "targeting.html#geographical-targeting",
+    "href": "targeting.html#geographical-targeting",
+    "title": "Targeting",
+    "section": "Geographical Targeting",
+    "text": "Geographical Targeting\nThe graphs below show various kinds of location targeting that parties engaged in on Meta platforms. The bigger the area the more money was spend by the party on targeting this location.\n\nJun 16th - Jul 15th 2023 (Last 30 days)\n\n\n\nRegionsCities"
+  },
+  {
+    "objectID": "targeting.html#geographical-exclusion",
+    "href": "targeting.html#geographical-exclusion",
+    "title": "Targeting",
+    "section": "Geographical Exclusion",
+    "text": "Geographical Exclusion\nOn Meta, political parties can also exclude certain geographical units. The graphs below show which locations were excluded from seeing political advertisements and how much money the parties spend on these ads. The bigger the area the more money was spend on ads excluding this location.\n\nJun 16th - Jul 15th 2023 (Last 30 days)\n\n\n\nRegionsCities\n\n\n\n\n\n\n\n\n\n\n\n\nNo data (yet)."
+  },
+  {
+    "objectID": "targeting.html#age-targeting",
+    "href": "targeting.html#age-targeting",
+    "title": "Targeting",
+    "section": "Age Targeting",
+    "text": "Age Targeting\nThe graphs below show targeting by age groups and how much percentage of party budgets were spent on them.\n\nNote: targeting criteria can overlap so the percentages do not sum up to 100%.\n\n\nJun 16th - Jul 15th 2023 (Last 30 days)Jul 9th - Jul 15th 2023 (Last 7 days)"
+  },
+  {
+    "objectID": "targeting.html#gender-targeting",
+    "href": "targeting.html#gender-targeting",
+    "title": "Targeting",
+    "section": "Gender Targeting",
+    "text": "Gender Targeting\nThe graphs below show targeting by gender and how much percentage of party budgets were spent on them.\n\nNote: targeting criteria can overlap so the percentages do not sum up to 100%.\n\n\nJun 16th - Jul 15th 2023 (Last 30 days)Jul 9th - Jul 15th 2023 (Last 7 days)"
+  },
+  {
+    "objectID": "targeting.html#education-targeting",
+    "href": "targeting.html#education-targeting",
+    "title": "Targeting",
+    "section": "Education Targeting",
+    "text": "Education Targeting\nThe graphs below show targeting by education levels and how much percentage of party budgets were spent on them.\n\nJun 16th - Jul 15th 2023 (Last 30 days)Jul 9th - Jul 15th 2023 (Last 7 days)"
+  },
+  {
+    "objectID": "targeting.html#job-targeting",
+    "href": "targeting.html#job-targeting",
+    "title": "Targeting",
+    "section": "Job Targeting",
+    "text": "Job Targeting\nThe graphs below show targeting by job (sectors) and how much percentage of party budgets were spent on them.\n\nNote: targeting criteria can overlap so the percentages do not sum up to 100%.\n\n\nJun 16th - Jul 15th 2023 (Last 30 days)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nJul 9th - Jul 15th 2023 (Last 7 days)"
+  },
+  {
+    "objectID": "index.html#daily-spend",
+    "href": "index.html#daily-spend",
+    "title": "2023 Dutch parliamentary election",
+    "section": "Daily Spend",
+    "text": "Daily Spend"
+  },
+  {
+    "objectID": "index.html#total-spend",
+    "href": "index.html#total-spend",
+    "title": "2023 Dutch parliamentary election",
+    "section": "Total Spend",
+    "text": "Total Spend\n\nJun 16th - Jul 15th 2023 (Last 30 days)Jul 9th - Jul 15th 2023 (Last 7 days)\n\n\nIn total, political parties spend €32,667 and ran 336 ads on Meta in this period.\n\n\n\n\n\n\n  \n  \n    \n      \n      Number of Advertisers\n      Top Spenders\n      Number of Ads\n      Total Spend\n    \n  \n  \n    PvdA\n\n7\n\n1. Partij van de Arbeid (PvdA) (€10,355)2. PvdA Goes (€100)3. PvdA Europa (€100)\n\n166\n\n€10,955\n\n    SP\n\n5\n\n1. SP (€3,648)2. SP Jongeren (€1,242)3. Lilian Marijnissen (€697)\n\n64\n\n€5,787\n\n    PVV\n\n1\n\n1. Geert Wilders (€3,801)\n\n2\n\n€3,801\n\n    VVD\n\n11\n\n1. VVD (€2,355)2. VVD Europa (€351)3. VVD Zutphen-Warnsveld (€100)\n\n35\n\n€3,606\n\n    FvD\n\n2\n\n1. Forum voor Democratie -FVD (€2,444)2. Wybren van Haga (€1,078)\n\n17\n\n€3,522\n\n    ChristenUnie\n\n1\n\n1. ChristenUnie (€1,508)\n\n2\n\n€1,508\n\n    CDA\n\n4\n\n1. CDA (€733)2. CDA Maastricht (€100)3. CDA Zeeland (€100)\n\n20\n\n€1,033\n\n    Ja21\n\n2\n\n1. Ja21 (€805)2. JA21 Noord-Holland (€100)\n\n13\n\n€905\n\n    GroenLinks\n\n3\n\n1. GroenLinks (€345)2. GroenLinks Parkstad (€105)3. Kim van Sparrentak (€100)\n\n7\n\n€550\n\n    Volt Nederland\n\n1\n\n1. Volt Nederland (€500)\n\n1\n\n€500\n\n    BVNL\n\n1\n\n1. BVNL-Haarlemmermeer (€100)\n\n3\n\n€100\n\n    D66\n\n1\n\n1. D66 Gennep (€100)\n\n1\n\n€100\n\n    DENK\n\n1\n\n1. DENK (€100)\n\n2\n\n€100\n\n    PvdD\n\n1\n\n1. Partij voor de Dieren Gemeente Groningen (€100)\n\n2\n\n€100\n\n    SGP\n\n1\n\n1. SGP Zeeland (€100)\n\n1\n\n€100\n\n  \n  \n  \n\n\n\n\n\n\nIn total, political parties spend €11,564 and ran 199 ads on Meta in this period.\n\n\n\n\n\n\n  \n  \n    \n      \n      Number of Advertisers\n      Top Spenders\n      Number of Ads\n      Total Spend\n    \n  \n  \n    PvdA\n\n4\n\n1. Partij van de Arbeid (PvdA) (€4,583)2. PvdA Europa (€100)3. PvdA Coevorden (€100)\n\n114\n\n€4,883\n\n    FvD\n\n2\n\n1. Forum voor Democratie -FVD (€1,602)2. Wybren van Haga (€1,075)\n\n17\n\n€2,677\n\n    ChristenUnie\n\n1\n\n1. ChristenUnie (€1,461)\n\n2\n\n€1,461\n\n    SP\n\n3\n\n1. SP (€516)2. SP Jongeren (€247)3. Lilian Marijnissen (€234)\n\n44\n\n€997\n\n    Volt Nederland\n\n1\n\n1. Volt Nederland (€500)\n\n1\n\n€500\n\n    CDA\n\n2\n\n1. CDA (€346)2. CDA Noordwijk-Noordwijkerhout-De Zilk (€100)\n\n12\n\n€446\n\n    VVD\n\n2\n\n1. VVD Tilburg (€100)2. VVD HIA (€100)\n\n2\n\n€200\n\n    BVNL\n\n1\n\n1. BVNL-Haarlemmermeer (€100)\n\n3\n\n€100\n\n    Ja21\n\n1\n\n1. Ja21 (€100)\n\n2\n\n€100\n\n    PvdD\n\n1\n\n1. Partij voor de Dieren Gemeente Groningen (€100)\n\n1\n\n€100\n\n    SGP\n\n1\n\n1. SGP Zeeland (€100)\n\n1\n\n€100"
+  },
+  {
+    "objectID": "about.knit.html",
+    "href": "about.knit.html",
+    "title": "🇬🇷 2nd 2023 Greek Election Dashboard",
+    "section": "",
+    "text": "Methodology\nIn collaboration with Who Targets Me, we monitored 584 political advertisers in Greece during the 2nd 2023 Greek legislative election to better understand how campaigns use different targeting methods made available by Meta. To do this, we used data from the Meta Ad Library, using the new ‘Audience’ data which gives some detail on how pages target their ads.\nTo better understand the election, we kept only advertisers who:\n\nAdvertised in the last 7 days (Jun 11th - Jun 17th 2023)\nAdvertised in the last 30 days (May 19th - Jun 17th 2023)\n\n\n\n\n\n\n\nNote\n\n\n\nMeta only provides 7, 30 and 90 days windows for the targeting data in their Ad Library. Meta’s data also lags by a few days. Report will be updated as soon as new data is available.\n\n\n\n\n\n\n\n\nDisclaimer\n\n\n\nThe data shown in this dashboard is based on the platform’s respective ad libraries which are known to be sometimes incomplete (Edelson et al. 2020; Silva et al. 2020). For this reason the data shown here might not reflect the full picture nor all political ads that were targeted at voters.\n\n\n\n\nAbout the Creators of the Dashboard\n\nFabio VottaAlexandros Gotinakos\n\n\n\n\n\n\n\n\n\n\n\n\n\nFabio Votta is a Ph.D. candidate in Political Communication at the University of Amsterdam who studies (online) political microtargeting and its usage around the world.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAlexandros Gotinakos is a predoctoral researcher for the ActEU project at Aristotle University of Thessaloniki. Interested in comparative political behavior, political psychology, and survey methodology.\n\n.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWant to see how political parties target you? Sign up at Who Targets Me and download the gratis browser plugin to see how parties on Facebook use your data:\nhttps://whotargets.me/\n\n\n\n\n\n\n\nWant to retrieve targeting data from the Facebook Ad Library yourself? This dashboard is powered by the R package: metatargetr. Check it out here:\nhttps://github.com/favstats/metatargetr\n\n\n\n\nElection Targeting Dashboards\nA list of election dashboards:\n\n\nElection Targeting Dashboards\nA list of election dashboards:\n\n🇳🇱 2021 Dutch parliamentary election (15th-17th March 2021)\n🇩🇪 2021 German federal election (26 September 2021)\n🇸🇪 2022 Swedish general election (11th September 2022)\n🇺🇸 2022 United States midterm elections (8th November 2022)\n🇺🇸 2022 United States midterm elections - Georgia Runoff (6th December 2022)\n🇮🇹 2023 Lazio & Lombardy regional election (12-13th February 2023)\n🇪🇪 2023 Estonian parliamentary election (5th March 2023)\n🇳🇱 2023 Dutch provincial elections (15th March 2023)\n🇲🇪 2023 Montenegrin presidential elections (19th March 2023) - 1st round\n🇦🇺 2023 New South Wales state election (25th March 2023)\n🇫🇮 2023 Finnish parliamentary election (2 April 2023)\n🇹🇷 2023 Turkish general election (14 May 2023) - Round 1\n🇩🇪 2023 Bremen State election (14 May 2023)\n🇬🇷 2023 Greek Legislative election (21 May 2023)\n🇹🇷 2023 Turkish Presidential election (14 May 2023) - Round 2\n🇲🇪 2023 Montenegrin parliamentary elections (11 June 2023)\n🇬🇷 2nd 2023 Greek Legislative election (25 June 2023)"
+  }
+]
