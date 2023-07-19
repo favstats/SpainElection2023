@@ -50,8 +50,8 @@ shiny::HTML('
 <div id="overlay" onclick="off()">
   <div id="text">
     <img src="wtm_logo_2020.png" alt="Logo" style="width:150px;height:150px;">
-    <h2>Welcome to the 2023 Dutch parliamentary election</h2>
-    <p>This dashboard aggregates data from the <a href="https://www.facebook.com/ads/library/" target="_blank">Meta Ad Library</a> to show how citizens are targeted during the 2nd 2023 Greek Parliamantary election.</p>
+    <h2>Welcome to the 2023 Dutch Election Dashboard</h2>
+    <p>This dashboard aggregates data from the <a href="https://www.facebook.com/ads/library/" target="_blank">Meta Ad Library</a> to show how citizens are targeted during the 2023 Dutch parliamentary election.</p>
     <p>If you want to know more about Who Targets Me and our work on ad transparency, visit us on <a href="https://www.whotargets.me/" target="_blank">whotargets.me</a>!</p>
   </div>
 </div>
