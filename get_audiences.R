@@ -1,3 +1,8 @@
+# Get command-line arguments
+tf <- commandArgs(trailingOnly = TRUE)
+
+
+
 source("utils.R")
 # ?get_targeting
 # get_targeting("41459763029", timeframe = "LAST_90_DAYS")

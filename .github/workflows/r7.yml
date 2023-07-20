@@ -55,11 +55,8 @@ jobs:
           install.packages('gt')
           install.packages('gtExtras')
         shell: Rscript {0}
-      - name: "Set timeframe"
-        run: |
-          echo "::set-env name=TIMEFRAME::7"
       - name: "Script - Run"
-        run: Rscript 'get_audiences.R'
+        run: Rscript 'get_audiences.R' 7
       - name: "Script - Update Dashboard"
         run: Rscript 'start.R'
       - name: "Commit"
