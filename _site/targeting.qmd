@@ -158,7 +158,6 @@ gg <- coltototal30 %>%
     filter(target != "Unknown") %>% 
     arrange(desc(perc))  
 
-library(tidytext)
 
 library(highcharter)
 
