@@ -55,7 +55,7 @@ jobs:
           install.packages('gt')
           install.packages('gtExtras')
         shell: Rscript {0}
-      - name: Set timeframe
+      - name: "Set timeframe"
         run: |
           echo "::set-env name=TIMEFRAME::30"
       - name: "Script - Run"
