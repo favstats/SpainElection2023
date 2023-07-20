@@ -142,12 +142,14 @@ source("../utils.R")
 ```{r}
 election_dat30 <- readRDS("../data/election_dat30.rds") %>% 
     rename(internal_id = page_id) %>% 
-  filter(party != "And")
+  filter(party != "And") %>% 
+  filter(!no_data)
 
 
 election_dat7 <- readRDS("../data/election_dat7.rds") %>% 
     rename(internal_id = page_id) %>% 
-  filter(party != "And")
+  filter(party != "And") %>% 
+  filter(!no_data)
 
 
 fin <- (as.Date(election_dat30$ds[1])-lubridate::days(1))

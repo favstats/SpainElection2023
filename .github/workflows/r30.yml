@@ -1,8 +1,7 @@
-name: "7 Timeframe"
+name: "30 Timeframe"
 on:
   schedule:
-    # Runs "at minute 55 past every hour" (see https://crontab.guru)
-    - cron: '0 13 * * *'
+    - cron: '0 23,0,11,12 * * *'
   push:
     branches:
       - main
@@ -55,11 +54,14 @@ jobs:
           install.packages('gt')
           install.packages('gtExtras')
         shell: Rscript {0}
+      - name: Set timeframe
+      run: |
+        echo "::set-env name=TIMEFRAME::30"
       - name: "Script - Run"
-        run: Rscript 'retrieve_targeting_data.R'
+        run: Rscript 'get_audiences.R'
       - name: "Script - Update Dashboard"
         run: Rscript 'start.R'
       - name: "Commit"
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Script Routine Seven
+          commit_message: Script Routine Thirty

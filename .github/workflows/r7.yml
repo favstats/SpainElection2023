@@ -1,0 +1,67 @@
+name: "7 Timeframe"
+on:
+  schedule:
+    - cron: '0 1,2,13,14 * * *'
+  push:
+    branches:
+      - main
+
+jobs:
+  update-data:
+    name: Update Dashboard
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: quarto-dev/quarto-actions/setup@v2
+      - name: Add Quarto to PATH
+        run: |
+          echo "export PATH=$PATH:$HOME/.local/bin" >> $GITHUB_ENV
+      - run: |
+          quarto --version
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: 'release'
+      - name: Setup - Checkout repo
+        uses: actions/checkout@v3
+      - name: Apt-get needed things
+        run: |
+          sudo apt-get install --no-install-recommends -y \
+          libssl-dev \
+          libcurl4-openssl-dev \
+          libxml2-dev \
+          libharfbuzz-dev \
+          libfribidi-dev
+      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: "Install Packages"
+        run: |
+          install.packages('httr')
+          install.packages('remotes')
+          remotes::install_github('hadley/emo')
+          install.packages('shiny')
+          install.packages('scales')
+          install.packages('treemap')
+          install.packages('htmltools')
+          install.packages('here')
+          install.packages('jsonlite')
+          install.packages('janitor')
+          install.packages('quarto')
+          install.packages('tidyverse')
+          install.packages('highcharter')
+          install.packages('lubridate')
+          install.packages('gt')
+          install.packages('gtExtras')
+        shell: Rscript {0}
+      - name: Set timeframe
+      run: |
+        echo "::set-env name=TIMEFRAME::7"
+      - name: "Script - Run"
+        run: Rscript 'get_audiences.R'
+      - name: "Script - Update Dashboard"
+        run: Rscript 'start.R'
+      - name: "Commit"
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Script Routine Thirty
