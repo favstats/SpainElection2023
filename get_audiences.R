@@ -1,7 +1,22 @@
 # Get command-line arguments
-tf <- commandArgs(trailingOnly = TRUE)
+# tf <- commandArgs(trailingOnly = TRUE)
 
+tf <- "30"
 
+map_dfr_progress <- function(.x, .f, ...) {
+  .f <- purrr::as_mapper(.f, ...)
+  pb <- progress::progress_bar$new(
+    total = length(.x), 
+    format = " (:spin) [:bar] :percent | :current / :total | eta: :eta",
+    # format = " downloading [:bar] :percent eta: :eta",
+    force = TRUE)
+  
+  f <- function(...) {
+    pb$tick()
+    .f(...)
+  }
+  purrr::map_dfr(.x, f, ...)
+}
 
 source("utils.R")
 # ?get_targeting
@@ -22,9 +37,13 @@ new_ds <- jb %>% arrange(ds) %>% slice(1) %>% pull(ds)
 
 latest_elex <- readRDS(paste0("data/election_dat", tf, ".rds"))
 
+if("ds" %in% names(latest_elex) ){
+  
 latest_ds <- latest_elex %>% arrange(ds) %>% slice(1) %>% pull(ds)
 
-
+} else {
+  latest_ds <- as_date(new_ds)-1
+}
 
 tstamp <- Sys.time()
 
@@ -39,186 +58,26 @@ write_lines(lubridate::as_date(tstamp), "tstamp.txt")
 
 # tstamp <- Sys.time()
 
-more_data <- dir("data/reports", full.names = T) %>%
-  map_dfr(~read_csv(.x) %>% mutate(path = .x)) %>%
-  mutate(date_produced = str_remove_all(path, "data/reports/FacebookAdLibraryReport_|_NL_yesterday_advertisers\\.csv")) %>%
-  mutate(date_produced = lubridate::ymd(date_produced)) %>%
-  janitor::clean_names()%>% #rename(advertiser_id = page_id) %>%
-  mutate(spend = readr::parse_number(amount_spent_eur)) %>%
-  mutate(spend = ifelse(spend == 100, 50, spend)) %>%
-  distinct(page_id, .keep_all = T)  %>%
-  mutate(party1 = case_when(
-    str_detect(page_name, "VVD") ~ "VVD",
-    str_detect(page_name, "\\bCDA\\b") ~ "CDA",
-    str_detect(page_name, "PvdA|Jonge Socialisten") ~ "PvdA",
-    str_detect(page_name, "D66|Jonge Democraten") ~ "D66",
-    str_detect(page_name, "GroenLinks|GL") ~ "GroenLinks",
-    str_detect(page_name, "ChristenUnie|CU") ~ "ChristenUnie",
-    str_detect(page_name, "\\bSP\\b") ~ "SP",
-    str_detect(page_name, "FvD|FVD|Forum voor Democratie") ~ "FvD",
-    str_detect(page_name, "50Plus|50PLUS") ~ "50PLUS",
-    str_detect(page_name, "\\bSGP\\b") ~ "SGP",
-    str_detect(page_name, "PvdD|Partij voor de Dieren") ~ "PvdD",
-    str_detect(page_name, "PVV") ~ "PVV",
-    str_detect(page_name, "DENK") ~ "DENK",
-    str_detect(page_name, "Volt|VOLT") ~ "Volt Nederland",
-    str_detect(page_name, "BIJ1|BiJ") ~ "BIJ1",
-    str_detect(page_name, "BVNL") ~ "BVNL",
-    str_detect(page_name, "Ja21") ~ "JA21",
-    str_detect(page_name, "Alliantie") ~ "Alliantie",
-    str_detect(page_name, "BBB") ~ "BBB",
-    T ~ NA_character_
-  )) %>%
-  mutate(party2 = case_when(
-    str_detect(disclaimer, "VVD") ~ "VVD",
-    str_detect(disclaimer, "\\bCDA\\b") ~ "CDA",
-    str_detect(disclaimer, "PvdA|Jonge Socialisten") ~ "PvdA",
-    str_detect(disclaimer, "D66|Jonge Democraten") ~ "D66",
-    str_detect(disclaimer, "GroenLinks|GL") ~ "GroenLinks",
-    str_detect(disclaimer, "ChristenUnie|CU") ~ "ChristenUnie",
-    str_detect(disclaimer, "\\bSP\\b") ~ "SP",
-    str_detect(disclaimer, "FvD|FVD|Forum voor Democratie") ~ "FvD",
-    str_detect(disclaimer, "50Plus|50PLUS") ~ "50PLUS",
-    str_detect(disclaimer, "\\bSGP\\b") ~ "SGP",
-    str_detect(disclaimer, "PvdD|Partij voor de Dieren") ~ "PvdD",
-    str_detect(disclaimer, "PVV") ~ "PVV",
-    str_detect(disclaimer, "DENK") ~ "DENK",
-    str_detect(disclaimer, "Volt|VOLT") ~ "Volt Nederland",
-    str_detect(disclaimer, "BIJ1|BiJ") ~ "BIJ1",
-    str_detect(disclaimer, "BVNL") ~ "BVNL",
-    str_detect(disclaimer, "Ja21") ~ "JA21",
-    str_detect(disclaimer, "BBB") ~ "BBB",
-    T ~ NA_character_
-  )) %>%
-  mutate(party = ifelse(is.na(party1), party2, party1)) %>%
-  drop_na(party) %>%
-  distinct(page_id, .keep_all = T) %>%
-  filter(str_detect(page_name, "Global Space Conference on Climate Change|de Alliantie|PvdA - GroenLinks", negate = T)) %>%
-  mutate(page_id = as.character(page_id))
+# last90days <- read_csv("data/FacebookAdLibraryReport_2023-07-20_ES_last_90_days_advertisers.csv")
+last30days <- read_csv("data/FacebookAdLibraryReport_2023-07-20_ES_last_30_days_advertisers.csv")
 
-
-internal_page_ids <- read_csv("data/nl_advertisers.csv") %>%
-  mutate(page_id = as.character(page_id))
-
-
-wtm_data <- read_csv("data/wtm-advertisers-nl-2023-07-18T21_09_43.051Z.csv") %>% #names
+wtm_data <- read_csv("data/wtm-advertisers-es-2023-07-22T22_31_30.452Z.csv") %>% #names
   select(page_id = advertisers_platforms.advertiser_platform_ref,
          page_name = name, party = entities.short_name)  %>%
-  mutate(page_id = as.character(page_id)) %>%
-  # filter(party == "And") %>% #View
-  # count(party, sort = T)  %>%
-  mutate(party = case_when(
-    str_detect(party, "VVD") ~ "VVD",
-    str_detect(party, "\\bCDA\\b") ~ "CDA",
-    str_detect(party, "PvdA|Jonge Socialisten") ~ "PvdA",
-    str_detect(party, "D66|Jonge Democraten") ~ "D66",
-    str_detect(party, "GroenLinks|GL") ~ "GroenLinks",
-    str_detect(party, "ChristenUnie|CU") ~ "ChristenUnie",
-    str_detect(party, "\\bSP\\b") ~ "SP",
-    str_detect(party, "FvD|FVD|Forum voor Democratie") ~ "FvD",
-    str_detect(party, "50Plus|50PLUS") ~ "50PLUS",
-    str_detect(party, "\\bSGP\\b") ~ "SGP",
-    str_detect(party, "PvdD|Partij voor de Dieren") ~ "PvdD",
-    str_detect(party, "PVV") ~ "PVV",
-    str_detect(party, "DENK") ~ "DENK",
-    str_detect(party, "Volt|VOLT") ~ "Volt Nederland",
-    str_detect(party, "BIJ1|BiJ") ~ "BIJ1",
-    str_detect(party, "BVNL") ~ "BVNL",
-    str_detect(party, "Ja21") ~ "JA21",
-    str_detect(page_name, "Alliantie") ~ "Alliantie",
-    str_detect(page_name, "Partij voor de Dieren") ~ "PvdD",
-    str_detect(page_name, "Christine Govaert") ~ "BBB",
-    str_detect(page_name, "BVNL|Belang van Nederland") ~ "BVNL",
-    T ~ party
-  ))
+  mutate(page_id = as.character(page_id)) %>% 
+  filter(page_id %in% last30days$`Page ID`)
+# filter(party == "And") %
 
-rep <- read_csv("data/FacebookAdLibraryReport_2023-07-15_NL_last_90_days_advertisers.csv") %>% janitor::clean_names()  %>%
-  mutate(page_id = as.character(page_id)) %>%
-  mutate(party1 = case_when(
-    str_detect(page_name, "VVD") ~ "VVD",
-    str_detect(page_name, "\\bCDA\\b") ~ "CDA",
-    str_detect(page_name, "PvdA|Jonge Socialisten") ~ "PvdA",
-    str_detect(page_name, "D66|Jonge Democraten") ~ "D66",
-    str_detect(page_name, "GroenLinks|GL") ~ "GroenLinks",
-    str_detect(page_name, "ChristenUnie|CU") ~ "ChristenUnie",
-    str_detect(page_name, "\\bSP\\b") ~ "SP",
-    str_detect(page_name, "FvD|FVD|Forum voor Democratie") ~ "FvD",
-    str_detect(page_name, "50Plus|50PLUS") ~ "50PLUS",
-    str_detect(page_name, "\\bSGP\\b") ~ "SGP",
-    str_detect(page_name, "PvdD|Partij voor de Dieren") ~ "PvdD",
-    str_detect(page_name, "PVV") ~ "PVV",
-    str_detect(page_name, "DENK") ~ "DENK",
-    str_detect(page_name, "Volt|VOLT") ~ "Volt Nederland",
-    str_detect(page_name, "BIJ1|BiJ") ~ "BIJ1",
-    str_detect(page_name, "BVNL") ~ "BVNL",
-    str_detect(page_name, "Ja21") ~ "Ja21",
-    str_detect(page_name, "Alliantie") ~ "Alliantie",
-    str_detect(page_name, "BBB") ~ "BBB",
-    T ~ NA_character_
-  )) %>%
-  mutate(party2 = case_when(
-    str_detect(disclaimer, "VVD") ~ "VVD",
-    str_detect(disclaimer, "\\bCDA\\b") ~ "CDA",
-    str_detect(disclaimer, "PvdA|Jonge Socialisten") ~ "PvdA",
-    str_detect(disclaimer, "D66|Jonge Democraten") ~ "D66",
-    str_detect(disclaimer, "GroenLinks|GL") ~ "GroenLinks",
-    str_detect(disclaimer, "ChristenUnie|CU") ~ "ChristenUnie",
-    str_detect(disclaimer, "\\bSP\\b") ~ "SP",
-    str_detect(disclaimer, "FvD|FVD|Forum voor Democratie") ~ "FvD",
-    str_detect(disclaimer, "50Plus|50PLUS") ~ "50PLUS",
-    str_detect(disclaimer, "\\bSGP\\b") ~ "SGP",
-    str_detect(disclaimer, "PvdD|Partij voor de Dieren") ~ "PvdD",
-    str_detect(disclaimer, "PVV") ~ "PVV",
-    str_detect(disclaimer, "DENK") ~ "DENK",
-    str_detect(disclaimer, "Volt|VOLT") ~ "Volt Nederland",
-    str_detect(disclaimer, "BIJ1|BiJ") ~ "BIJ1",
-    str_detect(disclaimer, "BVNL") ~ "BVNL",
-    str_detect(disclaimer, "Ja21") ~ "Ja21",
-    str_detect(disclaimer, "BBB") ~ "BBB",
-    T ~ NA_character_
-  )) %>%
-  mutate(party = ifelse(is.na(party1), party2, party1)) %>%
-  drop_na(party) %>%
-  distinct(page_id, .keep_all = T) %>%
-  filter(str_detect(page_name, "Global Space Conference on Climate Change|de Alliantie|PvdA - GroenLinks", negate = T))
-
-# 338750440106782
-
-all_dat <- #read_csv("nl_advertisers.csv") %>%
+all_dat <-   bind_rows(wtm_data) %>%
+  #read_csv("nl_advertisers.csv") %>%
   # mutate(page_id = as.character(page_id)) %>%
-  bind_rows(internal_page_ids) %>%
-  bind_rows(wtm_data) %>%
-  bind_rows(rep) %>%
-  bind_rows(more_data %>% mutate(source = "new")) %>%
+  # bind_rows(internal_page_ids) %>%
+  # bind_rows(rep) %>%
+  # bind_rows(more_data %>% mutate(source = "new")) %>%
   distinct(page_id, .keep_all = T) %>%
   add_count(page_name, sort  =T) %>%
   mutate(remove_em = n >= 2 & str_ends(page_id, "0")) %>%
-  filter(!remove_em) %>%
-  # filter(n >= 2) %>%
-  # filter(n >= 2 & str_ends(page_id, "0", negate = T)) %>%
-  select(-n)  %>%
-  mutate(party = case_when(
-    str_detect(party, "VVD") ~ "VVD",
-    str_detect(party, "\\bCDA\\b") ~ "CDA",
-    str_detect(party, "PvdA|Jonge Socialisten") ~ "PvdA",
-    str_detect(party, "D66|Jonge Democraten") ~ "D66",
-    str_detect(party, "GroenLinks|GL") ~ "GroenLinks",
-    str_detect(party, "ChristenUnie|CU") ~ "ChristenUnie",
-    str_detect(party, "\\bSP\\b") ~ "SP",
-    str_detect(party, "FvD|FVD|Forum voor Democratie") ~ "FvD",
-    str_detect(party, "50Plus|50PLUS") ~ "50PLUS",
-    str_detect(party, "\\bSGP\\b") ~ "SGP",
-    str_detect(party, "PvdD|Partij voor de Dieren") ~ "PvdD",
-    str_detect(party, "PVV") ~ "PVV",
-    str_detect(party, "DENK") ~ "DENK",
-    str_detect(party, "Volt|VOLT") ~ "Volt Nederland",
-    str_detect(party, "BIJ1|BiJ") ~ "BIJ1",
-    str_detect(party, "BVNL") ~ "BVNL",
-    str_detect(party, "Ja21|JA21") ~ "Ja21",
-    str_detect(party, "Alliantie") ~ "Alliantie",
-    str_detect(party, "BBB") ~ "BBB",
-    T ~ party
-  ))
+  filter(!remove_em) 
 
 
 
@@ -241,7 +100,8 @@ scraper <- function(.x, time = tf) {
     # }
   } else {
    fin <- tibble(internal_id = .x$page_id, no_data = T) %>%
-      mutate(tstamp = tstamp)
+      mutate(tstamp = tstamp) %>% 
+     mutate(total_spend_formatted = NA)
   }
   
   # print(nrow(fin))
@@ -260,20 +120,25 @@ scraper <- possibly(scraper, otherwise = NULL, quiet = F)
 # da7 <- readRDS("data/election_dat7.rds")
 
 if(new_ds == latest_ds){
+  print(glue::glue("New DS: {new_ds}: Old DS: {latest_ds}"))
   
   ### save seperately
   enddat <- all_dat %>% 
     arrange(page_id) %>%
-    # slice(1:150) %>% 
+    # slice(1:50) %>%
+    # sample_n(509) %>%
     filter(!(page_id %in% latest_elex$page_id)) %>% 
     split(1:nrow(.)) %>%
-    map_dfr(scraper)
+    map_dfr_progress(scraper)
+  
+  glimpse(enddat)
   
   if(nrow(enddat)==0){
     election_dat <- latest_elex
   } else {
     election_dat  <- enddat %>%
-      mutate(total_spend_formatted = parse_number(as.character(total_spend_formatted))) %>%
+      mutate_at(vars(contains("total_spend_formatted")), ~parse_number(as.character(.x))) %>% 
+      # mutate(total_spend_formatted = parse_number(as.character(total_spend_formatted))) %>%
       rename(page_id = internal_id) %>%
       left_join(all_dat) %>% 
       bind_rows(latest_elex)    
@@ -285,14 +150,23 @@ if(new_ds == latest_ds){
   
 
   } else {
+    
+    print(glue::glue("New DS: {new_ds}: Old DS: {latest_ds} 2"))
+    
   
   ### save seperately
   election_dat <- all_dat %>% 
     arrange(page_id) %>%
-    # slice(1:50) %>% 
+    # slice(1:50) %>%
+    # sample_n(509) %>%
     split(1:nrow(.)) %>%
-    map_dfr(scraper)  %>%
-    mutate(total_spend_formatted = parse_number(total_spend_formatted)) %>%
+    map_dfr_progress(scraper)  
+  
+  glimpse(election_dat)
+  
+  election_dat <- election_dat %>% 
+    mutate_at(vars(contains("total_spend_formatted")), ~parse_number(as.character(.x))) %>% 
+    # mutate(total_spend_formatted = parse_number(as.character(total_spend_formatted))) %>%
     rename(page_id = internal_id)  
   
   dir.create(paste0("historic/",  as.character(new_ds)), recursive = T)
@@ -300,8 +174,10 @@ if(new_ds == latest_ds){
   
   saveRDS(election_dat, file = paste0(current_date, ".rds"))
   
-  
-}
+  election_dat <- election_dat%>% left_join(all_dat)
+  }
+
+
 
 saveRDS(election_dat, paste0("data/election_dat", tf, ".rds"))
 
@@ -314,64 +190,71 @@ minimum_date <- dir("historic", recursive = T) %>%
   as.Date() %>%
   min(na.rm = T)
 
-latest_ds <- election_dat %>% arrange(ds) %>% slice(1) %>% pull(ds) %>% as.Date()
-
-begintf <- as.Date(latest_ds) - lubridate::days(tf)
-
-date_vector <- vector()
-current_date <- latest_ds
-index <- 1
-
-while(current_date > minimum_date) {
+if("ds" %in% names(election_dat) ){
   
-  date_vector[index] <- current_date
+  latest_ds <- election_dat %>% arrange(ds) %>% slice(1) %>% pull(ds) %>% as.Date()
   
-  current_date <- current_date - lubridate::days(tf)
+  begintf <- as.Date(latest_ds) - lubridate::days(tf)
   
-  index <- index + 1
+  date_vector <- vector()
+  current_date <- latest_ds
+  index <- 1
   
-}
-
-if(length(date_vector != 0)){
+  while(current_date > minimum_date) {
+    
+    date_vector[index] <- current_date
+    
+    current_date <- current_date - lubridate::days(tf)
+    
+    index <- index + 1
+    
+  }
   
-  
-  combined_dat <- paste0("historic/", as_date(date_vector), "/", tf, ".rds") %>%
-    map_dfr(~{
-      if(!file.exists(.x)){
-        return(tibble(ds = as.character(begintf), missing_report = T))
-      } else {
-        readRDS(.x)
-      }
+  if(length(date_vector != 0)){
+    
+    
+    
+    combined_dat <- paste0("historic/", as_date(date_vector), "/", tf, ".rds") %>%
+      map_dfr(~{
+        if(!file.exists(.x)){
+          return(tibble(ds = as.character(begintf), missing_report = T))
+        } else {
+          readRDS(.x)
+        }
+        
+      })
+    
+    saveRDS(combined_dat, file= paste0("data/combined_dat", tf,  ".rds"))
+    
+    if("total_spend_formatted" %in% names(combined_dat) ){
       
-    })
+    
+    aggr <- combined_dat  %>%
+      mutate_at(vars(contains("total_spend_formatted")), ~parse_number(as.character(.x))) %>% 
+      # mutate(total_spend = readr::parse_number(as.character(total_spend_formatted))) %>%
+      mutate(total_spend = ifelse(total_spend_formatted == 50, 50, total_spend_formatted)) %>%
+      mutate(total_spend = total_spend * total_spend_pct) %>%
+      group_by(page_id, value, type, location_type, detailed_type, custom_audience_type, is_exclusion) %>%
+      summarize(total_spend = sum(total_spend),
+                num_ads = sum(num_ads),
+                num_obfuscated = sum(num_obfuscated)) %>%
+      ungroup()
+    
+    saveRDS(aggr, file = paste0("data/election_dat_aggr", tf,  ".rds"))
+    
+    }
+    
+  }
   
-  saveRDS(combined_dat, data = paste0("data/combined_dat", tf,  ".rds"))
-  
-  aggr <- combined_dat  %>%
-    mutate(total_spend = readr::parse_number(total_spend_formatted)) %>%
-    mutate(total_spend = ifelse(total_spend == 50, 50, total_spend)) %>%
-    mutate(total_spend = total_spend * total_spend_pct) %>%
-    group_by(internal_id, value, type, location_type, detailed_type, custom_audience_type, is_exclusion) %>%
-    summarize(total_spend = sum(total_spend),
-              num_ads = sum(num_ads),
-              num_obfuscated = sum(num_obfuscated)) %>%
-    ungroup()
-  
-  saveRDS(aggr, data = paste0("data/election_dat_aggr", tf,  ".rds"))
-  
-
   
   
-}
-
-
-
-if(new_ds == latest_ds){
-  
-  unlink(paste0("targeting/", tf), recursive = T, force = T)
-  
-  dir.create(paste0("targeting/", tf))
-  
-  write_lines("_", paste0("targeting/", tf, "/", "_"))
-  
+  if(new_ds == latest_ds){
+    
+    unlink(paste0("targeting/", tf), recursive = T, force = T)
+    
+    dir.create(paste0("targeting/", tf))
+    
+    write_lines("_", paste0("targeting/", tf, "/", "_"))
+    
+  }
 }

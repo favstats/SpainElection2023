@@ -3,7 +3,7 @@ project:
   output-dir: ../docs
 
 website:
-  title: "🇳🇱 2023 Dutch Election Dashboard"
+  title: "🇪🇸 2023 Spanish Election Dashboard"
   navbar:
     left:
       - href: index.qmd

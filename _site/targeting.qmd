@@ -6,8 +6,8 @@ format:
 ---
 
 ```{r setup, include=FALSE}
-election_title <- "2023 Dutch parliamentary election"
-the_country <- "Netherlands"
+election_title <- "2023 Spanish election"
+the_country <- "Spain"
 
 
 ## Global options
@@ -39,12 +39,22 @@ options(scipen = 999)
 
 
 # source("../party_utils.R")
+party_colors <- c("#adcfef", "#ffd700",
+                  "#ffed00", "#4aae4a", 
+                  "#b5cf18", "#ffb232",
+                  "#00c7ae", "#639e42",
+                  "#1d84ce", "#ef1c27",
+                  "#00599b", "#63be21")
+party_list <- c("BNG", "CCa", "CUP", "EAJ-PNV", "EHB", "ERC", "Jun", "NC-BC", "PP", "PSOE", "UPN", "VOX")
+
+
+most_left_party <- "PSOE"
+
 color_dat <- tibble(
-  colors = c("#00b13d", "#80c31c", "#0a2cca", "#008067", "#bf0000", "#ff0000", "#6f2421", "#02a6e9", "#92107d", "#04d3d4", "#242b57", "#66cdaa", "#242b57", "#006b28", "#012758", "#ea5b0b", "#582c83", "#698c0c"),
-  party = c("D66", "GroenLinks", "VVD", "CDA", "SP", "PvdA", "FvD", "ChristenUnie", "50PLUS", "Alliantie", "BVNL", "DENK", "Ja21", "PvdD", "PVV", "SGP", "Volt Nederland", "BBB"))
+  colors = party_colors,
+  party = party_list
+)
 
-
-most_left_party <- "VVD"
 
 
 scale_fill_parties <- function(...){
@@ -63,6 +73,8 @@ scale_color_parties <- function(...){
 }
 source("../utils.R")
 # source("../party_utils.R")
+
+# election_dat30 %>% count(party)
 ```
 
 
@@ -70,14 +82,15 @@ source("../utils.R")
 ```{r}
 election_dat30 <- readRDS("../data/election_dat30.rds") %>% 
     rename(internal_id = page_id) %>% 
-  filter(party != "And")  %>% 
-  filter(is.na(no_data))
+  filter(is.na(no_data)) %>% 
+  filter(!(party %in% c("Otros", "Sum")))
+
 
 
 election_dat7 <- readRDS("../data/election_dat7.rds") %>% 
     rename(internal_id = page_id) %>% 
-  filter(party != "And")  %>% 
-  filter(is.na(no_data))
+  filter(is.na(no_data)) %>% 
+  filter(!(party %in% c("Otros", "Sum")))
 
 # saveRDS(election_dat30, "../data/election_dat30.rds")
 # saveRDS(election_dat7, "../data/election_dat7.rds")
@@ -756,6 +769,7 @@ contested_dat <- interest_targeting %>%
 ### `r last30days_string` (Last 30 days)
 
 ```{r}
+# debugonce(get_contested_graph)
 thegraph30 <- get_contested_graph(election_dat30, minamount = 200)
 
 if(length(thegraph30$x$hc_opts$series)!=0){
@@ -1599,10 +1613,8 @@ charts <- educ_targeting %>%
 
 
 
-
-    
-
-
+if(length(charts)!=0){
+  
 # Map each plot to a column
 columns <- map(charts, ~ div(style = "width: 50%; float: left;", .x))
 
@@ -1623,6 +1635,12 @@ rows <- map(seq(from = 1, to = length(columns), by = 2), ~ {
 
 # Print the rows
 tags$div(class = "container", do.call(tags$div, rows))
+
+} else {
+  HTML("No data (yet)")
+}
+    
+
 
 
 ```
@@ -1678,6 +1696,8 @@ charts <- educ_targeting %>%
     
 
 
+if(length(charts)!=0){
+  
 # Map each plot to a column
 columns <- map(charts, ~ div(style = "width: 50%; float: left;", .x))
 
@@ -1699,6 +1719,9 @@ rows <- map(seq(from = 1, to = length(columns), by = 2), ~ {
 # Print the rows
 tags$div(class = "container", do.call(tags$div, rows))
 
+} else {
+  HTML("No data (yet)")
+}
 
 ```
 

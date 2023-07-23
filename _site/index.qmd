@@ -1,5 +1,5 @@
 ---
-title: "2023 Dutch parliamentary election"
+title: "2023 Spanish general election"
 format:
   html:
     theme: lumen
@@ -50,8 +50,8 @@ shiny::HTML('
 <div id="overlay" onclick="off()">
   <div id="text">
     <img src="wtm_logo_2020.png" alt="Logo" style="width:150px;height:150px;">
-    <h2>Welcome to the 2023 Dutch Election Dashboard</h2>
-    <p>This dashboard aggregates data from the <a href="https://www.facebook.com/ads/library/" target="_blank">Meta Ad Library</a> to show how citizens are targeted during the 2023 Dutch parliamentary election.</p>
+    <h2>Welcome to the 2023 Spanish Election Dashboard</h2>
+    <p>This dashboard aggregates data from the <a href="https://www.facebook.com/ads/library/" target="_blank">Meta Ad Library</a> to show how citizens are targeted during the 2023 Spanish general election.</p>
     <p>If you want to know more about Who Targets Me and our work on ad transparency, visit us on <a href="https://www.whotargets.me/" target="_blank">whotargets.me</a>!</p>
   </div>
 </div>
@@ -113,11 +113,18 @@ here::here("")
 
 
 # source("../party_utils.R")
+party_colors <- c("#adcfef", "#ffd700",
+                  "#ffed00", "#4aae4a", 
+                  "#b5cf18", "#ffb232",
+                  "#00c7ae", "#639e42",
+                  "#1d84ce", "#ef1c27",
+                  "#00599b", "#63be21")
+party_list <- c("BNG", "CCa", "CUP", "EAJ-PNV", "EHB", "ERC", "Jun", "NC-BC", "PP", "PSOE", "UPN", "VOX")
+
 color_dat <- tibble(
-  colors = c("#00b13d", "#80c31c", "#0a2cca", "#008067", "#bf0000", "#ff0000", "#6f2421", "#02a6e9", "#92107d", "#04d3d4", "#242b57", "#66cdaa", "#242b57", "#006b28", "#012758", "#ea5b0b", "#582c83", "#698c0c"),
-  party = c("D66", "GroenLinks", "VVD", "CDA", "SP", "PvdA", "FvD", "ChristenUnie", "50PLUS", "Alliantie", "BVNL", "DENK", "Ja21", "PvdD", "PVV", "SGP", "Volt Nederland", "BBB"))
-
-
+  colors = party_colors,
+  party = party_list
+)
 
 scale_fill_parties <- function(...){
     ggplot2:::manual_scale(
@@ -135,6 +142,10 @@ scale_color_parties <- function(...){
 }
 
 source("../utils.R")
+
+# election_dat30 %>% 
+#   count(party) %>% 
+#   pull(party)
 ```
 
 
@@ -142,14 +153,14 @@ source("../utils.R")
 ```{r}
 election_dat30 <- readRDS("../data/election_dat30.rds") %>% 
     rename(internal_id = page_id) %>% 
-  filter(party != "And") %>% 
-  filter(is.na(no_data))
+  filter(is.na(no_data)) %>% 
+  filter(!(party %in% c("Otros", "Sum")))
 
 
 election_dat7 <- readRDS("../data/election_dat7.rds") %>% 
     rename(internal_id = page_id) %>% 
-  filter(party != "And") %>% 
-  filter(is.na(no_data))
+  filter(is.na(no_data))  %>% 
+  filter(!(party %in% c("Otros", "Sum")))
 
 
 fin <- (as.Date(election_dat30$ds[1])-lubridate::days(1))
