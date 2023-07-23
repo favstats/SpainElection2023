@@ -751,7 +751,7 @@ contested_dat <- interest_targeting %>%
       enabled = TRUE,
       text = "Source: Meta Ad Library and data compiled by Who Targets Me. Data Viz: Fabio Votta (@favstats)."
     )    %>%
-  hc_annotations(list(labels = annotations)) %>%
+  # hc_annotations(list(labels = annotations)) %>%
     hc_colors(hc_dat %>% distinct(party, .keep_all = T) %>%  filter(party %in% contested_dat$party) %>%  arrange(party) %>% pull(colors)) %>%
     hc_exporting(
       enabled = TRUE
@@ -829,7 +829,7 @@ region_dat <- election_dat30 %>%
             num_ads = sum(num_ads)) %>%
   ungroup() %>%
   rename(region = value) %>%
-  mutate(region = str_remove_all(region, ", Netherlands")) 
+  mutate(region = str_remove_all(region, ", Spain")) 
 
 the_colors <- region_dat %>% 
   group_by(party) %>% 
@@ -1874,7 +1874,6 @@ tags$div(class = "container", do.call(tags$div, rows))
 
 ```
 
-:::
 
 ### `r last7days_string` (Last 7 days)
 
@@ -1973,3 +1972,6 @@ tags$div(class = "container", do.call(tags$div, rows))
 
 
 ```
+
+
+:::

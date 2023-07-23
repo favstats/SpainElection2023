@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "2023 Spanish general election",
     "section": "",
-    "text": "This dashboard aggregates data from the Meta Ad Library to show how citizens are targeted during the 2023 Spanish general election.\n    If you want to know more about Who Targets Me and our work on ad transparency, visit us on whotargets.me!\nThis section shows total and daily spending of political parties in the run-up to the 2023 Dutch parliamentary election for the latest available data."
+    "text": "This dashboard aggregates data from the Meta Ad Library to show how citizens are targeted during the 2023 Spanish general election.\n    If you want to know more about Who Targets Me and our work on ad transparency, visit us on whotargets.me!\nThis section shows total and daily spending of political parties in the run-up to the 2023 Spanish general election for the latest available data."
   },
   {
     "objectID": "index.html#running-code",
@@ -88,7 +88,7 @@
     "href": "targeting.html",
     "title": "Targeting",
     "section": "",
-    "text": "This section shows spening per targeting criteria used by political parties to reach citizens in the run-up to the 2023 Dutch parliamentary election for the latest available data."
+    "text": "This section shows spening per targeting criteria used by political parties to reach citizens in the run-up to the 2023 Spanish election for the latest available data."
   },
   {
     "objectID": "targeting.html#running-code",
@@ -158,7 +158,7 @@
     "href": "targeting.html#job-targeting",
     "title": "Targeting",
     "section": "Job Targeting",
-    "text": "Job Targeting\nThe graphs below show targeting by job (sectors) and how much percentage of party budgets were spent on them.\n\nNote: targeting criteria can overlap so the percentages do not sum up to 100%.\n\n\nJun 21st - Jul 20th 2023 (Last 30 days)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nJul 14th - Jul 20th 2023 (Last 7 days)"
+    "text": "Job Targeting\nThe graphs below show targeting by job (sectors) and how much percentage of party budgets were spent on them.\n\nNote: targeting criteria can overlap so the percentages do not sum up to 100%.\n\n\nJun 21st - Jul 20th 2023 (Last 30 days)Jul 14th - Jul 20th 2023 (Last 7 days)"
   },
   {
     "objectID": "index.html#daily-spend",

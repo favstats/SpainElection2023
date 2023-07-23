@@ -80,7 +80,7 @@ function off() {
 
 
 ```{r setup, include=FALSE}
-election_title <- "2023 Dutch parliamentary election"
+election_title <- "2023 Spanish general election"
 the_country <- "Netherlands"
 
 
