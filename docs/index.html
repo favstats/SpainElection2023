@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -45,7 +45,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -54,6 +60,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -110,9 +117,9 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">🇪🇸 2023 Spanish Election Dashboard</span>
     </a>
@@ -124,33 +131,33 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
- <span class="menu-text">Spending</span></a>
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Spending</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./targeting.html" rel="" target="">
- <span class="menu-text">Targeting</span></a>
+    <a class="nav-link" href="./targeting.html"> 
+<span class="menu-text">Targeting</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/favstats" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/favstats"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/favstats" rel="" target=""><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/favstats"> <i class="bi bi-twitter" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -177,14 +184,15 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
+
 
 <style>
     body .main-container {
         max-width: 1920px !important;
     }
 </style>
-<div class="cell-output-display">
 
 <style>
 #overlay {
@@ -243,39 +251,38 @@ function off() {
 }
 </script>
 
-</div>
 <p>This section shows <em>total</em> and <em>daily spending</em> of political parties in the run-up to the 2023 Spanish general election for the latest available data.</p>
 <section id="total-spend" class="level2">
 <h2 class="anchored" data-anchor-id="total-spend">Total Spend</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Dec 17th - Jan 15th 2024 (Last 30 days)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Jan 9th - Jan 15th 2024 (Last 7 days)</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Feb 10th - Mar 10th 2024 (Last 30 days)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Mar 4th - Mar 10th 2024 (Last 7 days)</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>In total, political parties spend €15,736 and ran 122 ads on Meta in this period.</p>
+<p>In total, political parties spend €7,100 and ran 156 ads on Meta in this period.</p>
 <div class="cell">
 <div class="cell-output-display">
-
-<div id="vkqphpiuut" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div>
+<div id="nukjcwlxum" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cairo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#vkqphpiuut table {
+#nukjcwlxum table {
   font-family: Cairo, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vkqphpiuut thead, #vkqphpiuut tbody, #vkqphpiuut tfoot, #vkqphpiuut tr, #vkqphpiuut td, #vkqphpiuut th {
+#nukjcwlxum thead, #nukjcwlxum tbody, #nukjcwlxum tfoot, #nukjcwlxum tr, #nukjcwlxum td, #nukjcwlxum th {
   border-style: none;
 }
 
-#vkqphpiuut p {
+#nukjcwlxum p {
   margin: 0;
   padding: 0;
 }
 
-#vkqphpiuut .gt_table {
+#nukjcwlxum .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -301,12 +308,12 @@ function off() {
   border-left-color: #D3D3D3;
 }
 
-#vkqphpiuut .gt_caption {
+#nukjcwlxum .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vkqphpiuut .gt_title {
+#nukjcwlxum .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -318,7 +325,7 @@ function off() {
   border-bottom-width: 0;
 }
 
-#vkqphpiuut .gt_subtitle {
+#nukjcwlxum .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -330,7 +337,7 @@ function off() {
   border-top-width: 0;
 }
 
-#vkqphpiuut .gt_heading {
+#nukjcwlxum .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -342,13 +349,13 @@ function off() {
   border-right-color: #D3D3D3;
 }
 
-#vkqphpiuut .gt_bottom_border {
+#nukjcwlxum .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vkqphpiuut .gt_col_headings {
+#nukjcwlxum .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -363,7 +370,7 @@ function off() {
   border-right-color: #D3D3D3;
 }
 
-#vkqphpiuut .gt_col_heading {
+#nukjcwlxum .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -383,7 +390,7 @@ function off() {
   overflow-x: hidden;
 }
 
-#vkqphpiuut .gt_column_spanner_outer {
+#nukjcwlxum .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -395,15 +402,15 @@ function off() {
   padding-right: 4px;
 }
 
-#vkqphpiuut .gt_column_spanner_outer:first-child {
+#nukjcwlxum .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vkqphpiuut .gt_column_spanner_outer:last-child {
+#nukjcwlxum .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vkqphpiuut .gt_column_spanner {
+#nukjcwlxum .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #000000;
@@ -415,11 +422,11 @@ function off() {
   width: 100%;
 }
 
-#vkqphpiuut .gt_spanner_row {
+#nukjcwlxum .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vkqphpiuut .gt_group_heading {
+#nukjcwlxum .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -445,7 +452,7 @@ function off() {
   text-align: left;
 }
 
-#vkqphpiuut .gt_empty_group_heading {
+#nukjcwlxum .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -460,15 +467,15 @@ function off() {
   vertical-align: middle;
 }
 
-#vkqphpiuut .gt_from_md > :first-child {
+#nukjcwlxum .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vkqphpiuut .gt_from_md > :last-child {
+#nukjcwlxum .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vkqphpiuut .gt_row {
+#nukjcwlxum .gt_row {
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 5px;
@@ -487,7 +494,7 @@ function off() {
   overflow-x: hidden;
 }
 
-#vkqphpiuut .gt_stub {
+#nukjcwlxum .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -500,7 +507,7 @@ function off() {
   padding-right: 5px;
 }
 
-#vkqphpiuut .gt_stub_row_group {
+#nukjcwlxum .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -514,15 +521,15 @@ function off() {
   vertical-align: top;
 }
 
-#vkqphpiuut .gt_row_group_first td {
+#nukjcwlxum .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vkqphpiuut .gt_row_group_first th {
+#nukjcwlxum .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vkqphpiuut .gt_summary_row {
+#nukjcwlxum .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -532,16 +539,16 @@ function off() {
   padding-right: 5px;
 }
 
-#vkqphpiuut .gt_first_summary_row {
+#nukjcwlxum .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vkqphpiuut .gt_first_summary_row.thick {
+#nukjcwlxum .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vkqphpiuut .gt_last_summary_row {
+#nukjcwlxum .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -551,7 +558,7 @@ function off() {
   border-bottom-color: #D3D3D3;
 }
 
-#vkqphpiuut .gt_grand_summary_row {
+#nukjcwlxum .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -561,7 +568,7 @@ function off() {
   padding-right: 5px;
 }
 
-#vkqphpiuut .gt_first_grand_summary_row {
+#nukjcwlxum .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -571,7 +578,7 @@ function off() {
   border-top-color: #D3D3D3;
 }
 
-#vkqphpiuut .gt_last_grand_summary_row_top {
+#nukjcwlxum .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -581,11 +588,11 @@ function off() {
   border-bottom-color: #D3D3D3;
 }
 
-#vkqphpiuut .gt_striped {
+#nukjcwlxum .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vkqphpiuut .gt_table_body {
+#nukjcwlxum .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -594,7 +601,7 @@ function off() {
   border-bottom-color: #D3D3D3;
 }
 
-#vkqphpiuut .gt_footnotes {
+#nukjcwlxum .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -608,7 +615,7 @@ function off() {
   border-right-color: #D3D3D3;
 }
 
-#vkqphpiuut .gt_footnote {
+#nukjcwlxum .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -617,7 +624,7 @@ function off() {
   padding-right: 5px;
 }
 
-#vkqphpiuut .gt_sourcenotes {
+#nukjcwlxum .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -631,7 +638,7 @@ function off() {
   border-right-color: #D3D3D3;
 }
 
-#vkqphpiuut .gt_sourcenote {
+#nukjcwlxum .gt_sourcenote {
   font-size: 12px;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -639,63 +646,63 @@ function off() {
   padding-right: 5px;
 }
 
-#vkqphpiuut .gt_left {
+#nukjcwlxum .gt_left {
   text-align: left;
 }
 
-#vkqphpiuut .gt_center {
+#nukjcwlxum .gt_center {
   text-align: center;
 }
 
-#vkqphpiuut .gt_right {
+#nukjcwlxum .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vkqphpiuut .gt_font_normal {
+#nukjcwlxum .gt_font_normal {
   font-weight: normal;
 }
 
-#vkqphpiuut .gt_font_bold {
+#nukjcwlxum .gt_font_bold {
   font-weight: bold;
 }
 
-#vkqphpiuut .gt_font_italic {
+#nukjcwlxum .gt_font_italic {
   font-style: italic;
 }
 
-#vkqphpiuut .gt_super {
+#nukjcwlxum .gt_super {
   font-size: 65%;
 }
 
-#vkqphpiuut .gt_footnote_marks {
+#nukjcwlxum .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vkqphpiuut .gt_asterisk {
+#nukjcwlxum .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vkqphpiuut .gt_indent_1 {
+#nukjcwlxum .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vkqphpiuut .gt_indent_2 {
+#nukjcwlxum .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vkqphpiuut .gt_indent_3 {
+#nukjcwlxum .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vkqphpiuut .gt_indent_4 {
+#nukjcwlxum .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vkqphpiuut .gt_indent_5 {
+#nukjcwlxum .gt_indent_5 {
   text-indent: 25px;
 }
 
@@ -703,91 +710,71 @@ tbody tr:last-child {
   border-bottom: 2px solid #ffffff00;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=""></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase;" scope="col" id="Number of Advertisers">Number of Advertisers</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase;" scope="col" id="Top Spenders">Top Spenders</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase;" scope="col" id="Number of Ads">Number of Ads</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase;" scope="col" id="Total Spend">Total Spend</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><th id="stub_1_1" scope="row" class="gt_row gt_center gt_stub"><div data-qmd="PSOE"><div class="gt_from_md"><p>PSOE</p>
-</div></div></th>
-<td headers="stub_1_1 Number of Advertisers" class="gt_row gt_center" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #ef1c27;"><div data-qmd="7"><div class="gt_from_md"><p>7</p>
-</div></div></td>
-<td headers="stub_1_1 Top Spenders" class="gt_row gt_center"><div data-qmd="<br>1. PSOE Comunidad de Madrid (€5,626)<br>2. Jose Ramón Gómez Besteiro (€2,016)<br>3. PSOE Jaén (€350)"><div class="gt_from_md"><p><br>1. PSOE Comunidad de Madrid (€5,626)<br>2. Jose Ramón Gómez Besteiro (€2,016)<br>3. PSOE Jaén (€350)</p>
-</div></div></td>
-<td headers="stub_1_1 Number of Ads" class="gt_row gt_center"><div data-qmd="63"><div class="gt_from_md"><p>63</p>
-</div></div></td>
-<td headers="stub_1_1 Total Spend" class="gt_row gt_center"><div data-qmd="€8,401"><div class="gt_from_md"><p>€8,401</p>
-</div></div></td></tr>
-    <tr><th id="stub_1_2" scope="row" class="gt_row gt_center gt_stub"><div data-qmd="BNG"><div class="gt_from_md"><p>BNG</p>
-</div></div></th>
-<td headers="stub_1_2 Number of Advertisers" class="gt_row gt_center" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #adcfef;"><div data-qmd="1"><div class="gt_from_md"><p>1</p>
-</div></div></td>
-<td headers="stub_1_2 Top Spenders" class="gt_row gt_center"><div data-qmd="<br>1. BNG - Bloque Nacionalista Galego (€6,240)"><div class="gt_from_md"><p><br>1. BNG - Bloque Nacionalista Galego (€6,240)</p>
-</div></div></td>
-<td headers="stub_1_2 Number of Ads" class="gt_row gt_center"><div data-qmd="41"><div class="gt_from_md"><p>41</p>
-</div></div></td>
-<td headers="stub_1_2 Total Spend" class="gt_row gt_center"><div data-qmd="€6,240"><div class="gt_from_md"><p>€6,240</p>
-</div></div></td></tr>
-    <tr><th id="stub_1_3" scope="row" class="gt_row gt_center gt_stub"><div data-qmd="PP"><div class="gt_from_md"><p>PP</p>
-</div></div></th>
-<td headers="stub_1_3 Number of Advertisers" class="gt_row gt_center" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #1d84ce;"><div data-qmd="4"><div class="gt_from_md"><p>4</p>
-</div></div></td>
-<td headers="stub_1_3 Top Spenders" class="gt_row gt_center"><div data-qmd="<br>1. Populares de Olivenza (€100)<br>2. PP Álava (€100)<br>3. PP Cártama (€100)"><div class="gt_from_md"><p><br>1. Populares de Olivenza (€100)<br>2. PP Álava (€100)<br>3. PP Cártama (€100)</p>
-</div></div></td>
-<td headers="stub_1_3 Number of Ads" class="gt_row gt_center"><div data-qmd="7"><div class="gt_from_md"><p>7</p>
-</div></div></td>
-<td headers="stub_1_3 Total Spend" class="gt_row gt_center"><div data-qmd="€400"><div class="gt_from_md"><p>€400</p>
-</div></div></td></tr>
-    <tr><th id="stub_1_4" scope="row" class="gt_row gt_center gt_stub"><div data-qmd="Jun"><div class="gt_from_md"><p>Jun</p>
-</div></div></th>
-<td headers="stub_1_4 Number of Advertisers" class="gt_row gt_center" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #00c7ae;"><div data-qmd="3"><div class="gt_from_md"><p>3</p>
-</div></div></td>
-<td headers="stub_1_4 Top Spenders" class="gt_row gt_center"><div data-qmd="<br>1. Junts per Tortosa (€100)<br>2. Junts per Catalunya Sant Celoni i La  Batllòria (€100)<br>3. Miquel Noguer (€100)"><div class="gt_from_md"><p><br>1. Junts per Tortosa (€100)<br>2. Junts per Catalunya Sant Celoni i La  Batllòria (€100)<br>3. Miquel Noguer (€100)</p>
-</div></div></td>
-<td headers="stub_1_4 Number of Ads" class="gt_row gt_center"><div data-qmd="6"><div class="gt_from_md"><p>6</p>
-</div></div></td>
-<td headers="stub_1_4 Total Spend" class="gt_row gt_center"><div data-qmd="€300"><div class="gt_from_md"><p>€300</p>
-</div></div></td></tr>
-    <tr><th id="stub_1_5" scope="row" class="gt_row gt_center gt_stub"><div data-qmd="ERC"><div class="gt_from_md"><p>ERC</p>
-</div></div></th>
-<td headers="stub_1_5 Number of Advertisers" class="gt_row gt_center" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #ffb232;"><div data-qmd="1"><div class="gt_from_md"><p>1</p>
-</div></div></td>
-<td headers="stub_1_5 Top Spenders" class="gt_row gt_center"><div data-qmd="<br>1. ERC Barcelona (€195)"><div class="gt_from_md"><p><br>1. ERC Barcelona (€195)</p>
-</div></div></td>
-<td headers="stub_1_5 Number of Ads" class="gt_row gt_center"><div data-qmd="2"><div class="gt_from_md"><p>2</p>
-</div></div></td>
-<td headers="stub_1_5 Total Spend" class="gt_row gt_center"><div data-qmd="€195"><div class="gt_from_md"><p>€195</p>
-</div></div></td></tr>
-    <tr><th id="stub_1_6" scope="row" class="gt_row gt_center gt_stub"><div data-qmd="CCa"><div class="gt_from_md"><p>CCa</p>
-</div></div></th>
-<td headers="stub_1_6 Number of Advertisers" class="gt_row gt_center" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #ffd700;"><div data-qmd="1"><div class="gt_from_md"><p>1</p>
-</div></div></td>
-<td headers="stub_1_6 Top Spenders" class="gt_row gt_center"><div data-qmd="<br>1. Coalición Canaria Fuerteventura (€100)"><div class="gt_from_md"><p><br>1. Coalición Canaria Fuerteventura (€100)</p>
-</div></div></td>
-<td headers="stub_1_6 Number of Ads" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md"><p>1</p>
-</div></div></td>
-<td headers="stub_1_6 Total Spend" class="gt_row gt_center"><div data-qmd="€100"><div class="gt_from_md"><p>€100</p>
-</div></div></td></tr>
-    <tr><th id="stub_1_7" scope="row" class="gt_row gt_center gt_stub"><div data-qmd="UPN"><div class="gt_from_md"><p>UPN</p>
-</div></div></th>
-<td headers="stub_1_7 Number of Advertisers" class="gt_row gt_center" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #00599b;"><div data-qmd="1"><div class="gt_from_md"><p>1</p>
-</div></div></td>
-<td headers="stub_1_7 Top Spenders" class="gt_row gt_center"><div data-qmd="<br>1. UPN - Unión del Pueblo Navarro (€100)"><div class="gt_from_md"><p><br>1. UPN - Unión del Pueblo Navarro (€100)</p>
-</div></div></td>
-<td headers="stub_1_7 Number of Ads" class="gt_row gt_center"><div data-qmd="2"><div class="gt_from_md"><p>2</p>
-</div></div></td>
-<td headers="stub_1_7 Total Spend" class="gt_row gt_center"><div data-qmd="€100"><div class="gt_from_md"><p>€100</p>
-</div></div></td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
+<th id="Number of Advertisers" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase" scope="col">Number of Advertisers</th>
+<th id="Top Spenders" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase" scope="col">Top Spenders</th>
+<th id="Number of Ads" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase" scope="col">Number of Ads</th>
+<th id="Total Spend" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase" scope="col">Total Spend</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td id="stub_1_1" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row"><p>BNG</p></td>
+<td class="gt_row gt_center" headers="stub_1_1 Number of Advertisers" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #adcfef"><p>4</p></td>
+<td class="gt_row gt_center" headers="stub_1_1 Top Spenders"><p><br>1. BNG - Bloque Nacionalista Galego (€2,691)<br>2. BNG Ourense (€134)<br>3. BNG da Estrada (€100)</p></td>
+<td class="gt_row gt_center" headers="stub_1_1 Number of Ads"><p>70</p></td>
+<td class="gt_row gt_center" headers="stub_1_1 Total Spend"><p>€3,025</p></td>
+</tr>
+<tr class="even">
+<td id="stub_1_2" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row"><p>PSOE</p></td>
+<td class="gt_row gt_center" headers="stub_1_2 Number of Advertisers" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #ef1c27"><p>12</p></td>
+<td class="gt_row gt_center" headers="stub_1_2 Top Spenders"><p><br>1. PSOE de Andalucía (€662)<br>2. Jose Ramón Gómez Besteiro (€625)<br>3. PSOE Jaén (€350)</p></td>
+<td class="gt_row gt_center" headers="stub_1_2 Number of Ads"><p>57</p></td>
+<td class="gt_row gt_center" headers="stub_1_2 Total Spend"><p>€2,675</p></td>
+</tr>
+<tr class="odd">
+<td id="stub_1_3" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row"><p>ERC</p></td>
+<td class="gt_row gt_center" headers="stub_1_3 Number of Advertisers" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #ffb232"><p>1</p></td>
+<td class="gt_row gt_center" headers="stub_1_3 Top Spenders"><p><br>1. ERC Barcelona (€600)</p></td>
+<td class="gt_row gt_center" headers="stub_1_3 Number of Ads"><p>5</p></td>
+<td class="gt_row gt_center" headers="stub_1_3 Total Spend"><p>€600</p></td>
+</tr>
+<tr class="even">
+<td id="stub_1_4" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row"><p>PP</p></td>
+<td class="gt_row gt_center" headers="stub_1_4 Number of Advertisers" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #1d84ce"><p>4</p></td>
+<td class="gt_row gt_center" headers="stub_1_4 Top Spenders"><p><br>1. Populares de Olivenza (€100)<br>2. PP Álava (€100)<br>3. PP Cártama (€100)</p></td>
+<td class="gt_row gt_center" headers="stub_1_4 Number of Ads"><p>8</p></td>
+<td class="gt_row gt_center" headers="stub_1_4 Total Spend"><p>€400</p></td>
+</tr>
+<tr class="odd">
+<td id="stub_1_5" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row"><p>Jun</p></td>
+<td class="gt_row gt_center" headers="stub_1_5 Number of Advertisers" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #00c7ae"><p>3</p></td>
+<td class="gt_row gt_center" headers="stub_1_5 Top Spenders"><p><br>1. Junts per Tortosa (€100)<br>2. Junts per Catalunya Sant Celoni i La Batllòria (€100)<br>3. Miquel Noguer (€100)</p></td>
+<td class="gt_row gt_center" headers="stub_1_5 Number of Ads"><p>15</p></td>
+<td class="gt_row gt_center" headers="stub_1_5 Total Spend"><p>€300</p></td>
+</tr>
+<tr class="even">
+<td id="stub_1_6" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row"><p>CUP</p></td>
+<td class="gt_row gt_center" headers="stub_1_6 Number of Advertisers" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #ffed00"><p>1</p></td>
+<td class="gt_row gt_center" headers="stub_1_6 Top Spenders"><p><br>1. CUP Mataró (€100)</p></td>
+<td class="gt_row gt_center" headers="stub_1_6 Number of Ads"><p>1</p></td>
+<td class="gt_row gt_center" headers="stub_1_6 Total Spend"><p>€100</p></td>
+</tr>
+</tbody>
 </table>
+
+</div>
 </div>
 </div>
 </div>
@@ -796,28 +783,28 @@ tbody tr:last-child {
 <p>In total, political parties spend €257,791 and ran 1275 ads on Meta in this period.</p>
 <div class="cell">
 <div class="cell-output-display">
-
-<div id="uirxagshus" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div>
+<div id="ilnwmyshvt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cairo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#uirxagshus table {
+#ilnwmyshvt table {
   font-family: Cairo, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#uirxagshus thead, #uirxagshus tbody, #uirxagshus tfoot, #uirxagshus tr, #uirxagshus td, #uirxagshus th {
+#ilnwmyshvt thead, #ilnwmyshvt tbody, #ilnwmyshvt tfoot, #ilnwmyshvt tr, #ilnwmyshvt td, #ilnwmyshvt th {
   border-style: none;
 }
 
-#uirxagshus p {
+#ilnwmyshvt p {
   margin: 0;
   padding: 0;
 }
 
-#uirxagshus .gt_table {
+#ilnwmyshvt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -843,12 +830,12 @@ tbody tr:last-child {
   border-left-color: #D3D3D3;
 }
 
-#uirxagshus .gt_caption {
+#ilnwmyshvt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#uirxagshus .gt_title {
+#ilnwmyshvt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -860,7 +847,7 @@ tbody tr:last-child {
   border-bottom-width: 0;
 }
 
-#uirxagshus .gt_subtitle {
+#ilnwmyshvt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -872,7 +859,7 @@ tbody tr:last-child {
   border-top-width: 0;
 }
 
-#uirxagshus .gt_heading {
+#ilnwmyshvt .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -884,13 +871,13 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#uirxagshus .gt_bottom_border {
+#ilnwmyshvt .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#uirxagshus .gt_col_headings {
+#ilnwmyshvt .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -905,7 +892,7 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#uirxagshus .gt_col_heading {
+#ilnwmyshvt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -925,7 +912,7 @@ tbody tr:last-child {
   overflow-x: hidden;
 }
 
-#uirxagshus .gt_column_spanner_outer {
+#ilnwmyshvt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -937,15 +924,15 @@ tbody tr:last-child {
   padding-right: 4px;
 }
 
-#uirxagshus .gt_column_spanner_outer:first-child {
+#ilnwmyshvt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#uirxagshus .gt_column_spanner_outer:last-child {
+#ilnwmyshvt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#uirxagshus .gt_column_spanner {
+#ilnwmyshvt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #000000;
@@ -957,11 +944,11 @@ tbody tr:last-child {
   width: 100%;
 }
 
-#uirxagshus .gt_spanner_row {
+#ilnwmyshvt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#uirxagshus .gt_group_heading {
+#ilnwmyshvt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -987,7 +974,7 @@ tbody tr:last-child {
   text-align: left;
 }
 
-#uirxagshus .gt_empty_group_heading {
+#ilnwmyshvt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1002,15 +989,15 @@ tbody tr:last-child {
   vertical-align: middle;
 }
 
-#uirxagshus .gt_from_md > :first-child {
+#ilnwmyshvt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#uirxagshus .gt_from_md > :last-child {
+#ilnwmyshvt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#uirxagshus .gt_row {
+#ilnwmyshvt .gt_row {
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 5px;
@@ -1029,7 +1016,7 @@ tbody tr:last-child {
   overflow-x: hidden;
 }
 
-#uirxagshus .gt_stub {
+#ilnwmyshvt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1042,7 +1029,7 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#uirxagshus .gt_stub_row_group {
+#ilnwmyshvt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1056,15 +1043,15 @@ tbody tr:last-child {
   vertical-align: top;
 }
 
-#uirxagshus .gt_row_group_first td {
+#ilnwmyshvt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#uirxagshus .gt_row_group_first th {
+#ilnwmyshvt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#uirxagshus .gt_summary_row {
+#ilnwmyshvt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1074,16 +1061,16 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#uirxagshus .gt_first_summary_row {
+#ilnwmyshvt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#uirxagshus .gt_first_summary_row.thick {
+#ilnwmyshvt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#uirxagshus .gt_last_summary_row {
+#ilnwmyshvt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1093,7 +1080,7 @@ tbody tr:last-child {
   border-bottom-color: #D3D3D3;
 }
 
-#uirxagshus .gt_grand_summary_row {
+#ilnwmyshvt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1103,7 +1090,7 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#uirxagshus .gt_first_grand_summary_row {
+#ilnwmyshvt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1113,7 +1100,7 @@ tbody tr:last-child {
   border-top-color: #D3D3D3;
 }
 
-#uirxagshus .gt_last_grand_summary_row_top {
+#ilnwmyshvt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1123,11 +1110,11 @@ tbody tr:last-child {
   border-bottom-color: #D3D3D3;
 }
 
-#uirxagshus .gt_striped {
+#ilnwmyshvt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#uirxagshus .gt_table_body {
+#ilnwmyshvt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1136,7 +1123,7 @@ tbody tr:last-child {
   border-bottom-color: #D3D3D3;
 }
 
-#uirxagshus .gt_footnotes {
+#ilnwmyshvt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1150,7 +1137,7 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#uirxagshus .gt_footnote {
+#ilnwmyshvt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1159,7 +1146,7 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#uirxagshus .gt_sourcenotes {
+#ilnwmyshvt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1173,7 +1160,7 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#uirxagshus .gt_sourcenote {
+#ilnwmyshvt .gt_sourcenote {
   font-size: 12px;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1181,63 +1168,63 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#uirxagshus .gt_left {
+#ilnwmyshvt .gt_left {
   text-align: left;
 }
 
-#uirxagshus .gt_center {
+#ilnwmyshvt .gt_center {
   text-align: center;
 }
 
-#uirxagshus .gt_right {
+#ilnwmyshvt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#uirxagshus .gt_font_normal {
+#ilnwmyshvt .gt_font_normal {
   font-weight: normal;
 }
 
-#uirxagshus .gt_font_bold {
+#ilnwmyshvt .gt_font_bold {
   font-weight: bold;
 }
 
-#uirxagshus .gt_font_italic {
+#ilnwmyshvt .gt_font_italic {
   font-style: italic;
 }
 
-#uirxagshus .gt_super {
+#ilnwmyshvt .gt_super {
   font-size: 65%;
 }
 
-#uirxagshus .gt_footnote_marks {
+#ilnwmyshvt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#uirxagshus .gt_asterisk {
+#ilnwmyshvt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#uirxagshus .gt_indent_1 {
+#ilnwmyshvt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#uirxagshus .gt_indent_2 {
+#ilnwmyshvt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#uirxagshus .gt_indent_3 {
+#ilnwmyshvt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#uirxagshus .gt_indent_4 {
+#ilnwmyshvt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#uirxagshus .gt_indent_5 {
+#ilnwmyshvt .gt_indent_5 {
   text-indent: 25px;
 }
 
@@ -1245,141 +1232,113 @@ tbody tr:last-child {
   border-bottom: 2px solid #ffffff00;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=""></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase;" scope="col" id="Number of Advertisers">Number of Advertisers</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase;" scope="col" id="Top Spenders">Top Spenders</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase;" scope="col" id="Number of Ads">Number of Ads</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase;" scope="col" id="Total Spend">Total Spend</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><th id="stub_1_1" scope="row" class="gt_row gt_center gt_stub"><div data-qmd="PP"><div class="gt_from_md"><p>PP</p>
-</div></div></th>
-<td headers="stub_1_1 Number of Advertisers" class="gt_row gt_center" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #1d84ce;"><div data-qmd="15"><div class="gt_from_md"><p>15</p>
-</div></div></td>
-<td headers="stub_1_1 Top Spenders" class="gt_row gt_center"><div data-qmd="<br>1. Partido Popular (€114,877)<br>2. Populares Illes Balears (€4,478)<br>3. Partido Popular de Barcelona (€3,136)"><div class="gt_from_md"><p><br>1. Partido Popular (€114,877)<br>2. Populares Illes Balears (€4,478)<br>3. Partido Popular de Barcelona (€3,136)</p>
-</div></div></td>
-<td headers="stub_1_1 Number of Ads" class="gt_row gt_center"><div data-qmd="552"><div class="gt_from_md"><p>552</p>
-</div></div></td>
-<td headers="stub_1_1 Total Spend" class="gt_row gt_center"><div data-qmd="€125,337"><div class="gt_from_md"><p>€125,337</p>
-</div></div></td></tr>
-    <tr><th id="stub_1_2" scope="row" class="gt_row gt_center gt_stub"><div data-qmd="PSOE"><div class="gt_from_md"><p>PSOE</p>
-</div></div></th>
-<td headers="stub_1_2 Number of Advertisers" class="gt_row gt_center" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #ef1c27;"><div data-qmd="32"><div class="gt_from_md"><p>32</p>
-</div></div></td>
-<td headers="stub_1_2 Top Spenders" class="gt_row gt_center"><div data-qmd="<br>1. PSOE Comunidad de Madrid (€65,459)<br>2. PSOE de Andalucía (€7,192)<br>3. Federación Socialista Asturiana FSA-PSOE (€5,649)"><div class="gt_from_md"><p><br>1. PSOE Comunidad de Madrid (€65,459)<br>2. PSOE de Andalucía (€7,192)<br>3. Federación Socialista Asturiana FSA-PSOE (€5,649)</p>
-</div></div></td>
-<td headers="stub_1_2 Number of Ads" class="gt_row gt_center"><div data-qmd="443"><div class="gt_from_md"><p>443</p>
-</div></div></td>
-<td headers="stub_1_2 Total Spend" class="gt_row gt_center"><div data-qmd="€96,416"><div class="gt_from_md"><p>€96,416</p>
-</div></div></td></tr>
-    <tr><th id="stub_1_3" scope="row" class="gt_row gt_center gt_stub"><div data-qmd="ERC"><div class="gt_from_md"><p>ERC</p>
-</div></div></th>
-<td headers="stub_1_3 Number of Advertisers" class="gt_row gt_center" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #ffb232;"><div data-qmd="6"><div class="gt_from_md"><p>6</p>
-</div></div></td>
-<td headers="stub_1_3 Top Spenders" class="gt_row gt_center"><div data-qmd="<br>1. Esquerra Republicana de Catalunya (€9,687)<br>2. ERC Barcelona (€2,730)<br>3. Esquerra Federació de Girona (€333)"><div class="gt_from_md"><p><br>1. Esquerra Republicana de Catalunya (€9,687)<br>2. ERC Barcelona (€2,730)<br>3. Esquerra Federació de Girona (€333)</p>
-</div></div></td>
-<td headers="stub_1_3 Number of Ads" class="gt_row gt_center"><div data-qmd="50"><div class="gt_from_md"><p>50</p>
-</div></div></td>
-<td headers="stub_1_3 Total Spend" class="gt_row gt_center"><div data-qmd="€13,104"><div class="gt_from_md"><p>€13,104</p>
-</div></div></td></tr>
-    <tr><th id="stub_1_4" scope="row" class="gt_row gt_center gt_stub"><div data-qmd="CCa"><div class="gt_from_md"><p>CCa</p>
-</div></div></th>
-<td headers="stub_1_4 Number of Advertisers" class="gt_row gt_center" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #ffd700;"><div data-qmd="3"><div class="gt_from_md"><p>3</p>
-</div></div></td>
-<td headers="stub_1_4 Top Spenders" class="gt_row gt_center"><div data-qmd="<br>1. Coalicion Canaria (€4,158)<br>2. Cristina Valido (€3,236)<br>3. Coalición Canaria Fuerteventura (€1,410)"><div class="gt_from_md"><p><br>1. Coalicion Canaria (€4,158)<br>2. Cristina Valido (€3,236)<br>3. Coalición Canaria Fuerteventura (€1,410)</p>
-</div></div></td>
-<td headers="stub_1_4 Number of Ads" class="gt_row gt_center"><div data-qmd="23"><div class="gt_from_md"><p>23</p>
-</div></div></td>
-<td headers="stub_1_4 Total Spend" class="gt_row gt_center"><div data-qmd="€8,804"><div class="gt_from_md"><p>€8,804</p>
-</div></div></td></tr>
-    <tr><th id="stub_1_5" scope="row" class="gt_row gt_center gt_stub"><div data-qmd="Jun"><div class="gt_from_md"><p>Jun</p>
-</div></div></th>
-<td headers="stub_1_5 Number of Advertisers" class="gt_row gt_center" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #00c7ae;"><div data-qmd="5"><div class="gt_from_md"><p>5</p>
-</div></div></td>
-<td headers="stub_1_5 Top Spenders" class="gt_row gt_center"><div data-qmd="<br>1. Miriam Nogueras Camero (€2,414)<br>2. Junts per Catalunya (€984)<br>3. Junts per Tortosa (€100)"><div class="gt_from_md"><p><br>1. Miriam Nogueras Camero (€2,414)<br>2. Junts per Catalunya (€984)<br>3. Junts per Tortosa (€100)</p>
-</div></div></td>
-<td headers="stub_1_5 Number of Ads" class="gt_row gt_center"><div data-qmd="26"><div class="gt_from_md"><p>26</p>
-</div></div></td>
-<td headers="stub_1_5 Total Spend" class="gt_row gt_center"><div data-qmd="€3,698"><div class="gt_from_md"><p>€3,698</p>
-</div></div></td></tr>
-    <tr><th id="stub_1_6" scope="row" class="gt_row gt_center gt_stub"><div data-qmd="EAJ-PNV"><div class="gt_from_md"><p>EAJ-PNV</p>
-</div></div></th>
-<td headers="stub_1_6 Number of Advertisers" class="gt_row gt_center" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #4aae4a;"><div data-qmd="1"><div class="gt_from_md"><p>1</p>
-</div></div></td>
-<td headers="stub_1_6 Top Spenders" class="gt_row gt_center"><div data-qmd="<br>1. EAJ-PNV (€3,031)"><div class="gt_from_md"><p><br>1. EAJ-PNV (€3,031)</p>
-</div></div></td>
-<td headers="stub_1_6 Number of Ads" class="gt_row gt_center"><div data-qmd="21"><div class="gt_from_md"><p>21</p>
-</div></div></td>
-<td headers="stub_1_6 Total Spend" class="gt_row gt_center"><div data-qmd="€3,031"><div class="gt_from_md"><p>€3,031</p>
-</div></div></td></tr>
-    <tr><th id="stub_1_7" scope="row" class="gt_row gt_center gt_stub"><div data-qmd="NC-BC"><div class="gt_from_md"><p>NC-BC</p>
-</div></div></th>
-<td headers="stub_1_7 Number of Advertisers" class="gt_row gt_center" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #639e42;"><div data-qmd="1"><div class="gt_from_md"><p>1</p>
-</div></div></td>
-<td headers="stub_1_7 Top Spenders" class="gt_row gt_center"><div data-qmd="<br>1. Nueva Canarias (€2,424)"><div class="gt_from_md"><p><br>1. Nueva Canarias (€2,424)</p>
-</div></div></td>
-<td headers="stub_1_7 Number of Ads" class="gt_row gt_center"><div data-qmd="12"><div class="gt_from_md"><p>12</p>
-</div></div></td>
-<td headers="stub_1_7 Total Spend" class="gt_row gt_center"><div data-qmd="€2,424"><div class="gt_from_md"><p>€2,424</p>
-</div></div></td></tr>
-    <tr><th id="stub_1_8" scope="row" class="gt_row gt_center gt_stub"><div data-qmd="CUP"><div class="gt_from_md"><p>CUP</p>
-</div></div></th>
-<td headers="stub_1_8 Number of Advertisers" class="gt_row gt_center" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #ffed00;"><div data-qmd="2"><div class="gt_from_md"><p>2</p>
-</div></div></td>
-<td headers="stub_1_8 Top Spenders" class="gt_row gt_center"><div data-qmd="<br>1. CUP Països Catalans (€1,540)<br>2. CUP Mataró (€100)"><div class="gt_from_md"><p><br>1. CUP Països Catalans (€1,540)<br>2. CUP Mataró (€100)</p>
-</div></div></td>
-<td headers="stub_1_8 Number of Ads" class="gt_row gt_center"><div data-qmd="8"><div class="gt_from_md"><p>8</p>
-</div></div></td>
-<td headers="stub_1_8 Total Spend" class="gt_row gt_center"><div data-qmd="€1,640"><div class="gt_from_md"><p>€1,640</p>
-</div></div></td></tr>
-    <tr><th id="stub_1_9" scope="row" class="gt_row gt_center gt_stub"><div data-qmd="EHB"><div class="gt_from_md"><p>EHB</p>
-</div></div></th>
-<td headers="stub_1_9 Number of Advertisers" class="gt_row gt_center" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #b5cf18;"><div data-qmd="1"><div class="gt_from_md"><p>1</p>
-</div></div></td>
-<td headers="stub_1_9 Top Spenders" class="gt_row gt_center"><div data-qmd="<br>1. EH Bildu (€1,558)"><div class="gt_from_md"><p><br>1. EH Bildu (€1,558)</p>
-</div></div></td>
-<td headers="stub_1_9 Number of Ads" class="gt_row gt_center"><div data-qmd="16"><div class="gt_from_md"><p>16</p>
-</div></div></td>
-<td headers="stub_1_9 Total Spend" class="gt_row gt_center"><div data-qmd="€1,558"><div class="gt_from_md"><p>€1,558</p>
-</div></div></td></tr>
-    <tr><th id="stub_1_10" scope="row" class="gt_row gt_center gt_stub"><div data-qmd="UPN"><div class="gt_from_md"><p>UPN</p>
-</div></div></th>
-<td headers="stub_1_10 Number of Advertisers" class="gt_row gt_center" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #00599b;"><div data-qmd="1"><div class="gt_from_md"><p>1</p>
-</div></div></td>
-<td headers="stub_1_10 Top Spenders" class="gt_row gt_center"><div data-qmd="<br>1. UPN - Unión del Pueblo Navarro (€693)"><div class="gt_from_md"><p><br>1. UPN - Unión del Pueblo Navarro (€693)</p>
-</div></div></td>
-<td headers="stub_1_10 Number of Ads" class="gt_row gt_center"><div data-qmd="3"><div class="gt_from_md"><p>3</p>
-</div></div></td>
-<td headers="stub_1_10 Total Spend" class="gt_row gt_center"><div data-qmd="€693"><div class="gt_from_md"><p>€693</p>
-</div></div></td></tr>
-    <tr><th id="stub_1_11" scope="row" class="gt_row gt_center gt_stub"><div data-qmd="BNG"><div class="gt_from_md"><p>BNG</p>
-</div></div></th>
-<td headers="stub_1_11 Number of Advertisers" class="gt_row gt_center" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #adcfef;"><div data-qmd="4"><div class="gt_from_md"><p>4</p>
-</div></div></td>
-<td headers="stub_1_11 Top Spenders" class="gt_row gt_center"><div data-qmd="<br>1. BNG - Bloque Nacionalista Galego (€336)<br>2. BNG da Estrada (€100)<br>3. BNG Ourense (€100)"><div class="gt_from_md"><p><br>1. BNG - Bloque Nacionalista Galego (€336)<br>2. BNG da Estrada (€100)<br>3. BNG Ourense (€100)</p>
-</div></div></td>
-<td headers="stub_1_11 Number of Ads" class="gt_row gt_center"><div data-qmd="104"><div class="gt_from_md"><p>104</p>
-</div></div></td>
-<td headers="stub_1_11 Total Spend" class="gt_row gt_center"><div data-qmd="€636"><div class="gt_from_md"><p>€636</p>
-</div></div></td></tr>
-    <tr><th id="stub_1_12" scope="row" class="gt_row gt_center gt_stub"><div data-qmd="VOX"><div class="gt_from_md"><p>VOX</p>
-</div></div></th>
-<td headers="stub_1_12 Number of Advertisers" class="gt_row gt_center" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #63be21;"><div data-qmd="1"><div class="gt_from_md"><p>1</p>
-</div></div></td>
-<td headers="stub_1_12 Top Spenders" class="gt_row gt_center"><div data-qmd="<br>1. Raúl Morales (€450)"><div class="gt_from_md"><p><br>1. Raúl Morales (€450)</p>
-</div></div></td>
-<td headers="stub_1_12 Number of Ads" class="gt_row gt_center"><div data-qmd="17"><div class="gt_from_md"><p>17</p>
-</div></div></td>
-<td headers="stub_1_12 Total Spend" class="gt_row gt_center"><div data-qmd="€450"><div class="gt_from_md"><p>€450</p>
-</div></div></td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
+<th id="Number of Advertisers" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase" scope="col">Number of Advertisers</th>
+<th id="Top Spenders" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase" scope="col">Top Spenders</th>
+<th id="Number of Ads" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase" scope="col">Number of Ads</th>
+<th id="Total Spend" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase" scope="col">Total Spend</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td id="stub_1_1" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row"><p>PP</p></td>
+<td class="gt_row gt_center" headers="stub_1_1 Number of Advertisers" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #1d84ce"><p>15</p></td>
+<td class="gt_row gt_center" headers="stub_1_1 Top Spenders"><p><br>1. Partido Popular (€114,877)<br>2. Populares Illes Balears (€4,478)<br>3. Partido Popular de Barcelona (€3,136)</p></td>
+<td class="gt_row gt_center" headers="stub_1_1 Number of Ads"><p>552</p></td>
+<td class="gt_row gt_center" headers="stub_1_1 Total Spend"><p>€125,337</p></td>
+</tr>
+<tr class="even">
+<td id="stub_1_2" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row"><p>PSOE</p></td>
+<td class="gt_row gt_center" headers="stub_1_2 Number of Advertisers" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #ef1c27"><p>32</p></td>
+<td class="gt_row gt_center" headers="stub_1_2 Top Spenders"><p><br>1. PSOE Comunidad de Madrid (€65,459)<br>2. PSOE de Andalucía (€7,192)<br>3. Federación Socialista Asturiana FSA-PSOE (€5,649)</p></td>
+<td class="gt_row gt_center" headers="stub_1_2 Number of Ads"><p>443</p></td>
+<td class="gt_row gt_center" headers="stub_1_2 Total Spend"><p>€96,416</p></td>
+</tr>
+<tr class="odd">
+<td id="stub_1_3" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row"><p>ERC</p></td>
+<td class="gt_row gt_center" headers="stub_1_3 Number of Advertisers" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #ffb232"><p>6</p></td>
+<td class="gt_row gt_center" headers="stub_1_3 Top Spenders"><p><br>1. Esquerra Republicana de Catalunya (€9,687)<br>2. ERC Barcelona (€2,730)<br>3. Esquerra Federació de Girona (€333)</p></td>
+<td class="gt_row gt_center" headers="stub_1_3 Number of Ads"><p>50</p></td>
+<td class="gt_row gt_center" headers="stub_1_3 Total Spend"><p>€13,104</p></td>
+</tr>
+<tr class="even">
+<td id="stub_1_4" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row"><p>CCa</p></td>
+<td class="gt_row gt_center" headers="stub_1_4 Number of Advertisers" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #ffd700"><p>3</p></td>
+<td class="gt_row gt_center" headers="stub_1_4 Top Spenders"><p><br>1. Coalicion Canaria (€4,158)<br>2. Cristina Valido (€3,236)<br>3. Coalición Canaria Fuerteventura (€1,410)</p></td>
+<td class="gt_row gt_center" headers="stub_1_4 Number of Ads"><p>23</p></td>
+<td class="gt_row gt_center" headers="stub_1_4 Total Spend"><p>€8,804</p></td>
+</tr>
+<tr class="odd">
+<td id="stub_1_5" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row"><p>Jun</p></td>
+<td class="gt_row gt_center" headers="stub_1_5 Number of Advertisers" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #00c7ae"><p>5</p></td>
+<td class="gt_row gt_center" headers="stub_1_5 Top Spenders"><p><br>1. Miriam Nogueras Camero (€2,414)<br>2. Junts per Catalunya (€984)<br>3. Junts per Tortosa (€100)</p></td>
+<td class="gt_row gt_center" headers="stub_1_5 Number of Ads"><p>26</p></td>
+<td class="gt_row gt_center" headers="stub_1_5 Total Spend"><p>€3,698</p></td>
+</tr>
+<tr class="even">
+<td id="stub_1_6" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row"><p>EAJ-PNV</p></td>
+<td class="gt_row gt_center" headers="stub_1_6 Number of Advertisers" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #4aae4a"><p>1</p></td>
+<td class="gt_row gt_center" headers="stub_1_6 Top Spenders"><p><br>1. EAJ-PNV (€3,031)</p></td>
+<td class="gt_row gt_center" headers="stub_1_6 Number of Ads"><p>21</p></td>
+<td class="gt_row gt_center" headers="stub_1_6 Total Spend"><p>€3,031</p></td>
+</tr>
+<tr class="odd">
+<td id="stub_1_7" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row"><p>NC-BC</p></td>
+<td class="gt_row gt_center" headers="stub_1_7 Number of Advertisers" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #639e42"><p>1</p></td>
+<td class="gt_row gt_center" headers="stub_1_7 Top Spenders"><p><br>1. Nueva Canarias (€2,424)</p></td>
+<td class="gt_row gt_center" headers="stub_1_7 Number of Ads"><p>12</p></td>
+<td class="gt_row gt_center" headers="stub_1_7 Total Spend"><p>€2,424</p></td>
+</tr>
+<tr class="even">
+<td id="stub_1_8" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row"><p>CUP</p></td>
+<td class="gt_row gt_center" headers="stub_1_8 Number of Advertisers" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #ffed00"><p>2</p></td>
+<td class="gt_row gt_center" headers="stub_1_8 Top Spenders"><p><br>1. CUP Països Catalans (€1,540)<br>2. CUP Mataró (€100)</p></td>
+<td class="gt_row gt_center" headers="stub_1_8 Number of Ads"><p>8</p></td>
+<td class="gt_row gt_center" headers="stub_1_8 Total Spend"><p>€1,640</p></td>
+</tr>
+<tr class="odd">
+<td id="stub_1_9" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row"><p>EHB</p></td>
+<td class="gt_row gt_center" headers="stub_1_9 Number of Advertisers" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #b5cf18"><p>1</p></td>
+<td class="gt_row gt_center" headers="stub_1_9 Top Spenders"><p><br>1. EH Bildu (€1,558)</p></td>
+<td class="gt_row gt_center" headers="stub_1_9 Number of Ads"><p>16</p></td>
+<td class="gt_row gt_center" headers="stub_1_9 Total Spend"><p>€1,558</p></td>
+</tr>
+<tr class="even">
+<td id="stub_1_10" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row"><p>UPN</p></td>
+<td class="gt_row gt_center" headers="stub_1_10 Number of Advertisers" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #00599b"><p>1</p></td>
+<td class="gt_row gt_center" headers="stub_1_10 Top Spenders"><p><br>1. UPN - Unión del Pueblo Navarro (€693)</p></td>
+<td class="gt_row gt_center" headers="stub_1_10 Number of Ads"><p>3</p></td>
+<td class="gt_row gt_center" headers="stub_1_10 Total Spend"><p>€693</p></td>
+</tr>
+<tr class="odd">
+<td id="stub_1_11" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row"><p>BNG</p></td>
+<td class="gt_row gt_center" headers="stub_1_11 Number of Advertisers" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #adcfef"><p>4</p></td>
+<td class="gt_row gt_center" headers="stub_1_11 Top Spenders"><p><br>1. BNG - Bloque Nacionalista Galego (€336)<br>2. BNG da Estrada (€100)<br>3. BNG Ourense (€100)</p></td>
+<td class="gt_row gt_center" headers="stub_1_11 Number of Ads"><p>104</p></td>
+<td class="gt_row gt_center" headers="stub_1_11 Total Spend"><p>€636</p></td>
+</tr>
+<tr class="even">
+<td id="stub_1_12" class="gt_row gt_center gt_stub" data-quarto-table-cell-role="th" scope="row"><p>VOX</p></td>
+<td class="gt_row gt_center" headers="stub_1_12 Number of Advertisers" style="border-left-width: 18.5px; border-left-style: solid; border-left-color: #63be21"><p>1</p></td>
+<td class="gt_row gt_center" headers="stub_1_12 Top Spenders"><p><br>1. Raúl Morales (€450)</p></td>
+<td class="gt_row gt_center" headers="stub_1_12 Number of Ads"><p>17</p></td>
+<td class="gt_row gt_center" headers="stub_1_12 Total Spend"><p>€450</p></td>
+</tr>
+</tbody>
 </table>
+
+</div>
 </div>
 </div>
 </div>
@@ -1391,9 +1350,8 @@ tbody tr:last-child {
 <h2 class="anchored" data-anchor-id="daily-spend">Daily Spend</h2>
 <div class="cell">
 <div class="cell-output-display">
-
-<div class="highchart html-widget html-fill-item" id="htmlwidget-5f691837ae87550c2ae3" style="width:100%;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-5f691837ae87550c2ae3">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":null},"yAxis":{"title":{"text":"Daily Spend"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":true},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}},"area":{"stacking":"normal","lineWidth":1,"marker":{"enabled":false}}},"series":[{"name":"BNG","data":[{"date_produced":"2023-07-04","party":"BNG","spend":50,"total_spend":50,"colors":"#adcfef","Daily Spend":50,"Date":"2023-07-04","x":1688428800000,"y":50,"fill":"#adcfef"},{"date_produced":"2023-07-05","party":"BNG","spend":50,"total_spend":50,"colors":"#adcfef","Daily Spend":50,"Date":"2023-07-05","x":1688515200000,"y":50,"fill":"#adcfef"},{"date_produced":"2023-07-06","party":"BNG","spend":50,"total_spend":50,"colors":"#adcfef","Daily Spend":50,"Date":"2023-07-06","x":1688601600000,"y":50,"fill":"#adcfef"},{"date_produced":"2023-07-07","party":"BNG","spend":50,"total_spend":50,"colors":"#adcfef","Daily Spend":50,"Date":"2023-07-07","x":1688688000000,"y":50,"fill":"#adcfef"},{"date_produced":"2023-07-08","party":"BNG","spend":50,"total_spend":50,"colors":"#adcfef","Daily Spend":50,"Date":"2023-07-08","x":1688774400000,"y":50,"fill":"#adcfef"},{"date_produced":"2023-07-09","party":"BNG","spend":50,"total_spend":50,"colors":"#adcfef","Daily Spend":50,"Date":"2023-07-09","x":1688860800000,"y":50,"fill":"#adcfef"},{"date_produced":"2023-07-10","party":"BNG","spend":50,"total_spend":50,"colors":"#adcfef","Daily Spend":50,"Date":"2023-07-10","x":1688947200000,"y":50,"fill":"#adcfef"},{"date_produced":"2023-07-11","party":"BNG","spend":50,"total_spend":50,"colors":"#adcfef","Daily Spend":50,"Date":"2023-07-11","x":1689033600000,"y":50,"fill":"#adcfef"},{"date_produced":"2023-07-12","party":"BNG","spend":50,"total_spend":50,"colors":"#adcfef","Daily Spend":50,"Date":"2023-07-12","x":1689120000000,"y":50,"fill":"#adcfef"},{"date_produced":"2023-07-13","party":"BNG","spend":50,"total_spend":50,"colors":"#adcfef","Daily Spend":50,"Date":"2023-07-13","x":1689206400000,"y":50,"fill":"#adcfef"},{"date_produced":"2023-07-14","party":"BNG","spend":50,"total_spend":50,"colors":"#adcfef","Daily Spend":50,"Date":"2023-07-14","x":1689292800000,"y":50,"fill":"#adcfef"},{"date_produced":"2023-07-15","party":"BNG","spend":50,"total_spend":50,"colors":"#adcfef","Daily Spend":50,"Date":"2023-07-15","x":1689379200000,"y":50,"fill":"#adcfef"},{"date_produced":"2023-07-16","party":"BNG","spend":50,"total_spend":50,"colors":"#adcfef","Daily Spend":50,"Date":"2023-07-16","x":1689465600000,"y":50,"fill":"#adcfef"},{"date_produced":"2023-07-17","party":"BNG","spend":50,"total_spend":50,"colors":"#adcfef","Daily Spend":50,"Date":"2023-07-17","x":1689552000000,"y":50,"fill":"#adcfef"},{"date_produced":"2023-07-18","party":"BNG","spend":50,"total_spend":50,"colors":"#adcfef","Daily Spend":50,"Date":"2023-07-18","x":1689638400000,"y":50,"fill":"#adcfef"},{"date_produced":"2023-07-19","party":"BNG","spend":50,"total_spend":50,"colors":"#adcfef","Daily Spend":50,"Date":"2023-07-19","x":1689724800000,"y":50,"fill":"#adcfef"},{"date_produced":"2023-07-20","party":"BNG","spend":50,"total_spend":50,"colors":"#adcfef","Daily Spend":50,"Date":"2023-07-20","x":1689811200000,"y":50,"fill":"#adcfef"}],"type":"area"},{"name":"PP","data":[{"date_produced":"2023-06-30","party":"PP","spend":50,"total_spend":100,"colors":"#1d84ce","Daily Spend":50,"Date":"2023-06-30","x":1688083200000,"y":50,"fill":"#1d84ce"},{"date_produced":"2023-07-01","party":"PP","spend":50,"total_spend":100,"colors":"#1d84ce","Daily Spend":50,"Date":"2023-07-01","x":1688169600000,"y":50,"fill":"#1d84ce"},{"date_produced":"2023-07-02","party":"PP","spend":100,"total_spend":100,"colors":"#1d84ce","Daily Spend":100,"Date":"2023-07-02","x":1688256000000,"y":100,"fill":"#1d84ce"},{"date_produced":"2023-07-03","party":"PP","spend":100,"total_spend":100,"colors":"#1d84ce","Daily Spend":100,"Date":"2023-07-03","x":1688342400000,"y":100,"fill":"#1d84ce"},{"date_produced":"2023-07-04","party":"PP","spend":100,"total_spend":100,"colors":"#1d84ce","Daily Spend":100,"Date":"2023-07-04","x":1688428800000,"y":100,"fill":"#1d84ce"},{"date_produced":"2023-07-05","party":"PP","spend":50,"total_spend":100,"colors":"#1d84ce","Daily Spend":50,"Date":"2023-07-05","x":1688515200000,"y":50,"fill":"#1d84ce"},{"date_produced":"2023-07-06","party":"PP","spend":50,"total_spend":100,"colors":"#1d84ce","Daily Spend":50,"Date":"2023-07-06","x":1688601600000,"y":50,"fill":"#1d84ce"},{"date_produced":"2023-07-19","party":"PP","spend":50,"total_spend":100,"colors":"#1d84ce","Daily Spend":50,"Date":"2023-07-19","x":1689724800000,"y":50,"fill":"#1d84ce"},{"date_produced":"2023-07-20","party":"PP","spend":50,"total_spend":100,"colors":"#1d84ce","Daily Spend":50,"Date":"2023-07-20","x":1689811200000,"y":50,"fill":"#1d84ce"}],"type":"area"},{"name":"UPN","data":[{"date_produced":"2023-07-06","party":"UPN","spend":50,"total_spend":106,"colors":"#00599b","Daily Spend":50,"Date":"2023-07-06","x":1688601600000,"y":50,"fill":"#00599b"},{"date_produced":"2023-07-07","party":"UPN","spend":50,"total_spend":106,"colors":"#00599b","Daily Spend":50,"Date":"2023-07-07","x":1688688000000,"y":50,"fill":"#00599b"},{"date_produced":"2023-07-08","party":"UPN","spend":50,"total_spend":106,"colors":"#00599b","Daily Spend":50,"Date":"2023-07-08","x":1688774400000,"y":50,"fill":"#00599b"},{"date_produced":"2023-07-09","party":"UPN","spend":50,"total_spend":106,"colors":"#00599b","Daily Spend":50,"Date":"2023-07-09","x":1688860800000,"y":50,"fill":"#00599b"},{"date_produced":"2023-07-10","party":"UPN","spend":50,"total_spend":106,"colors":"#00599b","Daily Spend":50,"Date":"2023-07-10","x":1688947200000,"y":50,"fill":"#00599b"},{"date_produced":"2023-07-11","party":"UPN","spend":50,"total_spend":106,"colors":"#00599b","Daily Spend":50,"Date":"2023-07-11","x":1689033600000,"y":50,"fill":"#00599b"},{"date_produced":"2023-07-12","party":"UPN","spend":50,"total_spend":106,"colors":"#00599b","Daily Spend":50,"Date":"2023-07-12","x":1689120000000,"y":50,"fill":"#00599b"},{"date_produced":"2023-07-13","party":"UPN","spend":50,"total_spend":106,"colors":"#00599b","Daily Spend":50,"Date":"2023-07-13","x":1689206400000,"y":50,"fill":"#00599b"},{"date_produced":"2023-07-14","party":"UPN","spend":50,"total_spend":106,"colors":"#00599b","Daily Spend":50,"Date":"2023-07-14","x":1689292800000,"y":50,"fill":"#00599b"},{"date_produced":"2023-07-15","party":"UPN","spend":106,"total_spend":106,"colors":"#00599b","Daily Spend":106,"Date":"2023-07-15","x":1689379200000,"y":106,"fill":"#00599b"},{"date_produced":"2023-07-16","party":"UPN","spend":106,"total_spend":106,"colors":"#00599b","Daily Spend":106,"Date":"2023-07-16","x":1689465600000,"y":106,"fill":"#00599b"},{"date_produced":"2023-07-17","party":"UPN","spend":50,"total_spend":106,"colors":"#00599b","Daily Spend":50,"Date":"2023-07-17","x":1689552000000,"y":50,"fill":"#00599b"},{"date_produced":"2023-07-18","party":"UPN","spend":50,"total_spend":106,"colors":"#00599b","Daily Spend":50,"Date":"2023-07-18","x":1689638400000,"y":50,"fill":"#00599b"},{"date_produced":"2023-07-19","party":"UPN","spend":50,"total_spend":106,"colors":"#00599b","Daily Spend":50,"Date":"2023-07-19","x":1689724800000,"y":50,"fill":"#00599b"},{"date_produced":"2023-07-20","party":"UPN","spend":50,"total_spend":106,"colors":"#00599b","Daily Spend":50,"Date":"2023-07-20","x":1689811200000,"y":50,"fill":"#00599b"}],"type":"area"},{"name":"Jun","data":[{"date_produced":"2023-06-30","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-06-30","x":1688083200000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-01","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-01","x":1688169600000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-02","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-02","x":1688256000000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-03","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-03","x":1688342400000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-04","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-04","x":1688428800000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-05","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-05","x":1688515200000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-06","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-06","x":1688601600000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-07","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-07","x":1688688000000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-08","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-08","x":1688774400000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-09","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-09","x":1688860800000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-10","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-10","x":1688947200000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-11","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-11","x":1689033600000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-12","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-12","x":1689120000000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-13","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-13","x":1689206400000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-14","party":"Jun","spend":100,"total_spend":150,"colors":"#00c7ae","Daily Spend":100,"Date":"2023-07-14","x":1689292800000,"y":100,"fill":"#00c7ae"},{"date_produced":"2023-07-15","party":"Jun","spend":100,"total_spend":150,"colors":"#00c7ae","Daily Spend":100,"Date":"2023-07-15","x":1689379200000,"y":100,"fill":"#00c7ae"},{"date_produced":"2023-07-16","party":"Jun","spend":100,"total_spend":150,"colors":"#00c7ae","Daily Spend":100,"Date":"2023-07-16","x":1689465600000,"y":100,"fill":"#00c7ae"},{"date_produced":"2023-07-17","party":"Jun","spend":150,"total_spend":150,"colors":"#00c7ae","Daily Spend":150,"Date":"2023-07-17","x":1689552000000,"y":150,"fill":"#00c7ae"},{"date_produced":"2023-07-18","party":"Jun","spend":150,"total_spend":150,"colors":"#00c7ae","Daily Spend":150,"Date":"2023-07-18","x":1689638400000,"y":150,"fill":"#00c7ae"},{"date_produced":"2023-07-19","party":"Jun","spend":150,"total_spend":150,"colors":"#00c7ae","Daily Spend":150,"Date":"2023-07-19","x":1689724800000,"y":150,"fill":"#00c7ae"},{"date_produced":"2023-07-20","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-20","x":1689811200000,"y":50,"fill":"#00c7ae"}],"type":"area"},{"name":"CCa","data":[{"date_produced":"2023-07-03","party":"CCa","spend":50,"total_spend":404,"colors":"#ffd700","Daily Spend":50,"Date":"2023-07-03","x":1688342400000,"y":50,"fill":"#ffd700"},{"date_produced":"2023-07-04","party":"CCa","spend":50,"total_spend":404,"colors":"#ffd700","Daily Spend":50,"Date":"2023-07-04","x":1688428800000,"y":50,"fill":"#ffd700"},{"date_produced":"2023-07-05","party":"CCa","spend":50,"total_spend":404,"colors":"#ffd700","Daily Spend":50,"Date":"2023-07-05","x":1688515200000,"y":50,"fill":"#ffd700"},{"date_produced":"2023-07-06","party":"CCa","spend":50,"total_spend":404,"colors":"#ffd700","Daily Spend":50,"Date":"2023-07-06","x":1688601600000,"y":50,"fill":"#ffd700"},{"date_produced":"2023-07-07","party":"CCa","spend":50,"total_spend":404,"colors":"#ffd700","Daily Spend":50,"Date":"2023-07-07","x":1688688000000,"y":50,"fill":"#ffd700"},{"date_produced":"2023-07-08","party":"CCa","spend":50,"total_spend":404,"colors":"#ffd700","Daily Spend":50,"Date":"2023-07-08","x":1688774400000,"y":50,"fill":"#ffd700"},{"date_produced":"2023-07-09","party":"CCa","spend":50,"total_spend":404,"colors":"#ffd700","Daily Spend":50,"Date":"2023-07-09","x":1688860800000,"y":50,"fill":"#ffd700"},{"date_produced":"2023-07-10","party":"CCa","spend":119,"total_spend":404,"colors":"#ffd700","Daily Spend":119,"Date":"2023-07-10","x":1688947200000,"y":119,"fill":"#ffd700"},{"date_produced":"2023-07-11","party":"CCa","spend":159,"total_spend":404,"colors":"#ffd700","Daily Spend":159,"Date":"2023-07-11","x":1689033600000,"y":159,"fill":"#ffd700"},{"date_produced":"2023-07-12","party":"CCa","spend":166,"total_spend":404,"colors":"#ffd700","Daily Spend":166,"Date":"2023-07-12","x":1689120000000,"y":166,"fill":"#ffd700"},{"date_produced":"2023-07-13","party":"CCa","spend":144,"total_spend":404,"colors":"#ffd700","Daily Spend":144,"Date":"2023-07-13","x":1689206400000,"y":144,"fill":"#ffd700"},{"date_produced":"2023-07-14","party":"CCa","spend":140,"total_spend":404,"colors":"#ffd700","Daily Spend":140,"Date":"2023-07-14","x":1689292800000,"y":140,"fill":"#ffd700"},{"date_produced":"2023-07-15","party":"CCa","spend":155,"total_spend":404,"colors":"#ffd700","Daily Spend":155,"Date":"2023-07-15","x":1689379200000,"y":155,"fill":"#ffd700"},{"date_produced":"2023-07-16","party":"CCa","spend":122,"total_spend":404,"colors":"#ffd700","Daily Spend":122,"Date":"2023-07-16","x":1689465600000,"y":122,"fill":"#ffd700"},{"date_produced":"2023-07-17","party":"CCa","spend":50,"total_spend":404,"colors":"#ffd700","Daily Spend":50,"Date":"2023-07-17","x":1689552000000,"y":50,"fill":"#ffd700"},{"date_produced":"2023-07-18","party":"CCa","spend":214,"total_spend":404,"colors":"#ffd700","Daily Spend":214,"Date":"2023-07-18","x":1689638400000,"y":214,"fill":"#ffd700"},{"date_produced":"2023-07-19","party":"CCa","spend":279,"total_spend":404,"colors":"#ffd700","Daily Spend":279,"Date":"2023-07-19","x":1689724800000,"y":279,"fill":"#ffd700"},{"date_produced":"2023-07-20","party":"CCa","spend":404,"total_spend":404,"colors":"#ffd700","Daily Spend":404,"Date":"2023-07-20","x":1689811200000,"y":404,"fill":"#ffd700"}],"type":"area"},{"name":"ERC","data":[{"date_produced":"2023-07-11","party":"ERC","spend":50,"total_spend":1076,"colors":"#ffb232","Daily Spend":50,"Date":"2023-07-11","x":1689033600000,"y":50,"fill":"#ffb232"},{"date_produced":"2023-07-12","party":"ERC","spend":133,"total_spend":1076,"colors":"#ffb232","Daily Spend":133,"Date":"2023-07-12","x":1689120000000,"y":133,"fill":"#ffb232"},{"date_produced":"2023-07-13","party":"ERC","spend":179,"total_spend":1076,"colors":"#ffb232","Daily Spend":179,"Date":"2023-07-13","x":1689206400000,"y":179,"fill":"#ffb232"},{"date_produced":"2023-07-14","party":"ERC","spend":222,"total_spend":1076,"colors":"#ffb232","Daily Spend":222,"Date":"2023-07-14","x":1689292800000,"y":222,"fill":"#ffb232"},{"date_produced":"2023-07-15","party":"ERC","spend":245,"total_spend":1076,"colors":"#ffb232","Daily Spend":245,"Date":"2023-07-15","x":1689379200000,"y":245,"fill":"#ffb232"},{"date_produced":"2023-07-16","party":"ERC","spend":50,"total_spend":1076,"colors":"#ffb232","Daily Spend":50,"Date":"2023-07-16","x":1689465600000,"y":50,"fill":"#ffb232"},{"date_produced":"2023-07-17","party":"ERC","spend":427,"total_spend":1076,"colors":"#ffb232","Daily Spend":427,"Date":"2023-07-17","x":1689552000000,"y":427,"fill":"#ffb232"},{"date_produced":"2023-07-18","party":"ERC","spend":423,"total_spend":1076,"colors":"#ffb232","Daily Spend":423,"Date":"2023-07-18","x":1689638400000,"y":423,"fill":"#ffb232"},{"date_produced":"2023-07-19","party":"ERC","spend":239,"total_spend":1076,"colors":"#ffb232","Daily Spend":239,"Date":"2023-07-19","x":1689724800000,"y":239,"fill":"#ffb232"},{"date_produced":"2023-07-20","party":"ERC","spend":1076,"total_spend":1076,"colors":"#ffb232","Daily Spend":1076,"Date":"2023-07-20","x":1689811200000,"y":1076,"fill":"#ffb232"}],"type":"area"},{"name":"PSOE","data":[{"date_produced":"2023-06-30","party":"PSOE","spend":50,"total_spend":46520,"colors":"#ef1c27","Daily Spend":50,"Date":"2023-06-30","x":1688083200000,"y":50,"fill":"#ef1c27"},{"date_produced":"2023-07-01","party":"PSOE","spend":100,"total_spend":46520,"colors":"#ef1c27","Daily Spend":100,"Date":"2023-07-01","x":1688169600000,"y":100,"fill":"#ef1c27"},{"date_produced":"2023-07-02","party":"PSOE","spend":100,"total_spend":46520,"colors":"#ef1c27","Daily Spend":100,"Date":"2023-07-02","x":1688256000000,"y":100,"fill":"#ef1c27"},{"date_produced":"2023-07-03","party":"PSOE","spend":8095,"total_spend":46520,"colors":"#ef1c27","Daily Spend":8095,"Date":"2023-07-03","x":1688342400000,"y":8095,"fill":"#ef1c27"},{"date_produced":"2023-07-04","party":"PSOE","spend":4772,"total_spend":46520,"colors":"#ef1c27","Daily Spend":4772,"Date":"2023-07-04","x":1688428800000,"y":4772,"fill":"#ef1c27"},{"date_produced":"2023-07-05","party":"PSOE","spend":6954,"total_spend":46520,"colors":"#ef1c27","Daily Spend":6954,"Date":"2023-07-05","x":1688515200000,"y":6954,"fill":"#ef1c27"},{"date_produced":"2023-07-06","party":"PSOE","spend":6152,"total_spend":46520,"colors":"#ef1c27","Daily Spend":6152,"Date":"2023-07-06","x":1688601600000,"y":6152,"fill":"#ef1c27"},{"date_produced":"2023-07-07","party":"PSOE","spend":28678,"total_spend":46520,"colors":"#ef1c27","Daily Spend":28678,"Date":"2023-07-07","x":1688688000000,"y":28678,"fill":"#ef1c27"},{"date_produced":"2023-07-08","party":"PSOE","spend":46520,"total_spend":46520,"colors":"#ef1c27","Daily Spend":46520,"Date":"2023-07-08","x":1688774400000,"y":46520,"fill":"#ef1c27"},{"date_produced":"2023-07-09","party":"PSOE","spend":30295,"total_spend":46520,"colors":"#ef1c27","Daily Spend":30295,"Date":"2023-07-09","x":1688860800000,"y":30295,"fill":"#ef1c27"},{"date_produced":"2023-07-10","party":"PSOE","spend":3108,"total_spend":46520,"colors":"#ef1c27","Daily Spend":3108,"Date":"2023-07-10","x":1688947200000,"y":3108,"fill":"#ef1c27"},{"date_produced":"2023-07-11","party":"PSOE","spend":1349,"total_spend":46520,"colors":"#ef1c27","Daily Spend":1349,"Date":"2023-07-11","x":1689033600000,"y":1349,"fill":"#ef1c27"},{"date_produced":"2023-07-12","party":"PSOE","spend":6570,"total_spend":46520,"colors":"#ef1c27","Daily Spend":6570,"Date":"2023-07-12","x":1689120000000,"y":6570,"fill":"#ef1c27"},{"date_produced":"2023-07-13","party":"PSOE","spend":10222,"total_spend":46520,"colors":"#ef1c27","Daily Spend":10222,"Date":"2023-07-13","x":1689206400000,"y":10222,"fill":"#ef1c27"},{"date_produced":"2023-07-14","party":"PSOE","spend":13079,"total_spend":46520,"colors":"#ef1c27","Daily Spend":13079,"Date":"2023-07-14","x":1689292800000,"y":13079,"fill":"#ef1c27"},{"date_produced":"2023-07-15","party":"PSOE","spend":4902,"total_spend":46520,"colors":"#ef1c27","Daily Spend":4902,"Date":"2023-07-15","x":1689379200000,"y":4902,"fill":"#ef1c27"},{"date_produced":"2023-07-16","party":"PSOE","spend":1270,"total_spend":46520,"colors":"#ef1c27","Daily Spend":1270,"Date":"2023-07-16","x":1689465600000,"y":1270,"fill":"#ef1c27"},{"date_produced":"2023-07-17","party":"PSOE","spend":9733,"total_spend":46520,"colors":"#ef1c27","Daily Spend":9733,"Date":"2023-07-17","x":1689552000000,"y":9733,"fill":"#ef1c27"},{"date_produced":"2023-07-18","party":"PSOE","spend":11429,"total_spend":46520,"colors":"#ef1c27","Daily Spend":11429,"Date":"2023-07-18","x":1689638400000,"y":11429,"fill":"#ef1c27"},{"date_produced":"2023-07-19","party":"PSOE","spend":13564,"total_spend":46520,"colors":"#ef1c27","Daily Spend":13564,"Date":"2023-07-19","x":1689724800000,"y":13564,"fill":"#ef1c27"},{"date_produced":"2023-07-20","party":"PSOE","spend":13182,"total_spend":46520,"colors":"#ef1c27","Daily Spend":13182,"Date":"2023-07-20","x":1689811200000,"y":13182,"fill":"#ef1c27"}],"type":"area"}],"xAxis":{"type":"datetime","title":{"text":"Date"},"categories":null},"colors":["#adcfef","#1d84ce","#00599b","#00c7ae","#ffd700","#ffb232","#ef1c27"],"tooltip":{"shared":true,"positioner":"function (labelWidth, labelHeight, point) {\n        return { x: 200, y: this.chart.plotTop };\n    }"}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":["hc_opts.tooltip.positioner"],"jsHooks":[]}</script>
+<div class="highchart html-widget html-fill-item" id="htmlwidget-c956c69d35b4dcdf4b92" style="width:100%;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-c956c69d35b4dcdf4b92">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":null},"yAxis":{"title":{"text":"Daily Spend"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":true},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}},"area":{"stacking":"normal","lineWidth":1,"marker":{"enabled":false}}},"series":[{"name":"CUP","data":[{"date_produced":"2023-07-12","party":"CUP","spend":50,"total_spend":50,"colors":"#ffed00","Daily Spend":50,"Date":"2023-07-12","x":1689120000000,"y":50,"fill":"#ffed00"},{"date_produced":"2023-07-13","party":"CUP","spend":50,"total_spend":50,"colors":"#ffed00","Daily Spend":50,"Date":"2023-07-13","x":1689206400000,"y":50,"fill":"#ffed00"},{"date_produced":"2023-07-14","party":"CUP","spend":50,"total_spend":50,"colors":"#ffed00","Daily Spend":50,"Date":"2023-07-14","x":1689292800000,"y":50,"fill":"#ffed00"},{"date_produced":"2023-07-15","party":"CUP","spend":50,"total_spend":50,"colors":"#ffed00","Daily Spend":50,"Date":"2023-07-15","x":1689379200000,"y":50,"fill":"#ffed00"},{"date_produced":"2023-07-16","party":"CUP","spend":50,"total_spend":50,"colors":"#ffed00","Daily Spend":50,"Date":"2023-07-16","x":1689465600000,"y":50,"fill":"#ffed00"}],"type":"area"},{"name":"PP","data":[{"date_produced":"2023-06-30","party":"PP","spend":50,"total_spend":50,"colors":"#1d84ce","Daily Spend":50,"Date":"2023-06-30","x":1688083200000,"y":50,"fill":"#1d84ce"},{"date_produced":"2023-07-02","party":"PP","spend":50,"total_spend":50,"colors":"#1d84ce","Daily Spend":50,"Date":"2023-07-02","x":1688256000000,"y":50,"fill":"#1d84ce"},{"date_produced":"2023-07-03","party":"PP","spend":50,"total_spend":50,"colors":"#1d84ce","Daily Spend":50,"Date":"2023-07-03","x":1688342400000,"y":50,"fill":"#1d84ce"},{"date_produced":"2023-07-04","party":"PP","spend":50,"total_spend":50,"colors":"#1d84ce","Daily Spend":50,"Date":"2023-07-04","x":1688428800000,"y":50,"fill":"#1d84ce"},{"date_produced":"2023-07-05","party":"PP","spend":50,"total_spend":50,"colors":"#1d84ce","Daily Spend":50,"Date":"2023-07-05","x":1688515200000,"y":50,"fill":"#1d84ce"},{"date_produced":"2023-07-06","party":"PP","spend":50,"total_spend":50,"colors":"#1d84ce","Daily Spend":50,"Date":"2023-07-06","x":1688601600000,"y":50,"fill":"#1d84ce"},{"date_produced":"2023-07-11","party":"PP","spend":50,"total_spend":50,"colors":"#1d84ce","Daily Spend":50,"Date":"2023-07-11","x":1689033600000,"y":50,"fill":"#1d84ce"},{"date_produced":"2023-07-12","party":"PP","spend":50,"total_spend":50,"colors":"#1d84ce","Daily Spend":50,"Date":"2023-07-12","x":1689120000000,"y":50,"fill":"#1d84ce"},{"date_produced":"2023-07-13","party":"PP","spend":50,"total_spend":50,"colors":"#1d84ce","Daily Spend":50,"Date":"2023-07-13","x":1689206400000,"y":50,"fill":"#1d84ce"},{"date_produced":"2023-07-14","party":"PP","spend":50,"total_spend":50,"colors":"#1d84ce","Daily Spend":50,"Date":"2023-07-14","x":1689292800000,"y":50,"fill":"#1d84ce"},{"date_produced":"2023-07-15","party":"PP","spend":50,"total_spend":50,"colors":"#1d84ce","Daily Spend":50,"Date":"2023-07-15","x":1689379200000,"y":50,"fill":"#1d84ce"},{"date_produced":"2023-07-16","party":"PP","spend":50,"total_spend":50,"colors":"#1d84ce","Daily Spend":50,"Date":"2023-07-16","x":1689465600000,"y":50,"fill":"#1d84ce"},{"date_produced":"2023-07-17","party":"PP","spend":50,"total_spend":50,"colors":"#1d84ce","Daily Spend":50,"Date":"2023-07-17","x":1689552000000,"y":50,"fill":"#1d84ce"},{"date_produced":"2023-07-19","party":"PP","spend":50,"total_spend":50,"colors":"#1d84ce","Daily Spend":50,"Date":"2023-07-19","x":1689724800000,"y":50,"fill":"#1d84ce"},{"date_produced":"2023-07-20","party":"PP","spend":50,"total_spend":50,"colors":"#1d84ce","Daily Spend":50,"Date":"2023-07-20","x":1689811200000,"y":50,"fill":"#1d84ce"}],"type":"area"},{"name":"BNG","data":[{"date_produced":"2023-07-04","party":"BNG","spend":50,"total_spend":150,"colors":"#adcfef","Daily Spend":50,"Date":"2023-07-04","x":1688428800000,"y":50,"fill":"#adcfef"},{"date_produced":"2023-07-05","party":"BNG","spend":50,"total_spend":150,"colors":"#adcfef","Daily Spend":50,"Date":"2023-07-05","x":1688515200000,"y":50,"fill":"#adcfef"},{"date_produced":"2023-07-06","party":"BNG","spend":50,"total_spend":150,"colors":"#adcfef","Daily Spend":50,"Date":"2023-07-06","x":1688601600000,"y":50,"fill":"#adcfef"},{"date_produced":"2023-07-07","party":"BNG","spend":50,"total_spend":150,"colors":"#adcfef","Daily Spend":50,"Date":"2023-07-07","x":1688688000000,"y":50,"fill":"#adcfef"},{"date_produced":"2023-07-08","party":"BNG","spend":50,"total_spend":150,"colors":"#adcfef","Daily Spend":50,"Date":"2023-07-08","x":1688774400000,"y":50,"fill":"#adcfef"},{"date_produced":"2023-07-09","party":"BNG","spend":150,"total_spend":150,"colors":"#adcfef","Daily Spend":150,"Date":"2023-07-09","x":1688860800000,"y":150,"fill":"#adcfef"},{"date_produced":"2023-07-10","party":"BNG","spend":150,"total_spend":150,"colors":"#adcfef","Daily Spend":150,"Date":"2023-07-10","x":1688947200000,"y":150,"fill":"#adcfef"},{"date_produced":"2023-07-11","party":"BNG","spend":150,"total_spend":150,"colors":"#adcfef","Daily Spend":150,"Date":"2023-07-11","x":1689033600000,"y":150,"fill":"#adcfef"},{"date_produced":"2023-07-12","party":"BNG","spend":150,"total_spend":150,"colors":"#adcfef","Daily Spend":150,"Date":"2023-07-12","x":1689120000000,"y":150,"fill":"#adcfef"},{"date_produced":"2023-07-13","party":"BNG","spend":150,"total_spend":150,"colors":"#adcfef","Daily Spend":150,"Date":"2023-07-13","x":1689206400000,"y":150,"fill":"#adcfef"},{"date_produced":"2023-07-14","party":"BNG","spend":150,"total_spend":150,"colors":"#adcfef","Daily Spend":150,"Date":"2023-07-14","x":1689292800000,"y":150,"fill":"#adcfef"},{"date_produced":"2023-07-15","party":"BNG","spend":150,"total_spend":150,"colors":"#adcfef","Daily Spend":150,"Date":"2023-07-15","x":1689379200000,"y":150,"fill":"#adcfef"},{"date_produced":"2023-07-16","party":"BNG","spend":150,"total_spend":150,"colors":"#adcfef","Daily Spend":150,"Date":"2023-07-16","x":1689465600000,"y":150,"fill":"#adcfef"},{"date_produced":"2023-07-17","party":"BNG","spend":100,"total_spend":150,"colors":"#adcfef","Daily Spend":100,"Date":"2023-07-17","x":1689552000000,"y":100,"fill":"#adcfef"},{"date_produced":"2023-07-18","party":"BNG","spend":100,"total_spend":150,"colors":"#adcfef","Daily Spend":100,"Date":"2023-07-18","x":1689638400000,"y":100,"fill":"#adcfef"},{"date_produced":"2023-07-19","party":"BNG","spend":100,"total_spend":150,"colors":"#adcfef","Daily Spend":100,"Date":"2023-07-19","x":1689724800000,"y":100,"fill":"#adcfef"},{"date_produced":"2023-07-20","party":"BNG","spend":100,"total_spend":150,"colors":"#adcfef","Daily Spend":100,"Date":"2023-07-20","x":1689811200000,"y":100,"fill":"#adcfef"}],"type":"area"},{"name":"Jun","data":[{"date_produced":"2023-06-30","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-06-30","x":1688083200000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-01","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-01","x":1688169600000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-02","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-02","x":1688256000000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-03","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-03","x":1688342400000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-04","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-04","x":1688428800000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-05","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-05","x":1688515200000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-06","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-06","x":1688601600000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-07","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-07","x":1688688000000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-08","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-08","x":1688774400000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-09","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-09","x":1688860800000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-10","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-10","x":1688947200000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-11","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-11","x":1689033600000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-12","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-12","x":1689120000000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-13","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-13","x":1689206400000,"y":50,"fill":"#00c7ae"},{"date_produced":"2023-07-14","party":"Jun","spend":100,"total_spend":150,"colors":"#00c7ae","Daily Spend":100,"Date":"2023-07-14","x":1689292800000,"y":100,"fill":"#00c7ae"},{"date_produced":"2023-07-15","party":"Jun","spend":100,"total_spend":150,"colors":"#00c7ae","Daily Spend":100,"Date":"2023-07-15","x":1689379200000,"y":100,"fill":"#00c7ae"},{"date_produced":"2023-07-16","party":"Jun","spend":100,"total_spend":150,"colors":"#00c7ae","Daily Spend":100,"Date":"2023-07-16","x":1689465600000,"y":100,"fill":"#00c7ae"},{"date_produced":"2023-07-17","party":"Jun","spend":150,"total_spend":150,"colors":"#00c7ae","Daily Spend":150,"Date":"2023-07-17","x":1689552000000,"y":150,"fill":"#00c7ae"},{"date_produced":"2023-07-18","party":"Jun","spend":150,"total_spend":150,"colors":"#00c7ae","Daily Spend":150,"Date":"2023-07-18","x":1689638400000,"y":150,"fill":"#00c7ae"},{"date_produced":"2023-07-19","party":"Jun","spend":150,"total_spend":150,"colors":"#00c7ae","Daily Spend":150,"Date":"2023-07-19","x":1689724800000,"y":150,"fill":"#00c7ae"},{"date_produced":"2023-07-20","party":"Jun","spend":50,"total_spend":150,"colors":"#00c7ae","Daily Spend":50,"Date":"2023-07-20","x":1689811200000,"y":50,"fill":"#00c7ae"}],"type":"area"},{"name":"ERC","data":[{"date_produced":"2023-07-11","party":"ERC","spend":50,"total_spend":1076,"colors":"#ffb232","Daily Spend":50,"Date":"2023-07-11","x":1689033600000,"y":50,"fill":"#ffb232"},{"date_produced":"2023-07-12","party":"ERC","spend":133,"total_spend":1076,"colors":"#ffb232","Daily Spend":133,"Date":"2023-07-12","x":1689120000000,"y":133,"fill":"#ffb232"},{"date_produced":"2023-07-13","party":"ERC","spend":179,"total_spend":1076,"colors":"#ffb232","Daily Spend":179,"Date":"2023-07-13","x":1689206400000,"y":179,"fill":"#ffb232"},{"date_produced":"2023-07-14","party":"ERC","spend":222,"total_spend":1076,"colors":"#ffb232","Daily Spend":222,"Date":"2023-07-14","x":1689292800000,"y":222,"fill":"#ffb232"},{"date_produced":"2023-07-15","party":"ERC","spend":245,"total_spend":1076,"colors":"#ffb232","Daily Spend":245,"Date":"2023-07-15","x":1689379200000,"y":245,"fill":"#ffb232"},{"date_produced":"2023-07-16","party":"ERC","spend":50,"total_spend":1076,"colors":"#ffb232","Daily Spend":50,"Date":"2023-07-16","x":1689465600000,"y":50,"fill":"#ffb232"},{"date_produced":"2023-07-17","party":"ERC","spend":427,"total_spend":1076,"colors":"#ffb232","Daily Spend":427,"Date":"2023-07-17","x":1689552000000,"y":427,"fill":"#ffb232"},{"date_produced":"2023-07-18","party":"ERC","spend":423,"total_spend":1076,"colors":"#ffb232","Daily Spend":423,"Date":"2023-07-18","x":1689638400000,"y":423,"fill":"#ffb232"},{"date_produced":"2023-07-19","party":"ERC","spend":239,"total_spend":1076,"colors":"#ffb232","Daily Spend":239,"Date":"2023-07-19","x":1689724800000,"y":239,"fill":"#ffb232"},{"date_produced":"2023-07-20","party":"ERC","spend":1076,"total_spend":1076,"colors":"#ffb232","Daily Spend":1076,"Date":"2023-07-20","x":1689811200000,"y":1076,"fill":"#ffb232"}],"type":"area"},{"name":"PSOE","data":[{"date_produced":"2023-06-30","party":"PSOE","spend":100,"total_spend":2559,"colors":"#ef1c27","Daily Spend":100,"Date":"2023-06-30","x":1688083200000,"y":100,"fill":"#ef1c27"},{"date_produced":"2023-07-01","party":"PSOE","spend":150,"total_spend":2559,"colors":"#ef1c27","Daily Spend":150,"Date":"2023-07-01","x":1688169600000,"y":150,"fill":"#ef1c27"},{"date_produced":"2023-07-02","party":"PSOE","spend":150,"total_spend":2559,"colors":"#ef1c27","Daily Spend":150,"Date":"2023-07-02","x":1688256000000,"y":150,"fill":"#ef1c27"},{"date_produced":"2023-07-03","party":"PSOE","spend":150,"total_spend":2559,"colors":"#ef1c27","Daily Spend":150,"Date":"2023-07-03","x":1688342400000,"y":150,"fill":"#ef1c27"},{"date_produced":"2023-07-04","party":"PSOE","spend":150,"total_spend":2559,"colors":"#ef1c27","Daily Spend":150,"Date":"2023-07-04","x":1688428800000,"y":150,"fill":"#ef1c27"},{"date_produced":"2023-07-05","party":"PSOE","spend":150,"total_spend":2559,"colors":"#ef1c27","Daily Spend":150,"Date":"2023-07-05","x":1688515200000,"y":150,"fill":"#ef1c27"},{"date_produced":"2023-07-06","party":"PSOE","spend":150,"total_spend":2559,"colors":"#ef1c27","Daily Spend":150,"Date":"2023-07-06","x":1688601600000,"y":150,"fill":"#ef1c27"},{"date_produced":"2023-07-07","party":"PSOE","spend":100,"total_spend":2559,"colors":"#ef1c27","Daily Spend":100,"Date":"2023-07-07","x":1688688000000,"y":100,"fill":"#ef1c27"},{"date_produced":"2023-07-08","party":"PSOE","spend":100,"total_spend":2559,"colors":"#ef1c27","Daily Spend":100,"Date":"2023-07-08","x":1688774400000,"y":100,"fill":"#ef1c27"},{"date_produced":"2023-07-09","party":"PSOE","spend":517,"total_spend":2559,"colors":"#ef1c27","Daily Spend":517,"Date":"2023-07-09","x":1688860800000,"y":517,"fill":"#ef1c27"},{"date_produced":"2023-07-10","party":"PSOE","spend":2225,"total_spend":2559,"colors":"#ef1c27","Daily Spend":2225,"Date":"2023-07-10","x":1688947200000,"y":2225,"fill":"#ef1c27"},{"date_produced":"2023-07-11","party":"PSOE","spend":2259,"total_spend":2559,"colors":"#ef1c27","Daily Spend":2259,"Date":"2023-07-11","x":1689033600000,"y":2259,"fill":"#ef1c27"},{"date_produced":"2023-07-12","party":"PSOE","spend":2187,"total_spend":2559,"colors":"#ef1c27","Daily Spend":2187,"Date":"2023-07-12","x":1689120000000,"y":2187,"fill":"#ef1c27"},{"date_produced":"2023-07-13","party":"PSOE","spend":2430,"total_spend":2559,"colors":"#ef1c27","Daily Spend":2430,"Date":"2023-07-13","x":1689206400000,"y":2430,"fill":"#ef1c27"},{"date_produced":"2023-07-14","party":"PSOE","spend":2202,"total_spend":2559,"colors":"#ef1c27","Daily Spend":2202,"Date":"2023-07-14","x":1689292800000,"y":2202,"fill":"#ef1c27"},{"date_produced":"2023-07-15","party":"PSOE","spend":2559,"total_spend":2559,"colors":"#ef1c27","Daily Spend":2559,"Date":"2023-07-15","x":1689379200000,"y":2559,"fill":"#ef1c27"},{"date_produced":"2023-07-16","party":"PSOE","spend":2509,"total_spend":2559,"colors":"#ef1c27","Daily Spend":2509,"Date":"2023-07-16","x":1689465600000,"y":2509,"fill":"#ef1c27"},{"date_produced":"2023-07-17","party":"PSOE","spend":2002,"total_spend":2559,"colors":"#ef1c27","Daily Spend":2002,"Date":"2023-07-17","x":1689552000000,"y":2002,"fill":"#ef1c27"},{"date_produced":"2023-07-18","party":"PSOE","spend":1820,"total_spend":2559,"colors":"#ef1c27","Daily Spend":1820,"Date":"2023-07-18","x":1689638400000,"y":1820,"fill":"#ef1c27"},{"date_produced":"2023-07-19","party":"PSOE","spend":2220,"total_spend":2559,"colors":"#ef1c27","Daily Spend":2220,"Date":"2023-07-19","x":1689724800000,"y":2220,"fill":"#ef1c27"},{"date_produced":"2023-07-20","party":"PSOE","spend":2305,"total_spend":2559,"colors":"#ef1c27","Daily Spend":2305,"Date":"2023-07-20","x":1689811200000,"y":2305,"fill":"#ef1c27"}],"type":"area"}],"xAxis":{"type":"datetime","title":{"text":"Date"},"categories":null},"colors":["#ffed00","#1d84ce","#adcfef","#00c7ae","#ffb232","#ef1c27"],"tooltip":{"shared":true,"positioner":"function (labelWidth, labelHeight, point) {\n        return { x: 200, y: this.chart.plotTop };\n    }"}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":["hc_opts.tooltip.positioner"],"jsHooks":[]}</script>
 </div>
 </div>
 
@@ -1480,10 +1438,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1493,8 +1468,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1506,7 +1490,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1550,6 +1657,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1575,6 +1683,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1635,6 +1769,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
